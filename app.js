@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const path = require('path');
 
 // const db = require("./config/key.js").mongoURI;
 // const users = require("./routes/api/users.js");
@@ -9,6 +10,13 @@ const passport = require('passport');
 // const User = require("./models/User.js");
 
 const app = express();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'src', 'index.js'));
+  });
+}
 
 // mongoose
 //   .connect(db, { useNewUrlParser: true })
@@ -34,5 +42,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.json({ msg: "Success "});
-})
+  res.send(path.resolve(__dirname, 'frontend', 'src', 'index.jsx'));
+});
