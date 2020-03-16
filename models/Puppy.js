@@ -21,7 +21,7 @@ const PuppySchema = new Schema({
     breed: {
         type: Schema.Types.ObjectId,
         ref: "breeds"
-    }
+    },
     fluffyRating: {
         type: Number,
         required: true,
