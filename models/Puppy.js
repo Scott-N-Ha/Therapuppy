@@ -18,13 +18,17 @@ const PuppySchema = new Schema({
         type: Number,
         required: true
     },
+    breed: {
+        type: Schema.Types.ObjectId,
+        ref: "breeds"
+    }
     fluffyRating: {
         type: Number,
         required: true,
         min: 1,
         max: 5
     },
-    earTypeId: {
+    earType: {
         type: Schema.Types.ObjectId,
         ref: "earTypes"
     },
