@@ -1,5 +1,5 @@
 const Validator = require('validator');
-const validText = require("./valid-text");
+const validText = require("./valid_text");
 
 module.exports = function validateRegisterInput(data) {
     let errors = {};
@@ -17,7 +17,7 @@ module.exports = function validateRegisterInput(data) {
 
     
     if (!Validator.isEmpty(data.username)) {
-        errors.handle = 'Username field is required'
+        errors.username = 'Username field is required'
     };
     
     if (!Validator.isEmpty(data.email)) {
@@ -33,7 +33,7 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (!Validator.isLength(data.password, { min: 6 })) {
-        errors.handle = 'Password must be at least 6 characters'
+        errors.password = 'Password must be at least 6 characters'
     };
 
     if (!Validator.equals(data.password, data.password2)) {
@@ -41,23 +41,23 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (Validator.isEmpty(data.firstName)) {
-        errors.password = "First name field is required"
+        errors.firstName = "First name field is required"
     }
 
     if (Validator.isEmpty(data.lastName)) {
-        errors.password = "Last name field is required"
+        errors.lastName = "Last name field is required"
     }
 
     if (Validator.isEmpty(data.address1)) {
-        errors.password = "Address 1 field is required"
+        errors.address1 = "Address 1 field is required"
     }
 
     if (Validator.isEmpty(data.city)) {
-        errors.password = "City field is required"
+        errors.city = "City field is required"
     }
 
     if (Validator.isEmpty(data.state)) {
-        errors.password = "State field is required"
+        errors.state = "State field is required"
     }
 
     return {
