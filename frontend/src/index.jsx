@@ -7,6 +7,9 @@ import configureStore from './store/store.js';
 import { setAuthToken } from './util/session_api_util.js';
 import { logout } from './actions/session_actions.js';
 
+import "./stylesheets/reset.css";
+import "./stylesheets/universal.css";
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
