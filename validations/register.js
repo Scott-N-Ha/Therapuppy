@@ -4,7 +4,7 @@ const validText = require("./valid_text");
 module.exports = function validateRegisterInput(data) {
     let errors = {};
 
-    data.usernmae = validText(data.handle) ? data.handle : ""
+    data.username = validText(data.username) ? data.username : ""
     data.email = validText(data.email) ? data.email : ""
     data.firstName = validText(data.firstName) ? data.firstName : ""
     data.lastName = validText(data.lastName) ? data.lastName : ""
@@ -16,11 +16,11 @@ module.exports = function validateRegisterInput(data) {
     data.state = validText(data.state) ? data.state : ""
 
     
-    if (!Validator.isEmpty(data.username)) {
+    if (Validator.isEmpty(data.username)) {
         errors.username = 'Username field is required'
     };
     
-    if (!Validator.isEmpty(data.email)) {
+    if (Validator.isEmpty(data.email)) {
         errors.email = 'Email field is required'
     };
     
@@ -52,12 +52,20 @@ module.exports = function validateRegisterInput(data) {
         errors.address1 = "Address 1 field is required"
     }
 
+    if (Validator.isBoolean(data.isOwner)){
+        errors.isOwner = "isOwner must be a boolean"
+    }
+
     if (Validator.isEmpty(data.city)) {
         errors.city = "City field is required"
     }
 
     if (Validator.isEmpty(data.state)) {
         errors.state = "State field is required"
+    }
+
+    if (!Validator.isInt(data.zip)){
+        errors.zip = "Zip must be integer"
     }
 
     return {

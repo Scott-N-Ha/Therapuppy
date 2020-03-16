@@ -7,5 +7,7 @@ module.exports = function validatePuppyInput(data) {
     data.name = validText(data.name) ? data.name : "";
     data.sex = validText(data.sex) ? data.sex : "";
     
+    if (Validator.isEmpty(data.name))
+
 
 };
