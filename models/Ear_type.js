@@ -12,4 +12,5 @@ const EarTypeSchema = new Schema({
     }
 });
 
-const EarType = mongoose.model('earTypes')
+const EarType = mongoose.model('earTypes');
+module.exports = EarType; 
