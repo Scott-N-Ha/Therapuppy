@@ -4,15 +4,27 @@ module.exports = function validateLoginInput(data) {
     let errors = {};
 
     if (Validator.isEmpty(data.ownerId)) {
-        errors.ownerId = 'OwnerId field is required'
+        errors.ownerId = 'Owner Id field is required'
+    };
+
+    if (Number.isInteger(data.ownerId)) {
+        errors.ownerId = 'Owener Id field must be an integer'
     };
 
     if (Validator.isEmpty(data.renterId)) {
-        errors.renterId = 'RenterId field is required'
+        errors.renterId = 'Renter Id field is required'
+    };
+
+    if (Number.isInteger(data.renterId)) {
+        errors.renterId = 'Renter Id field must be an integer'
     };
 
     if (Validator.isEmpty(data.puppyId)) {
-        errors.puppyId = 'PuppyId field is required'
+        errors.puppyId = 'Puppy Id field is required'
+    };
+
+    if (Number.isInteger(data.puppyId)) {
+        errors.puppyId = 'Puppy Id field must be an integer'
     };
 
     if (Validator.isEmpty(data.date)) {
