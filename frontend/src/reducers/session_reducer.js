@@ -14,10 +14,6 @@ const sessionReducer = (state = initialState, action) => {
         ...state,
         user: action.currentUser,
       };
-    case RECEIVE_USER_SIGN_IN:
-      return {
-        ...state
-      };
     case RECEIVE_USER_LOGOUT:
       return { user: undefined };
     default:
