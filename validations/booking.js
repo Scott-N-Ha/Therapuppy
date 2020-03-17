@@ -1,6 +1,6 @@
 const Validator = require('validator');
 
-module.exports = function validateLoginInput(data) {
+module.exports = function validateBookingInput(data) {
     let errors = {};
 
     if (Validator.isEmpty(data.ownerId)) {
@@ -58,5 +58,8 @@ module.exports = function validateLoginInput(data) {
     if (Validator.isEmpty(data.totalCost)) {
         errors.totalCost = 'Total cost field is required'
     };
-
+    return{
+        errors,
+        isValid: Object.keys(errors).length === 0 
+    }
 }
