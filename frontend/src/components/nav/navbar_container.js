@@ -5,7 +5,6 @@ import NavBar from './navbar.jsx';
 import { logout } from '../../actions/session_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
   return {
     loggedIn: Boolean(state.session.user._id),
   };
