@@ -117,7 +117,7 @@ export default class SignupForm extends React.Component {
               </div>
             <br/>
               <label>
-                Is a Puppy: 
+                Is an Owner: 
                 <input
                   type="checkbox"
                   name="isOwner"

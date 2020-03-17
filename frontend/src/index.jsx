@@ -9,6 +9,7 @@ import { logout } from './actions/session_actions.js';
 
 import "./stylesheets/reset.css";
 import "./stylesheets/universal.css";
+import "./stylesheets/navbar.css";
 import "./stylesheets/session_form.css";
 
 document.addEventListener('DOMContentLoaded', () => {
