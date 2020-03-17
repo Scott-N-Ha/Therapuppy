@@ -30,6 +30,9 @@ class NavBar extends React.Component {
             className="navbar-btn">Signup</Link> : <Link
             to='/login'
             className="navbar-btn">Login</Link> }
+          { this.props.location.pathname === "/" ? <Link
+            to='/signup'
+            className="navbar-btn">Signup</Link> : null }
         </div>
       )
     }

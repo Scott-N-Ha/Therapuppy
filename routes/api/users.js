@@ -12,159 +12,176 @@ const Puppy = require('../../models/Puppy')
 const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
-  console.log(req.body)
+	const {
+		errors,
+		isValid
+	} = validateRegisterInput(req.body.user);
 
-  const {
-    errors,
-    isValid
-  } = validateRegisterInput(req.body.user);
+	if (!isValid) {
+		return res.status(404).json(errors);
+	};
 
-  if (!isValid) {
-    return res.status(404).json(errors);
-  };
+	User.findOne({
+			email: req.body.email
+		})
+		.then(user => {
+			if (user) {
+				errors.handle = "Email already exists";
+				return res.status(404).json(errors);
+			} else {
+				const {
+					username,
+					email,
+					firstName,
+					lastName,
+					password,
+					isOwner,
+					address1,
+					address2,
+					city,
+					state,
+					zip
+				} = req.body.user
+				const newUser = new User({
+					username,
+					email,
+					firstName,
+					lastName,
+					password,
+					isOwner,
+					address1,
+					address2,
+					city,
+					state,
+					zip,
+				});
 
-  User.findOne({
-      email: req.body.email
-    })
-    .then(user => {
-      if (user) {
-        errors.handle = "Email already exists";
-        return res.status(404).json(errors);
-      } else {
-        const {
-          username,
-          email,
-          firstName,
-          lastName,
-          password,
-          isOwner,
-          address1,
-          address2,
-          city,
-          state,
-          zip
-        } = req.body.user
-        const newUser = new User({
-          username,
-          email,
-          firstName,
-          lastName,
-          password,
-          isOwner,
-          address1,
-          address2,
-          city,
-          state,
-          zip,
-        });
+				bcrypt.genSalt(10, (err, salt) => {
+					bcrypt.hash(newUser.password, salt, (err, hash) => {
+						if (err) throw err;
+						newUser.password = hash;
+						newUser.save()
+							.then(user => {
+								const payload = {
+									_id: user.id,
+									username: user.username, 
+									email: user.email,
+									firstName: user.firstName, 
+									lastName: user.lastName, 
+									address1: user.address1,
+									address2: user.address2, 
+									city: user.city,
+									state: user.state,
+									zip: user.zip,
+									isOwner: user.isOwner
+								};
 
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-              .then(user => {
-                const payload = {
-                  id: user.id,
-                  username: user.username,
-                  email: user.email
-                };
+								jwt.sign(payload, keys.secretOrKey, {
+									expiresIn: 3600
+								}, (err, token) => {
 
-                jwt.sign(payload, keys.secretOrKey, {
-                  expiresIn: 3600
-                }, (err, token) => {
-                  res.json({
-                    success: true,
-                    token: "Bearer " + token
-                  });
-                });
-              })
-              .catch(err => console.log(err));
-          });
-        });
+									res.json({
+										success: true,
+										token: "Bearer " + token,
+										user: payload
+									});
+								});
+							})
+							.catch(err => console.log(err));
+					});
+				});
 
-      };
-    });
+			};
+		});
 });
 
 router.post("/login", (req, res) => {
-  const {
-    errors,
-    isValid
-  } = validateLoginInput(req.body.user);
+	const {
+		errors,
+		isValid
+	} = validateLoginInput(req.body.user);
 
-  if (!isValid) {
-    return res.status(404).json(errors);
-  };
+	if (!isValid) {
+		return res.status(404).json(errors);
+	};
 
-  const {
-    username,
-    password
-  } = req.body.user
+	const {
+		email,
+		password
+	} = req.body.user
 
-  User.findOne({
-    username
-  }).then(user => {
-    if (!user) {
-      errors.username = "This username does not exist";
-      return res.status(404).json(errors);
-    };
-    console.log("success");
+	User.findOne({
+		email
+	}).then(user => {
+		if (!user) {
+			errors.email = "This email does not exist";
+			return res.status(404).json(errors);
+		};
+		console.log("success");
 
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        const payload = {
-          id: user.id,
-          username: user.username,
-          email: user.email
-        };
+		bcrypt.compare(password, user.password).then(isMatch => {
+			if (isMatch) {
+				const payload = {
+					_id: user.id,
+					username: user.username,
+					email: user.email,
+					firstName: user.firstName,
+					lastName: user.lastName,
+					address1: user.address1,
+					address2: user.address2,
+					city: user.city,
+					state: user.state,
+					zip: user.zip,
+					isOwner: user.isOwner
+				};
 
-        jwt.sign(payload, keys.secretOrKey, {
-          expiresIn: 3600
-        }, (err, token) => {
-          console.log("sucess");
-          return res.json({
-            sucess: true,
-            token: "Bearer " + token
-          });
-        });
-      } else {
-        errors.password = "Incorrect password";
-        return res.status(404).json(errors);
-      };
-    });
-  });
+				jwt.sign(payload, keys.secretOrKey, {
+					expiresIn: 3600
+				}, (err, token) => {
+					console.log("sucess");
+					return res.json({
+						sucess: true,
+						token: "Bearer " + token,
+						user: payload
+					});
+				});
+			} else {
+				errors.password = "Incorrect password";
+				return res.status(404).json(errors);
+			};
+		});
+	});
 });
 
 router.get('/current', passport.authenticate('jwt', {
-  session: false
+	session: false
 }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    username: req.user.username,
-    email: req.user.email
-  });
+	res.json({
+		id: req.user.id,
+		username: req.user.username,
+		email: req.user.email
+	});
 });
 
 router.get('users/:user_id/puppies', (req, res) => {
-  Puppy.find({
-      owner: req.params.user_id
-    })
-    .then(puppies => res.json(puppies))
-    .catch(err =>
-      res.status(404).json({
-        nopuppiesfound: 'No puppies found from user'
-      })
-    )
-  Booking.find({
-      owner: req.params.user_id
-    })
-    .then(bookings => res.json(bookings))
-    .catch(err =>
-      res.status(404).json({
-        nobookingsfound: 'No bookings found from user'
-      })
-    );
+	Puppy.find({
+			owner: req.params.user_id
+		})
+		.then(puppies => res.json(puppies))
+		.catch(err =>
+			res.status(404).json({
+				nopuppiesfound: 'No puppies found from user'
+			})
+		)
+	Booking.find({
+			owner: req.params.user_id
+		})
+		.then(bookings => res.json(bookings))
+		.catch(err =>
+			res.status(404).json({
+				nobookingsfound: 'No bookings found from user'
+			})
+		);
 });
 
 router.get('users/puppies/:puppy_id', (req, res) => {
@@ -179,13 +196,13 @@ router.get('users/puppies/:puppy_id', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => 
-      res.status(404).json({
-          nousersfound: "No users found"
-      })
-    )
+	User.find()
+		.then(users => res.json(users))
+		.catch(err => 
+			res.status(404).json({
+					nousersfound: "No users found"
+			})
+		)
 })
 
 module.exports = router;

@@ -1,6 +1,8 @@
-// src/components/session/login_form.js
-
 import React from 'react';
+
+function titlize(word){
+  return word[0].toUpperCase() + word.slice(1).toLowerCase();
+}
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -9,11 +11,13 @@ export default class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      frontErrors: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.validateForms = this.validateForms.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,25 +32,62 @@ export default class LoginForm extends React.Component {
     });
   }
 
+  validateForms(){
+    let allow = true;
+    const inputs = document.querySelectorAll('input');
+    const newErrors = [];
+    
+    inputs.forEach(input => input.classList.remove('session-error'));
+    
+    inputs.forEach(input => {
+      if(input.name !== "submit" && input.value.length < 1){
+        allow = false;
+        newErrors.push(`${titlize(input.name)} cannot be blank.`);
+        input.classList.add('session-error');
+      }
+    });
+
+    if (allow) {
+      this.setState({ frontErrors: [] });
+      inputs.forEach(input => input.classList.remove('session-error'));
+    } else {
+      this.setState({ frontErrors: newErrors });
+    }
+
+    return allow;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
-    let user = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    this.props.login(user); 
+    if (this.validateForms()) {
+      let user = {
+        email: this.state.email,
+        password: this.state.password
+      };
+  
+      this.props.login({user}); 
+    }
   }
 
   renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
+    // return(
+    //   <ul>
+    //     {Object.keys(this.state.errors).map((error, i) => (
+    //       <li key={`error-${i}`}>
+    //         {this.state.errors[error]}
+    //       </li>
+    //     ))}
+    //   </ul>
+    // );
+
+    const formattedErrors = this.state.frontErrors.map(error => {
+      return <li className="session-error-list-item">{error}</li>
+    });
+
+    return (
+      <ul className="session-error-list">
+        { formattedErrors }
       </ul>
     );
   }
@@ -56,6 +97,7 @@ export default class LoginForm extends React.Component {
       <div className="login-div">
         <form onSubmit={this.handleSubmit} className="login-form">
               <input type="text"
+                name="email"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
@@ -63,15 +105,19 @@ export default class LoginForm extends React.Component {
               />
             <br/>
               <input type="password"
+                name="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
                 className="input-form password-input"
               />
             <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            <input
+              type="submit" 
+              name="submit"
+              value="Submit" />
         </form>
+        { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
       </div>
     );
   }
