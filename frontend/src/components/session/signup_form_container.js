@@ -1,6 +1,7 @@
 // src/components/session/signup_form_container.js
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { signup } from '../../actions/session_actions.js';
 import SignupForm from './signup_form.jsx';
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignupForm);
+)(SignupForm));
