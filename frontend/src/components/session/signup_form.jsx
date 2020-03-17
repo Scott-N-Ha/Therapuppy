@@ -83,9 +83,6 @@ export default class SignupForm extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
     };
-<<<<<<< HEAD
-    this.props.signup({user}, this.props.history); 
-=======
 
     this.props.signup({user}).fail(() => this.cancel()); 
   }
@@ -107,7 +104,6 @@ export default class SignupForm extends React.Component {
       errors: {},
       frontErrors: [],
     });
->>>>>>> 4525d3288de02f9e4996fd3969866ea44f3c9971
   }
 
   renderErrors() {
