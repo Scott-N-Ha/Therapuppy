@@ -75,14 +75,13 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validateLoginInput(req.body.user);
 
     if (!isValid) {
         return res.status(404).json(errors);
     };
 
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password } = req.body.user
 
     User.findOne( { username }).then(user => {
         if (!user) {
@@ -95,7 +94,7 @@ router.post("/login", (req, res) => {
             if (isMatch) {
                 const payload = { id: user.id, username: user.username, email: user.email };
 
-                jwt.sign(payload, keysOrSecret, { expiresIn: 3600 }, (err, token) => {
+                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                     console.log("sucess");
                     return res.json({
                         sucess: true, 

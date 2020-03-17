@@ -28,7 +28,7 @@ const logoutUserAction = () => ({
 
 // Thunk Actions
 export const signup = user => dispatch => (
-  APIUtil.signup({user})
+  APIUtil.signup(user)
     .then((res) => dispatch(receiveCurrentUserAction(res.user)),
       err => dispatch(receiveErrorsAction(err.response.data)))
 );
