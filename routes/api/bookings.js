@@ -21,8 +21,8 @@ router.post("/",
             renter: req.user.id, 
             puppy: req.body.puppy.id,
             date: req.body.date,
-            
-
+            status: req.body.staus, 
+            totalCost: req.body.totalCost
         });
 
         newBooking
@@ -31,3 +31,16 @@ router.post("/",
 
     }
 )
+
+router.get("/", (req,res) => {
+    Booking
+        .find()
+        
+})    
+
+router.get("/puppy/:puppy_id", (req, res) => {
+    Booking.find({puppy: req.params.puppy_id})
+        .then(booking => res.json(booking))
+        .catch( err => 
+            res.status(404).json({ noBookingFound: "No bookings found from that peeee"}))
+})
