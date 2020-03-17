@@ -44,4 +44,4 @@ router.get("/puppy/:puppy_id", (req, res) => {
         .catch( err => 
             res.status(404).json({ noBookingFound: "No bookings found from that peeee"}))
 })
-modulex.exports = router; 
+module.exports = router; 
