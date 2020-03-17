@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport");
+const passport = require("passport");
 const mongoose = require('mongoose');
 const Booking = require("../../models/Booking");
 const validateBookingInput = require("../../validations/booking");
@@ -44,3 +44,4 @@ router.get("/puppy/:puppy_id", (req, res) => {
         .catch( err => 
             res.status(404).json({ noBookingFound: "No bookings found from that peeee"}))
 })
+modulex.exports = router; 
