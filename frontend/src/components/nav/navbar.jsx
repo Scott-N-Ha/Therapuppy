@@ -24,9 +24,12 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <div>
-          <Link to='/signup'>Signup</Link>
-          <Link to='/login'>Login</Link>
+        <div className="login-buttons">
+          { this.props.location.pathname === "/login" ? <Link
+            to='/signup'
+            className="navbar-btn">Signup</Link> : <Link
+            to='/login'
+            className="navbar-btn">Login</Link> }
         </div>
       )
     }
@@ -35,7 +38,7 @@ class NavBar extends React.Component {
   render(){
     return (
       <div className="nav-bar">
-        <h1 className="therapuppy rainbow-effect-persist">Therapuppy</h1>
+        <Link to="/"><h1 className="therapuppy rainbow-effect-persist">Therapuppy</h1></Link>
         { this.getLinks() }
       </div>
     )

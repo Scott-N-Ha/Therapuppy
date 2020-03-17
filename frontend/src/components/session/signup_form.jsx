@@ -53,7 +53,6 @@ export default class SignupForm extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
     };
-    debugger
     this.props.signup({user}); 
   }
 
@@ -117,7 +116,7 @@ export default class SignupForm extends React.Component {
               </div>
             <br/>
               <label>
-                Is a Puppy: 
+                Is an Owner: 
                 <input
                   type="checkbox"
                   name="isOwner"
