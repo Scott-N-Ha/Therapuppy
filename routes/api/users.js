@@ -75,14 +75,13 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validateLoginInput(req.body.user);
 
     if (!isValid) {
         return res.status(404).json(errors);
     };
 
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password } = req.body.user
 
     User.findOne( { username }).then(user => {
         if (!user) {
