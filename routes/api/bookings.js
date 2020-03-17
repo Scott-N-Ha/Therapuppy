@@ -14,15 +14,24 @@ router.post("/",
             return res.status(400).json(errors);
         }
 
+        const {
+            id,
+            owner,
+            renter,
+            date,
+            status,
+            totalCost
+        } = req.body.puppy
+
         const newBooking = new Booking({
             // user: req.user.id,
             // text: req.body.text,
-            owner: req.body.puppy.owner,
-            renter: req.user.id, 
-            puppy: req.body.puppy.id,
-            date: req.body.date,
-            status: req.body.staus, 
-            totalCost: req.body.totalCost
+            owner,
+            renter,
+            puppy: id, 
+            date,
+            status,
+            totalCost,
         });
 
         newBooking

@@ -9,3 +9,7 @@ export const fetchPuppy = puppyId => (
 export const createPuppy = puppyData => (
     axios.post('api/puppies', puppyData)
 )
+
+export const editPuppy = puppyData => (
+    axios.patch(`api/puppies/${puppyData._id}`. puppyData)
+)
