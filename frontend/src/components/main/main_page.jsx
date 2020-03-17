@@ -12,7 +12,7 @@ class MainPage extends React.Component {
   render(){
     const { user } = this.props;
 
-    if (user === undefined) {
+    if (user._id === undefined) {
       return (
         <div>
           Main Page when there is no user logged in
