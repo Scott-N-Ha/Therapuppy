@@ -10,7 +10,7 @@ import { logout } from './actions/session_actions.js';
 import "./stylesheets/reset.css";
 import "./stylesheets/universal.css";
 import "./stylesheets/navbar.css";
-import "./stylesheets/session_form.css";
+import "./stylesheets/session_form.scss";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setAuthToken(localStorage.jwtToken);
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
-    const preloadedState = { session: { isAuthenicated: true, user: decodedUser } };
+    const preloadedState = { session: { user: decodedUser } };
 
     store = configureStore(preloadedState);
 
