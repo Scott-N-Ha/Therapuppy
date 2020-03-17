@@ -53,8 +53,8 @@ export default class SignupForm extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
     };
-
-    this.props.signup(user, this.props.history); 
+    debugger
+    this.props.signup({user}); 
   }
 
   renderErrors() {
