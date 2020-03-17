@@ -28,6 +28,12 @@
   opacity: 1;
 }
 
+.underline-magic:focus:after {
+  width: 100%;
+  left: 0;
+  opacity: 1;
+}
+
 .rainbow-effect:hover {
   background-image: repeating-linear-gradient(90deg, #e11a1a, #e1791a, #e0e11a, #54e11a, #1a2be1);
   background-size: 1000% 1000%;
