@@ -6,10 +6,6 @@ const PuppySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    renter: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-    },
     name: {
         type: String, 
         required: true
