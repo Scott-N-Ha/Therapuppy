@@ -50,7 +50,6 @@ export default class SignupForm extends React.Component {
     const newErrors = [];
 
     inputs.forEach(input => {
-      debugger
       if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
         allow = false;
         newErrors.push(`${titlize(input.name)} cannot be blank.`);
