@@ -167,9 +167,9 @@ router.get('users/:user_id/puppies', (req, res) => {
     );
 });
 
-router.get('users/puppies/:puppies_id', (req, res) => {
+router.get('users/puppies/:puppy_id', (req, res) => {
   Puppy.findById({
-      id: req.params.puppies_id
+      id: req.params.puppy_id
     })
     .then(puppy => res.json(puppy))
     .catch(err =>
