@@ -99,15 +99,15 @@ router.post("/login", (req, res) => {
   };
 
   const {
-    username,
+    email,
     password
   } = req.body.user
 
   User.findOne({
-    username
+    email
   }).then(user => {
     if (!user) {
-      errors.username = "This username does not exist";
+      errors.email = "This email does not exist";
       return res.status(404).json(errors);
     };
     console.log("success");
@@ -126,7 +126,8 @@ router.post("/login", (req, res) => {
           console.log("sucess");
           return res.json({
             sucess: true,
-            token: "Bearer " + token
+            token: "Bearer " + token,
+            user
           });
         });
       } else {
