@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { login } from '../../actions/session_actions.js';
 import LoginForm from './login_form.jsx';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     errors: state.errors.session,
   };
