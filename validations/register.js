@@ -52,9 +52,9 @@ module.exports = function validateRegisterInput(data) {
         errors.address1 = "Address 1 field is required"
     };
 
-    if (Validator.isBoolean(data.isOwner)){
-        errors.isOwner = "isOwner must be a boolean"
-    };
+    // if (Validator.isBoolean(data.isOwner)){
+    //     errors.isOwner = "isOwner must be a boolean"
+    // };
 
     if (Validator.isEmpty(data.city)) {
         errors.city = "City field is required"
