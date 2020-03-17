@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PuppyContainer from './puppy_container.js';
+
 export default class PuppyIndex extends React.Component {
   constructor(props){
     super(props);
@@ -9,10 +11,13 @@ export default class PuppyIndex extends React.Component {
   render(){
     const { puppies } = this.props;
 
-    
+    const puppiesContainers = puppies.map(puppy => {
+      return <PuppyContainer puppy={puppy} />
+    });
 
     return (
       <div className="puppy-index">
+        { puppiesContainers }
       </div>
     )
   }
