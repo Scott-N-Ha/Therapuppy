@@ -16,7 +16,28 @@ mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB."))
   .catch(err => console.log(err));
-  
+// const user = {
+//   username: "testtest",
+//   firstName: "test",
+//   lastName: "test",
+//   email: "test@aa.io",
+//   password: "password",
+//   password2: "password",
+//   isOwner: "",
+//   address1: "852 Battery Street",
+//   address2: "Bino",
+//   city: "San Francisco",
+//   state: "CA",
+//   zip: "98004"
+// };
+
+// const validator  = validateRegisterInput(user);
+// if (validator.isValid){
+//   User.create(user)
+// } else {
+//   console.log(validator.errors)
+// }
+
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
