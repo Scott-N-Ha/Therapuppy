@@ -12,6 +12,7 @@ const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
     console.log(req.body)
+    
     const { errors, isValid } = validateRegisterInput(req.body.user);
 
     if (!isValid) {
