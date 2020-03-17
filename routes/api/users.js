@@ -12,8 +12,6 @@ const Puppy = require('../../models/Puppy')
 const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
-	console.log(req.body)
-
 	const {
 		errors,
 		isValid
@@ -65,14 +63,23 @@ router.post("/register", (req, res) => {
 						newUser.save()
 							.then(user => {
 								const payload = {
-									id: user.id,
-									username: user.username,
-									email: user.email
+									_id: user.id,
+									username: user.username, 
+									email: user.email,
+									firstName: user.firstName, 
+									lastName: user.lastName, 
+									address1: user.address1,
+									address2: user.address2, 
+									city: user.city,
+									state: user.state,
+									zip: user.zip,
+									isOwner: user.isOwner
 								};
 
 								jwt.sign(payload, keys.secretOrKey, {
 									expiresIn: 3600
 								}, (err, token) => {
+
 									res.json({
 										success: true,
 										token: "Bearer " + token,
@@ -115,9 +122,17 @@ router.post("/login", (req, res) => {
 		bcrypt.compare(password, user.password).then(isMatch => {
 			if (isMatch) {
 				const payload = {
-					id: user.id,
+					_id: user.id,
 					username: user.username,
-					email: user.email
+					email: user.email,
+					firstName: user.firstName,
+					lastName: user.lastName,
+					address1: user.address1,
+					address2: user.address2,
+					city: user.city,
+					state: user.state,
+					zip: user.zip,
+					isOwner: user.isOwner
 				};
 
 				jwt.sign(payload, keys.secretOrKey, {
@@ -127,7 +142,7 @@ router.post("/login", (req, res) => {
 					return res.json({
 						sucess: true,
 						token: "Bearer " + token,
-						user
+						user: payload
 					});
 				});
 			} else {
