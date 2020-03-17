@@ -110,7 +110,12 @@ router.get('users/:user_id/puppies', (req, res) => {
       res.status(404).json({ nopuppiesfound: 'No puppies found from user'}
     )
   )
-})
+  Booking.find({ owner: req.params.user_id})
+    .then(bookings => res.json(bookings))
+    .catch(err => 
+      res.status(404).json({ nobookingsfound: 'No bookings found from user'})
+    );
+});
 
 router.get('users/puppies/:puppies_id', (req, res) => {
   Puppy.findById({ id: req.params.puppies_id })
