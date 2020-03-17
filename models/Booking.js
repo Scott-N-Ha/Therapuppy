@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BookingSchema = new Schema({
-    ownerId: {
+    owner: {
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    renterId: {
+    renter: {
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    puppyId: {
+    puppy: {
         type: Schema.Types.ObjectId,
         ref: 'puppies'
     },
@@ -30,7 +30,7 @@ const BookingSchema = new Schema({
         type: Date,
         require: true
     },
-    statusId: {
+    status: {
         type: Schema.Types.ObjectId,
         ref: 'statuses'
     },
