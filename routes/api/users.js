@@ -1,142 +1,181 @@
 const express = require("express");
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 const router = express.Router();
+
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const Puppy = require('../../models/Puppy')
 const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
-    console.log(req.body)
-    
-    const { errors, isValid } = validateRegisterInput(req.body.user);
+  console.log(req.body)
 
-    if (!isValid) {
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body.user);
+
+  if (!isValid) {
+    return res.status(404).json(errors);
+  };
+
+  User.findOne({
+      email: req.body.email
+    })
+    .then(user => {
+      if (user) {
+        errors.handle = "Email already exists";
         return res.status(404).json(errors);
-    };
-
-    User.findOne({ email: req.body.email })
-        .then(user => {
-            if (user) {
-                errors.handle = "Email already exists";
-                return res.status(404).json(errors);
-            } else {
-                const { 
-                    username, 
-                    email, 
-                    firstName, 
-                    lastName, 
-                    password, 
-                    isOwner, 
-                    address1, 
-                    address2, 
-                    city, 
-                    state, 
-                    zip} = req.body.user
-                const newUser = new User({
-                    username,
-                    email,
-                    firstName,
-                    lastName,
-                    password,
-                    isOwner,
-                    address1,
-                    address2,
-                    city,
-                    state,
-                    zip,
-                });
-
-                bcrypt.genSalt(10, (err,salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        newUser.password = hash;
-                        newUser.save()
-                            .then(user => {
-                                const payload = { id:user.id, username: user.username, email: user.email };
-
-                                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                                    res.json({
-                                        success: true,
-                                        token: "Bearer " + token
-                                    });
-                                });
-                            })
-                            .catch(err => console.log(err));
-                    });
-                });
-
-            };
+      } else {
+        const {
+          username,
+          email,
+          firstName,
+          lastName,
+          password,
+          isOwner,
+          address1,
+          address2,
+          city,
+          state,
+          zip
+        } = req.body.user
+        const newUser = new User({
+          username,
+          email,
+          firstName,
+          lastName,
+          password,
+          isOwner,
+          address1,
+          address2,
+          city,
+          state,
+          zip,
         });
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save()
+              .then(user => {
+                const payload = {
+                  id: user.id,
+                  username: user.username,
+                  email: user.email
+                };
+
+                jwt.sign(payload, keys.secretOrKey, {
+                  expiresIn: 3600
+                }, (err, token) => {
+                  res.json({
+                    success: true,
+                    token: "Bearer " + token
+                  });
+                });
+              })
+              .catch(err => console.log(err));
+          });
+        });
+
+      };
+    });
 });
 
 router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body.user);
+  const {
+    errors,
+    isValid
+  } = validateLoginInput(req.body.user);
 
-    if (!isValid) {
-        return res.status(404).json(errors);
+  if (!isValid) {
+    return res.status(404).json(errors);
+  };
+
+  const {
+    username,
+    password
+  } = req.body.user
+
+  User.findOne({
+    username
+  }).then(user => {
+    if (!user) {
+      errors.username = "This username does not exist";
+      return res.status(404).json(errors);
     };
+    console.log("success");
 
-    const { email, password } = req.body.user
-
-    User.findOne( { email }).then(user => {
-        if (!user) {
-            errors.email = "This email does not exist";
-            return res.status(404).json(errors); 
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        const payload = {
+          id: user.id,
+          username: user.username,
+          email: user.email
         };
-        console.log("success");
 
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch) {
-                const payload = { id: user.id, email: user.email };
-
-                jwt.sign(payload, keysOrSecret, { expiresIn: 3600 }, (err, token) => {
-                    console.log("sucess");
-                    return res.json({
-                        sucess: true, 
-                        token: "Bearer " + token
-                    });
-                });
-            } else {
-                errors.password = "Incorrect password";
-                return res.status(404).json(errors);
-            };
+        jwt.sign(payload, keys.secretOrKey, {
+          expiresIn: 3600
+        }, (err, token) => {
+          console.log("sucess");
+          return res.json({
+            sucess: true,
+            token: "Bearer " + token
+          });
         });
+      } else {
+        errors.password = "Incorrect password";
+        return res.status(404).json(errors);
+      };
     });
+  });
 });
 
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({
-        id: req.user.id,
-        username: req.user.username, 
-        email: req.user.email
-    });
+router.get('/current', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  res.json({
+    id: req.user.id,
+    username: req.user.username,
+    email: req.user.email
+  });
 });
 
 router.get('users/:user_id/puppies', (req, res) => {
-  Puppy.find({ owner: req.params.user_id})
+  Puppy.find({
+      owner: req.params.user_id
+    })
     .then(puppies => res.json(puppies))
-    .catch(err => 
-      res.status(404).json({ nopuppiesfound: 'No puppies found from user'}
+    .catch(err =>
+      res.status(404).json({
+        nopuppiesfound: 'No puppies found from user'
+      })
     )
-  )
-  Booking.find({ owner: req.params.user_id})
+  Booking.find({
+      owner: req.params.user_id
+    })
     .then(bookings => res.json(bookings))
-    .catch(err => 
-      res.status(404).json({ nobookingsfound: 'No bookings found from user'})
+    .catch(err =>
+      res.status(404).json({
+        nobookingsfound: 'No bookings found from user'
+      })
     );
 });
 
 router.get('users/puppies/:puppies_id', (req, res) => {
-  Puppy.findById({ id: req.params.puppies_id })
+  Puppy.findById({
+      id: req.params.puppies_id
+    })
     .then(puppy => res.json(puppy))
-    .catch(err => 
-      res.status(404).json({ nopuppyfound: 'No puppy found with that Id'}))
-}) 
+    .catch(err =>
+      res.status(404).json({
+        nopuppyfound: 'No puppy found with that Id'
+      }))
+})
 
 module.exports = router;
-
