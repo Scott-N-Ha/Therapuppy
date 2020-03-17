@@ -48,7 +48,9 @@ export default class SignupForm extends React.Component {
     let allow = true;
     const inputs = document.querySelectorAll('input');
     const newErrors = [];
-
+    
+    inputs.forEach(input => input.classList.remove('session-error'));
+    
     inputs.forEach(input => {
       if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
         allow = false;

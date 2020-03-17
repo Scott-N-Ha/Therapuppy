@@ -12,10 +12,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
+}
 
+.signup-form {
+  padding: 10px;
+  
   border: 2px solid lightgray;
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
 .login-form {
@@ -38,4 +42,18 @@
   border: 2px solid red;
 }
 
+.session-error-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.session-error-list-item {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  width: 300px;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+}
