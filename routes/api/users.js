@@ -184,15 +184,15 @@ router.get('users/:user_id/puppies', (req, res) => {
 		);
 });
 
-router.get('users/puppies/:puppies_id', (req, res) => {
-	Puppy.findById({
-			id: req.params.puppies_id
-		})
-		.then(puppy => res.json(puppy))
-		.catch(err =>
-			res.status(404).json({
-				nopuppyfound: 'No puppy found with that Id'
-			}))
+router.get('users/puppies/:puppy_id', (req, res) => {
+  Puppy.findById({
+      id: req.params.puppy_id
+    })
+    .then(puppy => res.json(puppy))
+    .catch(err =>
+      res.status(404).json({
+        nopuppyfound: 'No puppy found with that Id'
+      }))
 })
 
 router.get('/', (req, res) => {
