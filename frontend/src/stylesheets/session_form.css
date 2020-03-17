@@ -1,0 +1,35 @@
+.input-form {
+  outline: none;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+  margin: 10px;
+  height: 25px;
+  width: 300px
+}
+
+.login-div, .signup-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+
+  border: 2px solid lightgray;
+  border-radius: 3px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form * {
+  width: 300px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.firstName-input, .lastName-input {
+  width: 120px;
+}
