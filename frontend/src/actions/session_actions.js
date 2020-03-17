@@ -13,9 +13,9 @@ const receiveCurrentUserAction = currentUser => ({
   currentUser,
 });
 
-const receiveUserSignInAction = () => ({
-  type: RECEIVE_USER_SIGN_IN,
-});
+// const receiveUserSignInAction = () => ({
+//   type: RECEIVE_USER_SIGN_IN,
+// });
 
 const receiveErrorsAction = errors => ({
   type: RECEIVE_SESSION_ERRORS,
