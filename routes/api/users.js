@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
+const Puppy = require('../../models/Puppy')
 
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -83,7 +84,7 @@ router.post("/login", (req, res) => {
                     console.log("sucess");
                     return res.json({
                         sucess: true, 
-                        token: "Bearer " + topken
+                        token: "Bearer " + token
                     });
                 });
             } else {
@@ -99,5 +100,24 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
         id: req.user.id,
         username: req.user.username, 
         email: req.user.email
-    })
+    });
+});
+
+router.get('users/:user_id/puppies', (req, res) => {
+  Puppy.find({ owner: req.params.user_id})
+    .then(puppies => res.json(puppies))
+    .catch(err => 
+      res.status(404).json({ nopuppiesfound: 'No puppies found from user'}
+    )
+  )
 })
+
+router.get('users/puppies/:puppies_id', (req, res) => {
+  Puppy.findById({ id: req.params.puppies_id })
+    .then(puppy => res.json(puppy))
+    .catch(err => 
+      res.status(404).json({ nopuppyfound: 'No puppy found with that Id'}))
+}) 
+
+module.exports = router;
+
