@@ -26,6 +26,7 @@ export default class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.validateForms = this.validateForms.bind(this);
     this.cancel = this.cancel.bind(this);
   }
 
@@ -49,7 +50,8 @@ export default class SignupForm extends React.Component {
     const newErrors = [];
 
     inputs.forEach(input => {
-      if((input.name !== "isOwner" && input.name !== "address2") && input.value.length < 1){
+      debugger
+      if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
         allow = false;
         newErrors.push(`${titlize(input.name)} cannot be blank.`);
         input.classList.add('session-error');
@@ -69,22 +71,24 @@ export default class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let user = {
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password,
-      password2: this.state.password2,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      isOwner: this.state.isOwner,
-      address1: this.state.address1,
-      address2: this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-    };
-
-    this.props.signup({user}).fail(() => this.cancel()); 
+    if (this.validateForms()){
+      let user = {
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password,
+        password2: this.state.password2,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        isOwner: this.state.isOwner,
+        address1: this.state.address1,
+        address2: this.state.address2,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+      };
+  
+      this.props.signup({user}); 
+    }
   }
 
   cancel(){
@@ -134,6 +138,7 @@ export default class SignupForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="signup-form" >
             <br/>
               <input type="text"
+                name="email"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
@@ -141,6 +146,7 @@ export default class SignupForm extends React.Component {
               />
             <br/>
               <input type="text"
+                name="username"
                 value={this.state.username}
                 onChange={this.update('username')}
                 placeholder="Username"
@@ -148,6 +154,7 @@ export default class SignupForm extends React.Component {
               />
             <br/>
               <input type="password"
+                name="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
@@ -155,6 +162,7 @@ export default class SignupForm extends React.Component {
               />
             <br/>
               <input type="password"
+                name="password2"
                 value={this.state.password2}
                 onChange={this.update('password2')}
                 placeholder="Confirm Password"
@@ -163,11 +171,13 @@ export default class SignupForm extends React.Component {
             <br/>
               <div className="fullName-input">
                 <input type="text"
+                  name="firstName"
                   value={this.state.firstName}
                   onChange={this.update('firstName')}
                   placeholder="First Name"
                   className="input-form firstName-input"
                 /> <input type="text"
+                  name="lastName"
                   value={this.state.lastName}
                   onChange={this.update('lastName')}
                   placeholder="Last Name"
@@ -187,6 +197,7 @@ export default class SignupForm extends React.Component {
               </label>
             <br/>
               <input type="text"
+                name="address1"
                 value={this.state.address1}
                 onChange={this.update('address1')}
                 placeholder="Address 1"
@@ -194,6 +205,7 @@ export default class SignupForm extends React.Component {
               />
             <br/>
               <input type="text"
+                name="address2"
                 value={this.state.address2}
                 onChange={this.update('address2')}
                 placeholder="Address 2"
@@ -201,6 +213,7 @@ export default class SignupForm extends React.Component {
               />
             <br/>
               <input type="text"
+                name="city"
                 value={this.state.city}
                 onChange={this.update('city')}
                 placeholder="City"
@@ -229,10 +242,10 @@ export default class SignupForm extends React.Component {
             <br/>
             <input
               type="submit"
+              name="submit"
               value="Submit"
               className="input-form submit-input"
             />
-            {this.renderErrors()}
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
       </div>
