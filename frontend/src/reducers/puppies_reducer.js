@@ -4,7 +4,7 @@ const initialState = {
 
 };
 
-const bookingsReducer = (state = initialState, action) => {
+const puppiesReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = Object.assign({}, state);
 
@@ -14,4 +14,4 @@ const bookingsReducer = (state = initialState, action) => {
   }
 };
 
-export default bookingsReducer;
+export default puppiesReducer;

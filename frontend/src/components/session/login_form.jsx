@@ -1,9 +1,8 @@
 // src/components/session/login_form.js
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
-class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -77,5 +76,3 @@ class LoginForm extends React.Component {
     );
   }
 };
-
-export default withRouter(LoginForm);
