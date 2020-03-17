@@ -8,9 +8,11 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const Puppy = require('../../models/Puppy')
+const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+    console.log(req.body)
+    const { errors, isValid } = validateRegisterInput(req.body.user);
 
     if (!isValid) {
         return res.status(404).json(errors);
@@ -22,18 +24,30 @@ router.post("/register", (req, res) => {
                 errors.handle = "Email already exists";
                 return res.status(404).json(errors);
             } else {
+                const { 
+                    username, 
+                    email, 
+                    firstName, 
+                    lastName, 
+                    password, 
+                    isOwner, 
+                    address1, 
+                    address2, 
+                    city, 
+                    state, 
+                    zip} = req.body.user
                 const newUser = new User({
-                    username: req.body.username,
-                    email: req.body.email,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    password: req.body.password,
-                    isOwner: req.body.isOwner,
-                    address1: req.body.address1,
-                    address2: req.body.address2,
-                    city: req.body.city,
-                    state: req.body.state,
-                    zip: req.body.zip
+                    username,
+                    email,
+                    firstName,
+                    lastName,
+                    password,
+                    isOwner,
+                    address1,
+                    address2,
+                    city,
+                    state,
+                    zip,
                 });
 
                 bcrypt.getSalt(10, (err,salt) => {
@@ -110,7 +124,12 @@ router.get('users/:user_id/puppies', (req, res) => {
       res.status(404).json({ nopuppiesfound: 'No puppies found from user'}
     )
   )
-})
+  Booking.find({ owner: req.params.user_id})
+    .then(bookings => res.json(bookings))
+    .catch(err => 
+      res.status(404).json({ nobookingsfound: 'No bookings found from user'})
+    );
+});
 
 router.get('users/puppies/:puppies_id', (req, res) => {
   Puppy.findById({ id: req.params.puppies_id })

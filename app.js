@@ -21,7 +21,7 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 app.use(bodyParser.urlencoded({
-  extended: false,
+  extended: true,
 }));
 
 app.use(bodyParser.json());
@@ -30,8 +30,8 @@ app.get("/", (req, res) => {
   res.send("its running");
 });
 
-// app.use("/api/users", users); 
-app.unsubscribe("/api/bookings", bookings);
+app.use("/api/users", users); 
+// app.unsubscribe("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000;
 
