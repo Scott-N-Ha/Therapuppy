@@ -14,3 +14,7 @@ const receivePuppy = puppy => ({
     puppy
 })
 
+const receivePuppyErrors = errors => ({
+    type: RECEIVE_PUPPY_ERRORS,
+    errors
+})
