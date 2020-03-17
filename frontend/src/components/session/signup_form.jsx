@@ -41,7 +41,7 @@ export default class SignupForm extends React.Component {
     e.preventDefault();
     let user = {
       email: this.state.email,
-      username: this.state.handle,
+      username: this.state.username,
       password: this.state.password,
       password2: this.state.password2,
       firstName: this.state.firstName,
