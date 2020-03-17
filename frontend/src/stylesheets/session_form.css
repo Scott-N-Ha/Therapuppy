@@ -33,3 +33,9 @@
 .firstName-input, .lastName-input {
   width: 120px;
 }
+
+.session-error {
+  border: 2px solid red;
+}
+
+
