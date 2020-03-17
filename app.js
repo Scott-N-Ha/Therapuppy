@@ -5,6 +5,7 @@ const passport = require('passport');
 const path = require('path');
 const db = require("./config/keys.js").mongoURI;
 const validateRegisterInput = require("./validations/register");
+const validatePuppyInput = require("./validations/puppy");
 const User = require('./models/User');
 
 // const users = require("./routes/api/users.js");
@@ -38,7 +39,8 @@ const u1 = {
   zip: "98004"
 };
 
-const validator = validateRegisterInput(u1); 
+
+const validator = validatePuppyInput(u1); 
 
 if (validator.isValid){
   console.log("valid")
