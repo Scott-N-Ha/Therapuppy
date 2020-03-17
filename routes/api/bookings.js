@@ -21,7 +21,7 @@ router.post("/",
             renter: req.user.id, 
             puppy: req.body.puppy.id,
             date: req.body.date,
-
+            
 
         });
 

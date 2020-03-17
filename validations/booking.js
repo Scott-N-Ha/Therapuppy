@@ -27,17 +27,17 @@ module.exports = function validateBookingInput(data) {
     //     errors.timeStart = 'Start time must be a time format'
     // };
 
-    if (Validator.isEmpty(data.timeStart)) {
-        errors.timeStart = 'Start time field is required'
-    };
+    // if (Validator.isEmpty(data.timeStart)) {
+    //     errors.timeStart = 'Start time field is required'
+    // };
 
-    if (!Validator.isFloat(data.duration)) {
-        errors.duration = 'Duration field must be a float'
-    };
+    // if (!Validator.isFloat(data.duration)) {
+    //     errors.duration = 'Duration field must be a float'
+    // };
 
-    if (Validator.isEmpty(data.duration)) {
-        errors.duration = 'Duration field is required'
-    };
+    // if (Validator.isEmpty(data.duration)) {
+    //     errors.duration = 'Duration field is required'
+    // };
 
     // if (Validator.isISO8601(data.timeEnd)) {
     //     errors.timeEnd = 'End time field must be in time format'
