@@ -7,6 +7,8 @@ const db = require("./config/keys.js").mongoURI;
 const validateRegisterInput = require("./validations/register");
 const validatePuppyInput = require("./validations/puppy");
 const User = require('./models/User');
+const users = require("./routes/api/users")
+const bookings = require("./routes/api/bookings")
 
 const app = express();
 
@@ -24,12 +26,18 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send("its running");
+});
+
+// app.use("/api/users", users); 
+app.unsubscribe("/api/bookings", bookings);
+
 const port = process.env.PORT || 5000;
+
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
 });
 
-app.get('/', (req, res) => {
-  res.send("its running")
-});
+
