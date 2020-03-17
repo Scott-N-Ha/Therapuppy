@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
 
+  // TESTING - REMOVE FROM PROD
+  window.store = store;
+  // TESTING
+
   const root = document.getElementById('root');
 
   ReactDOM.render(<Root store={ store } />, root);
