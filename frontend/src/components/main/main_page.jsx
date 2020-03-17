@@ -7,7 +7,6 @@ class MainPage extends React.Component {
 
   }
 
-
   render(){
     const { user } = this.props;
 
