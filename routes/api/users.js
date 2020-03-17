@@ -8,6 +8,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const Puppy = require('../../models/Puppy')
+const Booking = require('../../models/Booking')
 
 router.post("/register", (req, res) => {
     console.log(req.body)
