@@ -81,18 +81,18 @@ router.post("/login", (req, res) => {
         return res.status(404).json(errors);
     };
 
-    const { username, password } = req.body.user
+    const { email, password } = req.body.user
 
-    User.findOne( { username }).then(user => {
+    User.findOne( { email }).then(user => {
         if (!user) {
-            errors.username = "This username does not exist";
+            errors.email = "This email does not exist";
             return res.status(404).json(errors); 
         };
         console.log("success");
 
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
-                const payload = { id: user.id, username: user.username, email: user.email };
+                const payload = { id: user.id, email: user.email };
 
                 jwt.sign(payload, keysOrSecret, { expiresIn: 3600 }, (err, token) => {
                     console.log("sucess");
