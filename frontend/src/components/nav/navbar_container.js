@@ -7,7 +7,7 @@ import { logout } from '../../actions/session_actions.js';
 const mapStateToProps = (state, ownProps) => {
 
   return {
-    loggedIn: state.session.isAuthenticated,
+    loggedIn: Boolean(state.session.user),
   };
 };
 
