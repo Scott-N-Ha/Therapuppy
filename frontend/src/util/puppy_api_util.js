@@ -1,7 +1,7 @@
-export const getPuppies = () => (
+export const fetchPuppies = () => (
     axios.get('api/puppies')
 )
 
-export const getPuppy = puppyId => (
+export const fetchPuppy = puppyId => (
     axios.get(`api/puppies/${puppyId}`)
 )
