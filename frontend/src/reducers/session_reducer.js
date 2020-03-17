@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_USER_SIGN_IN, RECEIVE_USER_LOGOUT } from '../actions/session_actions.js';
+import { RECEIVE_CURRENT_USER, RECEIVE_USER_LOGOUT } from '../actions/session_actions.js';
 
 const initialState = {
   user: {},
@@ -13,10 +13,6 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.currentUser,
-      };
-    case RECEIVE_USER_SIGN_IN:
-      return {
-        ...state
       };
     case RECEIVE_USER_LOGOUT:
       return { user: undefined };

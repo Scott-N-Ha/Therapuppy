@@ -13,9 +13,9 @@ const receiveCurrentUserAction = currentUser => ({
   currentUser,
 });
 
-const receiveUserSignInAction = () => ({
-  type: RECEIVE_USER_SIGN_IN,
-});
+// const receiveUserSignInAction = () => ({
+//   type: RECEIVE_USER_SIGN_IN,
+// });
 
 const receiveErrorsAction = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -29,7 +29,7 @@ const logoutUserAction = () => ({
 // Thunk Actions
 export const signup = user => dispatch => (
   APIUtil.signup(user)
-    .then(() => dispatch(receiveUserSignInAction),
+    .then((user) => dispatch(receiveCurrentUserAction(user)),
       err => dispatch(receiveErrorsAction(err.response.data)))
 );
 
