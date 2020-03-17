@@ -1,5 +1,3 @@
-// src/components/session/signup_form.js
-
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -11,6 +9,14 @@ class SignupForm extends React.Component {
       username: '',
       password: '',
       password2: '',
+      firstName: '',
+      lastName: '',
+      isOwner: false,
+      address1: '',
+      address2: '',
+      city: 'San Francisco',
+      state: 'CA',
+      zip: '',
       errors: {}
     };
 
@@ -84,6 +90,55 @@ class SignupForm extends React.Component {
                 value={this.state.password2}
                 onChange={this.update('password2')}
                 placeholder="Confirm Password"
+              />
+            <br/>
+              <input type="text"
+                value={this.state.firstName}
+                onChange={this.update('firstName')}
+                placeholder="First Name"
+              /> <input type="text"
+                value={this.state.lastName}
+                onChange={this.update('lastName')}
+                placeholder="Last Name"
+              />
+            <br/>
+              Is a Puppy: 
+              <input
+                type="checkbox"
+                name="isOwner"
+                onChange={this.update('isOwner')}
+                value={this.state.isOwner}
+              />
+            <br/>
+              <input type="text"
+                value={this.state.address1}
+                onChange={this.update('address1')}
+                placeholder="Address 1"
+              />
+            <br/>
+              <input type="text"
+                value={this.state.address2}
+                onChange={this.update('address2')}
+                placeholder="Address 2"
+              />
+            <br/>
+              <input type="text"
+                value={this.state.city}
+                onChange={this.update('city')}
+                placeholder="City"
+                disabled
+              />
+            <br/>
+              <select name="state" disabled>
+                <option value="CA">CA</option>
+              </select>
+            <br/>
+              <input
+                type="number"
+                name="zip"
+                value={this.state.zip}
+                onChange={this.update('zip')}
+                placeholder="Zip"
               />
             <br/>
             <input type="submit" value="Submit" />
