@@ -8,13 +8,13 @@ module.exports = function validatePuppyInput(data) {
     data.sex = validText(data.sex) ? data.sex : "";
     
     
-    if (Validator.isEmpty(data.owner)) {
-        errors.owner = "Owner field is required"
-    };
+    // if (Validator.isEmpty(data.owner)) {
+    //     errors.owner = "Owner field is required"
+    // };
     
-    if (Validator.isEmpty(data.renter)) {
-        errors.renter = "Renter field is required"
-    };
+    // if (Validator.isEmpty(data.renter)) {
+    //     errors.renter = "Renter field is required"
+    // };
     
     if (Validator.isEmpty(data.name)){
         errors.name = "Name field is required"
@@ -28,9 +28,9 @@ module.exports = function validatePuppyInput(data) {
         errors.age = "Age field is required"
     };
 
-    if (Validator.isEmpty(data.breed)){
-        errors.breed = "Breed field is required"
-    };
+    // if (Validator.isEmpty(data.breed)){
+    //     errors.breed = "Breed field is required"
+    // };
 
     if (!Validator.isInt(data.fluffyRating, {min: 1, max: 5})) {
         errors.fluffyRating = "Fluffy rating must be integer"
@@ -40,9 +40,9 @@ module.exports = function validatePuppyInput(data) {
         errors.fluffyRating = "Fluffy rating field is required"
     };
 
-    if (Validator.isEmpty(data.earType)){
-        errors.earType = "Ear type field is required"
-    };
+    // if (Validator.isEmpty(data.earType)){
+    //     errors.earType = "Ear type field is required"
+    // };
 
     if (Validator.isEmpty(data.sex)) {
         errors.sex = "Sex field is required"
