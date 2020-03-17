@@ -71,9 +71,8 @@ export default class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
+      <div className="signup-div">
+        <form onSubmit={this.handleSubmit} className="signup-form" >
             <br/>
               <input type="text"
                 value={this.state.email}
@@ -103,26 +102,30 @@ export default class SignupForm extends React.Component {
                 className="input-form password-input"
               />
             <br/>
-              <input type="text"
-                value={this.state.firstName}
-                onChange={this.update('firstName')}
-                placeholder="First Name"
-                className="input-form firstName-input"
-              /> <input type="text"
-                value={this.state.lastName}
-                onChange={this.update('lastName')}
-                placeholder="Last Name"
-                className="input-form lastName-input"
-              />
+              <div className="fullName-input">
+                <input type="text"
+                  value={this.state.firstName}
+                  onChange={this.update('firstName')}
+                  placeholder="First Name"
+                  className="input-form firstName-input"
+                /> <input type="text"
+                  value={this.state.lastName}
+                  onChange={this.update('lastName')}
+                  placeholder="Last Name"
+                  className="input-form lastName-input"
+                />
+              </div>
             <br/>
-              Is a Puppy: 
-              <input
-                type="checkbox"
-                name="isOwner"
-                onChange={this.update('isOwner')}
-                value={this.state.isOwner}
-                className="input-form isOwner-input"
-              />
+              <label>
+                Is a Puppy: 
+                <input
+                  type="checkbox"
+                  name="isOwner"
+                  onChange={this.update('isOwner')}
+                  value={this.state.isOwner}
+                  className="input-form isOwner-input"
+                />
+              </label>
             <br/>
               <input type="text"
                 value={this.state.address1}
@@ -171,7 +174,6 @@ export default class SignupForm extends React.Component {
               className="input-form submit-input"
             />
             {this.renderErrors()}
-          </div>
         </form>
       </div>
     );
