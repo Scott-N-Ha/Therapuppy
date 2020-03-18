@@ -30,14 +30,15 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <div className="login-buttons">
-          <button
-            onClick={() => this.handleModal("login")}
-            className="navbar-btn">Login</button>
-          <button
-            onClick={() => this.handleModal("signup")}
-            className="navbar-btn">Wagister</button>
-        </div>
+        // <div className="login-buttons">
+        //   <button
+        //     onClick={() => this.handleModal("login")}
+        //     className="navbar-btn">Login</button>
+        //   <button
+        //     onClick={() => this.handleModal("signup")}
+        //     className="navbar-btn">Wagister</button>
+        // </div>
+        null
       )
     }
   }

@@ -24,15 +24,18 @@ class MainPage extends React.Component {
       { user.isOwner ? <button onClick={() => openModal("createPuppy")}>Add a Dogter</button> : null }
       <PuppyIndexContainer />
       </> ) : (
+        <div>
       <div className="splash-container">
         <div className="splash-image">
-        <div className="splash-circle"></div>
         </div>
+          <div className="splash-circle"></div>
         <div className="splash-text">
           <h1>Main Page when there is no user logged in</h1> 
           <p>puppy wuppy thewapy</p>
+          <button onClick={() => openModal("signup")}>GET STARTED</button>
         </div>
       </div>
+        </div>
       )
       
     return (

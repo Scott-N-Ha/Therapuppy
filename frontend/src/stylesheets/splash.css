@@ -1,11 +1,19 @@
+.splash-container {
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+
 .splash-image {
     background-image: url("../images/dog-splash.jpg");
     width: 100vw;
-    height: 420px;
-    background-position: 200px;
-    background-size: cover;
+    height: 100vh;
+    /* background-position: 200px; */
+    background-position-x: 300px;
+    background-position-y: -175px;
+    background-size: 80%;
+    background-repeat: no-repeat;
     position: absolute;
-    overflow: hidden;
 }
 
 .splash-circle {
@@ -14,7 +22,7 @@
     left: -200px;
     top: -100px;
     border-radius: 50%;
-    background-color: #4f3961;
+    background-color: #be8abf;
     position: absolute;
 }
 

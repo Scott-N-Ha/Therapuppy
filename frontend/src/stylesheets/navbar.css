@@ -35,7 +35,7 @@
   font-size: 18px;
   font-weight: bolder;
   margin: 5px;
-  background-color:#75b79e;
+  background-color:#fea5ad;
   /* background-color: #75b79e; */
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -43,7 +43,7 @@
 }
 
 .navbar-btn:hover {
-  background-color: #a7e9af;
+  background-color: #ff919a;
 }
 
 .logout-button {
