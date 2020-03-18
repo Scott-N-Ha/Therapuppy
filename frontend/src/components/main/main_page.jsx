@@ -28,7 +28,6 @@ class MainPage extends React.Component {
         </div>
       )
     } else {
-      debugger
       return (
         <div>
           Main Page when User is Logged In
