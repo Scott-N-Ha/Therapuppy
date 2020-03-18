@@ -85,7 +85,15 @@ export default class PuppyForm extends React.Component {
   }
 
   render(){
+    const { owner, natureRatings, fluffyRatings } = this.props;
 
+    const natureOptions = natureRatings.map(rating => {
+      return <option value={rating.id}>{rating.name}</option>
+    })
+
+    const fluffyOptions = fluffyRatings.map(rating => {
+      return <option value={rating.id}>{rating.name}</option>
+    })
 
     return (
       <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
@@ -118,11 +126,12 @@ export default class PuppyForm extends React.Component {
           value={this.state.fluffyRating}
           placeholder="Fluffy Rating"
         >
-          <option value="1">Short Fur</option>
+          {/* <option value="1">Short Fur</option>
           <option value="2">Furry Doge</option>
           <option value="3">Pillow</option>
           <option value="4">Part-Sheep</option>
-          <option value="5">Cloud</option>
+          <option value="5">Cloud</option> */}
+          { fluffyOptions }
         </select>
         <br/>
         <label>This is where ear type would be</label>
@@ -149,7 +158,7 @@ export default class PuppyForm extends React.Component {
           value={this.state.natureRating}
           placeholder="Nature Rating"
         >
-          <option value="1">Lazy</option>
+          {/* <option value="1">Lazy</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -158,7 +167,8 @@ export default class PuppyForm extends React.Component {
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
-          <option value="10">Red Rocket</option>
+          <option value="10">Red Rocket</option> */}
+          { natureOptions }
         </select>
         <br/>
         <input

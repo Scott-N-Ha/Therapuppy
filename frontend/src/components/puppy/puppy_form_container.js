@@ -8,6 +8,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     owner: state.session.user,
+    natureRatings: Object.values(state.entities.natureRatings).sort((a,b) => a.id - b.id),
+    fluffyRatings: Object.values(state.entities.fluffyRatings).sort((a,b) => a.id - b.id),
   };
 };
 
