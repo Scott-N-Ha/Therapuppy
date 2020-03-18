@@ -8,6 +8,10 @@ export default class PuppyIndex extends React.Component {
 
   }
 
+  componentDidMount(){
+    this.props.fetchAllPuppies();
+  }
+
   render(){
     const { puppies } = this.props;
 
