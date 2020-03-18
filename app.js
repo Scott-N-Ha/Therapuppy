@@ -39,6 +39,20 @@ mongoose
 //   console.log(validator.errors)
 // }
 
+const samoyed = {
+  name: "samoyed",
+  description: "The Samoyed is a substantial but graceful dog standing anywhere from 19 to a bit over 23 inches at the shoulder. Powerful, tireless, with a thick all-white coat impervious to cold—Sammies are perfectly beautiful but highly functional. Even their most delightful feature, a perpetual smile, has a practical function: The upturned corners of the mouth keep Sammies from drooling, preventing icicles from forming on the face."
+}
+
+const validator = validatePuppyInput(samoyed);
+if (validator.isValid){
+  Puppy.create(samoyed)
+} else {
+  console.log(validator.errors)
+}
+
+
+
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
@@ -54,6 +68,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", users); 
 app.use("/api/puppies", puppies); 
+app.use("/api/bookings", bookings); 
 // app.unsubscribe("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000;

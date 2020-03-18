@@ -3,9 +3,9 @@ const Validator = require('validator');
 module.exports = function validateBookingInput(data) {
     let errors = {};
 
-    if (Validator.isEmpty(data.ownerId)) {
-        errors.ownerId = 'Owner Id field is required'
-    };
+    // if (Validator.isEmpty(data.ownerId)) {
+    //     errors.ownerId = 'Owner Id field is required'
+    // };
 
     if (Validator.isEmpty(data.renterId)) {
         errors.renterId = 'Renter Id field is required'
@@ -47,17 +47,17 @@ module.exports = function validateBookingInput(data) {
     //     errors.timeEnd = 'End time field is required'
     // };
 
-    if (Validator.isEmpty(data.statusId)) {
-        errors.statusId = 'Status field is required'
-    };
+    // if (Validator.isEmpty(data.statusId)) {
+    //     errors.statusId = 'Status field is required'
+    // };
 
-    if (!Validator.isFloat(data.totalCost)) {
-        errors.totalCost = 'Total cost field must be a float'
-    };
+    // if (!Validator.isFloat(data.totalCost)) {
+    //     errors.totalCost = 'Total cost field must be a float'
+    // };
 
-    if (Validator.isEmpty(data.totalCost)) {
-        errors.totalCost = 'Total cost field is required'
-    };
+    // if (Validator.isEmpty(data.totalCost)) {
+    //     errors.totalCost = 'Total cost field is required'
+    // };
     return{
         errors,
         isValid: Object.keys(errors).length === 0 
