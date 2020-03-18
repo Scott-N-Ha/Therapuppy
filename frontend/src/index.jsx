@@ -12,6 +12,7 @@ import "./stylesheets/universal.css";
 import "./stylesheets/navbar.css";
 import "./stylesheets/session_form.scss";
 import "./stylesheets/puppy.css";
+import "./stylesheets/puppy_form.css";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

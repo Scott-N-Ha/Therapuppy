@@ -1,3 +1,10 @@
+.puppy-index {
+  border: 2px solid lightgray;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px;
+}
+
 .puppy {
   border: 1px solid lightgray;
   border-radius: 3px;

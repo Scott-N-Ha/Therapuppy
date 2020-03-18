@@ -157,103 +157,110 @@ export default class PuppyForm extends React.Component {
     });
 
     return (
-      <div>
-        
+      <div className="puppy-form-div">
         <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
-          <input
-            type="text"
-            className="input-form name-input"
-            name="name"
-            onChange={this.handleChange}
-            value={this.state.name}
-            placeholder="Name"
-          />
-          <br/>
-          <input
-            type="number"
-            className="input-form age-input"
-            name="age"
-            onChange={this.handleChange}
-            value={this.state.age}
-            min="1"
-            max="25"
-            placeholder="Age"
-          />
-          <br/>
-          <select
-            name="breed"
-            className="input-form breed-input"
-            onChange={this.handleChange}
-            value={this.state.breed}
-            placeholder="Breed"
-          >
-            <option selected disabled>Select a Breed</option>
-            { breedOptions }
-          </select>
-          <br/>
-          <select
-            name="fluffyRating"
-            className="input-form fluffyRating-input"
-            onChange={this.handleChange}
-            value={this.state.fluffyRating}
-            placeholder="Fluffy Rating"
-          >
-            <option selected disabled>Select a Fluffy Rating</option>
-            { fluffyOptions }
-          </select>
-          <br/>
-          <select
-            name="earType"
-            className="input-form earType-input"
-            onChange={this.handleChange}
-            value={this.state.earType}
-            placeholder="Ear Type"
-          >
-            <option selected disabled>Select an Ear Type</option>
-            { earTypeOptions }
-          </select>
-          <br/>
-          <label>M: 
+          <label className="puppy-form-label">Name: 
             <input
-              type="radio"
-              name="sex"
-              className="input-form sex-input"
+              type="text"
+              className="input-form name-input"
+              name="name"
               onChange={this.handleChange}
-              value="M"
-              />
-          </label>
-          <label>F: 
-            <input
-              type="radio"
-              name="sex"
-              className="input-form sex-input"
-              onChange={this.handleChange}
-              value="F"
+              value={this.state.name}
+              placeholder="Name"
             />
           </label>
-          <br/>
-          <select
-            name="natureRating"
-            className="input-form natureRating-input"
-            onChange={this.handleChange}
-            value={this.state.natureRating}
-            placeholder="Nature Rating"
-          >
-            <option selected disabled>Select a Nature Rating</option>
-            { natureOptions }
-          </select>
-          <br/>
-          <input
-            type="number"
-            className="input-form price-input"
-            name="price"
-            onChange={this.handleChange}
-            value={this.state.price}
-            min="1"
-            max="9000"
-            placeholder="Price"
-          />
-          <br/>
+          <label className="puppy-form-label">Age: 
+            <input
+              type="number"
+              className="input-form age-input"
+              name="age"
+              onChange={this.handleChange}
+              value={this.state.age}
+              min="1"
+              max="25"
+              placeholder="Age"
+            />
+          </label>
+          <label className="puppy-form-label">Breed: 
+            <select
+              name="breed"
+              className="input-form breed-input"
+              onChange={this.handleChange}
+              value={this.state.breed}
+              placeholder="Breed"
+            >
+              <option selected disabled>Select a Breed</option>
+              { breedOptions }
+            </select>
+          </label>
+          <label className="puppy-form-label">Fluffiness Rating: 
+            <select
+              name="fluffyRating"
+              className="input-form fluffyRating-input"
+              onChange={this.handleChange}
+              value={this.state.fluffyRating}
+              placeholder="Fluffy Rating"
+            >
+              <option selected disabled>Select a Fluffy Rating</option>
+              { fluffyOptions }
+            </select>
+          </label>
+          <label className="puppy-form-label">Ear Type:
+            <select
+              name="earType"
+              className="input-form earType-input"
+              onChange={this.handleChange}
+              value={this.state.earType}
+              placeholder="Ear Type"
+            >
+              <option selected disabled>Select an Ear Type</option>
+              { earTypeOptions }
+            </select>
+          </label>
+          <label className="puppy-form-label">Sex: 
+            <label className="puppy-form-label">M: 
+              <input
+                type="radio"
+                name="sex"
+                className="sex-input"
+                onChange={this.handleChange}
+                value="M"
+                />
+            </label>
+            <label className="puppy-form-label">F: 
+              <input
+                type="radio"
+                name="sex"
+                className="sex-input"
+                onChange={this.handleChange}
+                value="F"
+              />
+            </label>
+          </label>
+          <label className="puppy-form-label">Nature Rating:
+            <select
+              name="natureRating"
+              className="input-form natureRating-input"
+              onChange={this.handleChange}
+              value={this.state.natureRating}
+              placeholder="Nature Rating"
+            >
+              <option selected disabled>Select a Nature Rating</option>
+              { natureOptions }
+            </select>
+          </label>
+          <label className="puppy-form-label">Price per Day:
+            <input
+              type="number"
+              className="input-form price-input"
+              name="price"
+              onChange={this.handleChange}
+              value={this.state.price}
+              min="1"
+              max="9000"
+              placeholder="Price"
+            />
+          </label>
           <button className="input-form submit-input">Register a new Dogter</button>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
