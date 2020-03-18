@@ -8,7 +8,6 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     owner: state.session.user,
-    breeds: Object.values(state.entities.breeds),
   };
 };
 

@@ -24,6 +24,7 @@ export default class SignupForm extends React.Component {
       frontErrors: [],
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
     this.validateForms = this.validateForms.bind(this);
@@ -38,10 +39,14 @@ export default class SignupForm extends React.Component {
     this.setState({errors: nextProps.errors});
   }
 
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+  handleChange(e){
+    if (e.target.name === 'isOwner') {
+      this.setState({ isOwner: e.target.checked });
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
   validateForms(){
@@ -141,7 +146,7 @@ export default class SignupForm extends React.Component {
               <input type="text"
                 name="email"
                 value={this.state.email}
-                onChange={this.update('email')}
+                onChange={this.handleChange}
                 placeholder="Email"
                 className="input-form email-input"
               />
@@ -149,7 +154,7 @@ export default class SignupForm extends React.Component {
               <input type="text"
                 name="username"
                 value={this.state.username}
-                onChange={this.update('username')}
+                onChange={this.handleChange}
                 placeholder="Username"
                 className="input-form username-input"
               />
@@ -157,7 +162,7 @@ export default class SignupForm extends React.Component {
               <input type="password"
                 name="password"
                 value={this.state.password}
-                onChange={this.update('password')}
+                onChange={this.handleChange}
                 placeholder="Password"
                 className="input-form password-input"
               />
@@ -165,7 +170,7 @@ export default class SignupForm extends React.Component {
               <input type="password"
                 name="password2"
                 value={this.state.password2}
-                onChange={this.update('password2')}
+                onChange={this.handleChange}
                 placeholder="Confirm Password"
                 className="input-form password-input"
               />
@@ -174,13 +179,13 @@ export default class SignupForm extends React.Component {
                 <input type="text"
                   name="firstName"
                   value={this.state.firstName}
-                  onChange={this.update('firstName')}
+                  onChange={this.handleChange}
                   placeholder="First Name"
                   className="input-form firstName-input"
                 /> <input type="text"
                   name="lastName"
                   value={this.state.lastName}
-                  onChange={this.update('lastName')}
+                  onChange={this.handleChange}
                   placeholder="Last Name"
                   className="input-form lastName-input"
                 />
@@ -191,7 +196,7 @@ export default class SignupForm extends React.Component {
                 <input
                   type="checkbox"
                   name="isOwner"
-                  onChange={this.update('isOwner')}
+                  onChange={this.handleChange}
                   value={this.state.isOwner}
                   className="input-form isOwner-input"
                 />
@@ -200,7 +205,7 @@ export default class SignupForm extends React.Component {
               <input type="text"
                 name="address1"
                 value={this.state.address1}
-                onChange={this.update('address1')}
+                onChange={this.handleChange}
                 placeholder="Address 1"
                 className="input-form address1-input"
               />
@@ -208,7 +213,7 @@ export default class SignupForm extends React.Component {
               <input type="text"
                 name="address2"
                 value={this.state.address2}
-                onChange={this.update('address2')}
+                onChange={this.handleChange}
                 placeholder="Address 2"
                 className="input-form address2-input"
               />
@@ -216,7 +221,7 @@ export default class SignupForm extends React.Component {
               <input type="text"
                 name="city"
                 value={this.state.city}
-                onChange={this.update('city')}
+                onChange={this.handleChange}
                 placeholder="City"
                 disabled
                 className="input-form city-input"
@@ -234,7 +239,7 @@ export default class SignupForm extends React.Component {
                 type="number"
                 name="zip"
                 value={this.state.zip}
-                onChange={this.update('zip')}
+                onChange={this.handleChange}
                 placeholder="Zip"
                 min="00000"
                 max="99999"

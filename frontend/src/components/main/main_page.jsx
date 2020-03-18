@@ -14,12 +14,12 @@ class MainPage extends React.Component {
 
   render(){
     const { user, loggedIn } = this.props;
-    console.log(loggedIn)
+
     const content = loggedIn ? (<>Main Page when User is Logged In
       { user.isOwner ? <PuppyFormContainer /> : null }
-      There's a puppy index container right here.
       <PuppyIndexContainer />
       </> ) : (<> Main Page when there is no user logged in </>)
+      
     return (
       <div>
         <p>hello</p>
