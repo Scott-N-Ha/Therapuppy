@@ -51,8 +51,6 @@ mongoose
 //   console.log(validator.errors)
 // }
 
-
-
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
@@ -72,7 +70,6 @@ app.use("/api/bookings", bookings);
 // app.unsubscribe("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000;
-
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);

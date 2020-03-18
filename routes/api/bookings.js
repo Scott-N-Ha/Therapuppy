@@ -46,10 +46,15 @@ router.post("/",
 )
 
 router.get("/", (req,res) => {
-    Booking
-        .find()
-        
-})    
+    Booking.find()
+      .then(bookings => {
+        const bookingsResult = {}
+        bookings.forEach( booking => {
+          bookingsResult[booking.id] = booking
+        });
+        res.json({bookings: bookingsResult})
+    });
+});    
 
 // router.get("/puppy/:puppy_id", (req, res) => {
 //     Booking.find({puppy: req.params.puppy_id})

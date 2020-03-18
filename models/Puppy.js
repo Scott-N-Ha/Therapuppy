@@ -15,7 +15,7 @@ const PuppySchema = new Schema({
         required: true
     },
     breed: {
-        type: Number
+        type: Number,
         required: true
     },
     fluffyRating: {
