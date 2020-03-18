@@ -49,9 +49,9 @@ export default class SignupForm extends React.Component {
     const inputs = document.querySelectorAll('input');
     const newErrors = [];
     
-    inputs.forEach(input => input.classList.remove('session-error'));
-    
     inputs.forEach(input => {
+      input.classList.remove('session-error');
+      
       if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
         allow = false;
         newErrors.push(`${titlize(input.name)} cannot be blank.`);
