@@ -23,11 +23,10 @@ class MainPage extends React.Component {
     const content = loggedIn ? (<>Main Page when User is Logged In
       { user.isOwner ? <button onClick={() => openModal("createPuppy")}>Add a Dogter</button> : null }
       <PuppyIndexContainer />
-      </> ) : (<> Main Page when there is no user logged in </>)
+      </> ) : (<h1> Main Page when there is no user logged in </h1>)
       
     return (
       <div className="main" id="main">
-        <p>hello</p>
         {content}
       </div>
       )
