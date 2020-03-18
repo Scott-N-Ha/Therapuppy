@@ -15,6 +15,7 @@ export default class BookingIndex extends React.Component{
     const { bookings } = this.props;
 
     let bookingContainers = bookings.map(booking => {
+      debugger
       return <BookingContainer booking={booking} />
     })
 
