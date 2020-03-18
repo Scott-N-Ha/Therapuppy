@@ -21,12 +21,12 @@ router.get('/', (req, res) => {
       }) 
       res.json({puppies: puppiesResult, users});
     })
-    .catch(err => res.status(404).json({err})
+    .catch(err => res.status(404).json({puppiesnotfound: "no pupppr"})
     ); 
 });
 
 router.post('/', 
-  passport.authenticate('jwt', { session: false}),
+  // passport.authenticate('jwt', { session: false}),
   (req, res) => {
     const {
       errors,
@@ -64,8 +64,8 @@ router.post('/',
 );
 
 router.get('/:id', (req, res) => {
-  Puppy.find({ id: req.params.id })
-    .then(puppy => res.json(puppy))
+  Puppy.findById(req.params.id)
+    .then(puppy => res.json({puppy}))
     .catch(err =>
       res.status(404).json({ nopuppyfound: 'No puppy found for id'})    
     );

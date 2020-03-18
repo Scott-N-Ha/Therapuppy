@@ -7,17 +7,17 @@ export default class Puppy extends React.Component {
   }
 
   render(){
-    const { puppy, owner, breed, fluffyRating, natureRating } = this.props;
+    const { puppy, owner, breed, fluffyRating, natureRating, earType } = this.props;
 
     if (puppy === undefined) return null;
 
-    const { name, age, earType, sex, price } = puppy;
+    const { name, age, sex, price } = puppy;
 
     return (
       <div className="puppy">
-        <label className="puppy-owner"><Link to={`/users/${owner}`}>{owner}</Link></label>
+        <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
-        <label className="puppy-name">{name}</label>
+        <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
         <br/>
         <label className="puppy-age">{age}</label>
         <br/>
