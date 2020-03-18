@@ -56,6 +56,15 @@ router.get("/", (req,res) => {
     });
 });    
 
+
+router.delete("/:id",
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Booking.deleteOne({
+        _id: req.params.id
+    }, err => res.status(404).json(err)
+    )
+});
 // router.get("/puppy/:puppy_id", (req, res) => {
 //     Booking.find({puppy: req.params.puppy_id})
 //         .then(booking => res.json(booking))

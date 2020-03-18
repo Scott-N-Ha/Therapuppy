@@ -163,6 +163,19 @@ router.get('/current', passport.authenticate('jwt', {
 	});
 });
 
+// router.get('/username',
+//     passport.authenticate('jwt', { session: false }),
+//     (req, res) => {
+
+//         const = {
+//             username,
+//             puppies,
+//             bookings
+//         } = req.body.
+
+//         User.findOne
+//     })
+
 // router.get('/:user_id/puppies', (req, res) => {
 // 	Puppy.find({
 // 			owner: req.params.user_id
