@@ -31,7 +31,6 @@ export const fetchAllPuppies = () => dispatch => (
 export const fetchPuppy = puppyId => dispatch => (
     PuppyAPIUtil.fetchPuppy(puppyId)
         .then(res => {
-            
             return (dispatch(receivePuppy(res.data)))},
         err => dispatch(receivePuppyErrors(err.response.data)))
 );

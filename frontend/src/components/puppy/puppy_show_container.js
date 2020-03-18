@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { fetchPuppy } from '../../actions/puppy_actions'
 
 import PuppyShow from './puppy_show.jsx';
 
 const mapStateToProps = (state, ownProps) => {
   let puppy = state.entities.puppies[ownProps.match.params.puppyId];
-  debugger
+  if (typeof puppy === "undefined") return {};
   return {
     puppy: puppy,
     owner: state.entities.users[puppy.owner],
@@ -16,4 +17,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps)(PuppyShow));
+const mapStateToDispatch = dispatch => ({
+  fetchPuppy: puppyId => dispatch(fetchPuppy(puppyId))
+})
+
+export default withRouter(connect(mapStateToProps, mapStateToDispatch)(PuppyShow));
