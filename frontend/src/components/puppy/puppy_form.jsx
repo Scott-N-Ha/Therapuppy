@@ -254,7 +254,7 @@ export default class PuppyForm extends React.Component {
             placeholder="Price"
           />
           <br/>
-          <button className="input-form submit-input">This button does nothing right now</button>
+          <button className="input-form submit-input">Register a new Dogter</button>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
       </div>

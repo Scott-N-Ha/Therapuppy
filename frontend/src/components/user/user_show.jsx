@@ -6,7 +6,7 @@ export default class UserShow extends React.Component {
   }
 
   componentDidMount(){
-    
+    // Need to fetch user
   }
 
   missingUser(){
@@ -15,6 +15,10 @@ export default class UserShow extends React.Component {
         Missing User! 😞
       </div>
     )
+  }
+
+  ownerRender(){
+    
   }
 
   render(){

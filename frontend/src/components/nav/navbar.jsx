@@ -18,7 +18,7 @@ class NavBar extends React.Component {
     if (this.props.loggedIn){
       return (
         <div>
-          <Link to='/puppies'>All Puppies</Link>
+          <Link to='/puppies'>Certified Dogters</Link>
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       )
