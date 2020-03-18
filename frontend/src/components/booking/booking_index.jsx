@@ -7,6 +7,10 @@ export default class BookingIndex extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    this.props.fetchAllBookings();
+  }
+
   render(){
     const { bookings } = this.props;
 

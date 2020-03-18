@@ -18,18 +18,6 @@ const BookingSchema = new Schema({
         type: Date,
         required: true
     },
-    // timeStart: {
-    //     type: Date,
-    //     required: true
-    // },
-    // duration: {
-    //     type: Number,
-    //     required: true
-    // },
-    // timeEnd: {
-    //     type: Date,
-    //     require: true
-    // },
     status: {
         type: Schema.Types.ObjectId,
         ref: 'statuses'
