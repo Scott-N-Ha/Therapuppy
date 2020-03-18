@@ -20,7 +20,9 @@ const BookingSchema = new Schema({
     },
     status: {
         type: Schema.Types.ObjectId,
-        ref: 'statuses'
+        ref: 'statuses',
+        required: true, 
+        default: "5e717ae318716c8dc9bd5bf5"
     },
     totalCost: {
         type: Number,

@@ -29,7 +29,7 @@ router.post("/",
                         renter,
                         puppy: puppy.id,
                         date,
-                        status: "5e717ae318716c8dc9bd5bf5",
+                        status: "",
                         totalCost: price
                         });
                             
