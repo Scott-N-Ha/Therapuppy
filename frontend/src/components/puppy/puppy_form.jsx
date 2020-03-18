@@ -5,7 +5,7 @@ export default class PuppyForm extends React.Component {
     super(props);
 
     this.state = {
-      ownerId: this.props.owner.id,
+      ownerId: this.props.owner._id,
       name: '',
       age: 0,
       breed: null,
@@ -93,7 +93,7 @@ export default class PuppyForm extends React.Component {
 
   cancel(){
     this.setState({
-      ownerId: this.props.owner.id,
+      ownerId: this.props.owner._id,
       name: '',
       age: 0,
       breed: null,
@@ -110,19 +110,19 @@ export default class PuppyForm extends React.Component {
     e.preventDefault();
 
     if (this.validateForm()){
-      let newPuppy = {
+      let puppy = {
         ownerId: this.state.ownerId,
         name: this.state.name,
         age: this.state.age,
-        breedId: this.state.breedId,
+        breedId: this.state.breed,
         fluffyRating: this.state.fluffyRating,
-        earTypeId: this.state.earTypeId,
+        earTypeId: this.state.earType,
         sex: this.state.sex,
         natureRating: this.state.natureRating,
         price: this.state.price,
       }
 
-      // NEEDS THE CREATE PUPPY ACTION MAPPED TO DISPATCH
+      this.props.createPuppy({puppy})
     }
   }
 
@@ -219,7 +219,7 @@ export default class PuppyForm extends React.Component {
               type="radio"
               name="sex"
               className="input-form sex-input"
-              onCHange={this.handleChange}
+              onChange={this.handleChange}
               value="M"
               />
           </label>
@@ -228,7 +228,7 @@ export default class PuppyForm extends React.Component {
               type="radio"
               name="sex"
               className="input-form sex-input"
-              onCHange={this.handleChange}
+              onChange={this.handleChange}
               value="F"
             />
           </label>
@@ -250,8 +250,8 @@ export default class PuppyForm extends React.Component {
             name="price"
             onChange={this.handleChange}
             value={this.state.price}
-            min="0.01"
-            max="9999.99"
+            min="1"
+            max="9000"
             placeholder="Price"
           />
           <br/>
