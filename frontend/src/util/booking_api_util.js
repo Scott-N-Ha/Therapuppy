@@ -9,6 +9,6 @@ export const createBooking = bookingData => (
 )
 
 export const updateBooking = bookingData => (
-    axios.patch(`api/bookings/${bookingData.booking.id}`, bookingData)
+    axios.patch(`api/bookings/${bookingData.booking._id}`, bookingData)
 )
 
