@@ -59,7 +59,7 @@ router.post('/',
         price
     });
 
-    newPuppy.save().then(puppy => res.json(puppy));
+    newPuppy.save().then(puppy => res.json({puppy}));
   }
 );
 
