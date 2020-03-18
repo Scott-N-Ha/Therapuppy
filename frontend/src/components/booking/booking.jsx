@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Booking extends React.Component{
   constructor(props){
@@ -13,7 +14,7 @@ export default class Booking extends React.Component{
   editBooking(value){
     this.setState({ status: (value ? 2 : 3) });
     
-    this.props.updateBooting(this.state);
+    this.props.updateBooking(this.state);
   }
 
   isOwnerRender(){
@@ -41,7 +42,9 @@ export default class Booking extends React.Component{
 
     return (
       <div className="booking">
-        Booking Div
+        <label><Link to={`/${renter.username}`}>{renter.username}</Link></label>
+        <label>Total Cost: ${totalCost}</label>
+        <label>Status: {status.name}</label>
         { isOwner ? this.isOwnerRender() : null }
       </div>
     )
