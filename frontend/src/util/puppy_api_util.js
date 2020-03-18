@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const fetchPuppies = () => (
     axios.get('api/puppies')
 )
