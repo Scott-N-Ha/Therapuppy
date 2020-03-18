@@ -9,10 +9,12 @@ import LoginFormContainer from './session/login_form_container.js';
 import SignupFormContainer from './session/signup_form_container.js';
 import PuppyShowContainer from './puppy/puppy_show_container.js';
 import UserShowContainer from './user/user_show_container.js';
+import Modal from './modal'
 
 const App = props => {
   return (
     <div className="app">
+      <Modal />
       <NavBarContainer />
       
       <Switch>

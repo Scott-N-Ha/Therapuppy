@@ -6,6 +6,9 @@
   z-index: 9000;
   box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .13);
   background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-btn {

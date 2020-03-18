@@ -7,6 +7,7 @@ class NavBar extends React.Component {
 
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.handleModal = this.handleModal.bind(this)
   }
 
   logoutUser(e){
@@ -14,7 +15,12 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
+  handleModal(modal){
+    this.props.openModal(modal)
+  }
+
   getLinks(){
+    const {openModal} = this.props
     if (this.props.loggedIn){
       return (
         <div>
@@ -25,14 +31,14 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="login-buttons">
-          { this.props.location.pathname === "/login" ? <Link
-            to='/signup'
-            className="navbar-btn">Signup</Link> : <Link
-            to='/login'
-            className="navbar-btn">Login</Link> }
-          { this.props.location.pathname === "/" ? <Link
-            to='/signup'
-            className="navbar-btn">Signup</Link> : null }
+          { this.props.location.pathname === "/login" ? <button
+            onClick={() => this.handleModal("signup")}
+            className="navbar-btn">Signup</button> : <button
+            onClick={() => this.handleModal("login")}
+            className="navbar-btn">Login</button> }
+          { this.props.location.pathname === "/" ? <button
+            onClick={() => this.handleModal("signup")}
+            className="navbar-btn">Signup</button> : null }
         </div>
       )
     }
