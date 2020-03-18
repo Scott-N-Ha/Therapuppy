@@ -1,4 +1,4 @@
-import { RECEIVE_PUPPY_ERRORS, RECEIVE_PUPPY, RECEIVE_ALL_PUPPIES } from '../actions/puppy_actions';
+import { RECEIVE_PUPPY_ERRORS, RECEIVE_PUPPY, RECEIVE_ALL_PUPPIES } from '../actions/puppy_actions.js';
 
 const _nullErrors = [];
 

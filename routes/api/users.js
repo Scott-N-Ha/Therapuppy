@@ -163,6 +163,7 @@ router.get('/current', passport.authenticate('jwt', {
 	});
 });
 
+
 // router.get('/:user_id/puppies', (req, res) => {
 // 	Puppy.find({
 // 			owner: req.params.user_id
@@ -205,10 +206,14 @@ router.get('/', (req, res) => {
 		)
 })
 
-router.get("/:username", (req,res) => {
-	User.find({username: req.params.username})
-	.then( user => res.json({user}))
-		.catch(err => res.status(404).json({usernotfound: "user not found"}))
-})
+// router.get("/:username", (req,res) => {
+//   User.find({username: req.params.username})
+// 	.then( user => {
+//       const puppies = {};
+//       const bookings = {};
+//       user.puppies.forEach
+//     } 
+// 		.catch(err => res.status(404).json({usernotfound: "user not found"}))
+// })
 
 module.exports = router;

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import MainPage from './main_page.jsx';
+import { openModal } from '../../actions/modal_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,4 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps)(MainPage));
+const mapStateToDispatch = dispatch =>({
+  openModal: modal => dispatch(openModal(modal))
+})
+
+export default withRouter(connect(mapStateToProps, mapStateToDispatch)(MainPage));

@@ -8,11 +8,11 @@ export default class PuppyForm extends React.Component {
       ownerId: this.props.owner._id,
       name: '',
       age: 0,
-      breed: null,
-      fluffyRating: null,
-      earType: null,
+      breed: undefined,
+      fluffyRating: undefined,
+      earType: undefined,
       sex: '',
-      natureRating: null,
+      natureRating: undefined,
       price: 0.0,
       frontErrors: [],
     };
@@ -111,17 +111,16 @@ export default class PuppyForm extends React.Component {
 
     if (this.validateForm()){
       let puppy = {
-        ownerId: this.state.ownerId,
+        owner: this.state.ownerId,
         name: this.state.name,
         age: this.state.age,
-        breedId: this.state.breed,
+        breed: this.state.breed,
         fluffyRating: this.state.fluffyRating,
-        earTypeId: this.state.earType,
+        earType: this.state.earType,
         sex: this.state.sex,
         natureRating: this.state.natureRating,
         price: this.state.price,
       }
-
       this.props.createPuppy({puppy})
     }
   }
@@ -142,24 +141,23 @@ export default class PuppyForm extends React.Component {
     const { owner, breeds, earTypes, natureRatings, fluffyRatings } = this.props;
 
     const breedOptions = breeds.map(breed => {
-      return <option value={breed.id}>{breed.name}</option>
+      return <option key={breed.id} value={breed.id}>{breed.name}</option>
     });
 
     const earTypeOptions = earTypes.map(ear => {
-      return <option value={ear.id}>{ear.name}</option>
+      return <option key={ear.id} value={ear.id}>{ear.name}</option>
     });
 
     const natureOptions = natureRatings.map(rating => {
-      return <option value={rating.id}>{rating.name}</option>
+      return <option key={rating.id} value={rating.id}>{rating.name}</option>
     });
 
     const fluffyOptions = fluffyRatings.map(rating => {
-      return <option value={rating.id}>{rating.name}</option>
+      return <option key={rating.id} value={rating.id}>{rating.name}</option>
     });
 
     return (
-      <div>
-        
+      <div className="puppy-form-div">
         <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
           <input
             type="text"
@@ -187,8 +185,9 @@ export default class PuppyForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.breed}
             placeholder="Breed"
+            defaultValue="Select a Breed"
           >
-            <option selected disabled>Select a Breed</option>
+            <option disabled>Select a Breed</option>
             { breedOptions }
           </select>
           <br/>
@@ -198,8 +197,9 @@ export default class PuppyForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.fluffyRating}
             placeholder="Fluffy Rating"
+            defaultValue="Select a Fluffy Rating"
           >
-            <option selected disabled>Select a Fluffy Rating</option>
+            <option disabled>Select a Fluffy Rating</option>
             { fluffyOptions }
           </select>
           <br/>
@@ -209,53 +209,57 @@ export default class PuppyForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.earType}
             placeholder="Ear Type"
+            defaultValue="Select an Ear Type"
           >
-            <option selected disabled>Select an Ear Type</option>
+            <option disabled>Select an Ear Type</option>
             { earTypeOptions }
           </select>
           <br/>
-          <label>M: 
-            <input
-              type="radio"
-              name="sex"
-              className="input-form sex-input"
-              onChange={this.handleChange}
-              value="M"
+          <label className="puppy-form-label">Sex: 
+            <label className="puppy-form-label">M: 
+              <input
+                type="radio"
+                name="sex"
+                className="sex-input"
+                onChange={this.handleChange}
+                value="M"
+                />
+            </label>
+            <label className="puppy-form-label">F: 
+              <input
+                type="radio"
+                name="sex"
+                className="sex-input"
+                onChange={this.handleChange}
+                value="F"
               />
+            </label>
           </label>
-          <label>F: 
-            <input
-              type="radio"
-              name="sex"
-              className="input-form sex-input"
+          <label className="puppy-form-label">
+            <select
+              name="natureRating"
+              className="input-form natureRating-input"
               onChange={this.handleChange}
-              value="F"
+              value={this.state.natureRating}
+              placeholder="Nature Rating"
+            >
+              <option selected disabled>Select a Nature Rating</option>
+              { natureOptions }
+            </select>
+          </label>
+          <label className="puppy-form-label">Price per Day:
+            <input
+              type="number"
+              className="input-form price-input"
+              name="price"
+              onChange={this.handleChange}
+              value={this.state.price}
+              min="1"
+              max="9000"
+              placeholder="Price"
             />
           </label>
-          <br/>
-          <select
-            name="natureRating"
-            className="input-form natureRating-input"
-            onChange={this.handleChange}
-            value={this.state.natureRating}
-            placeholder="Nature Rating"
-          >
-            <option selected disabled>Select a Nature Rating</option>
-            { natureOptions }
-          </select>
-          <br/>
-          <input
-            type="number"
-            className="input-form price-input"
-            name="price"
-            onChange={this.handleChange}
-            value={this.state.price}
-            min="1"
-            max="9000"
-            placeholder="Price"
-          />
-          <br/>
-          <button className="input-form submit-input">This button does nothing right now</button>
+          <button className="input-form submit-input">Register a new Dogter</button>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
       </div>

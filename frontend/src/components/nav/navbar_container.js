@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import NavBar from './navbar.jsx';
 import { logout } from '../../actions/session_actions.js';
+import { openModal } from '../../actions/modal_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,4 +11,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { logout })(NavBar));
+const mapDispatchToProps = dispatch => ({
+  openModal: modal => dispatch(openModal(modal)),
+  logout: () => dispatch(logout())
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

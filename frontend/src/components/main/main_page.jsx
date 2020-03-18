@@ -8,20 +8,25 @@ class MainPage extends React.Component {
     super(props);
   }
 
-  // componentWillUpdate(prevProps){
-    
+  // Only uncomment if you want fun
+  // componentDidMount(){
+  //   const main = document.getElementById('main');
+  //   main.style.backgroundImage = "url(https://barkpost.com/wp-content/uploads/2015/03/puppy-run.gif)";
+  //   main.style.backgroundPosition = 'center';
+  //   main.style.backgroundSize = 'cover';
+  //   main.style.backgroundRepeat = 'no-repeat';
   // }
 
   render(){
-    const { user, loggedIn } = this.props;
+    const { user, loggedIn, openModal } = this.props;
 
     const content = loggedIn ? (<>Main Page when User is Logged In
-      { user.isOwner ? <PuppyFormContainer /> : null }
+      { user.isOwner ? <button onClick={() => openModal("createPuppy")}>Add a Dogter</button> : null }
       <PuppyIndexContainer />
       </> ) : (<> Main Page when there is no user logged in </>)
       
     return (
-      <div>
+      <div className="main" id="main">
         <p>hello</p>
         {content}
       </div>

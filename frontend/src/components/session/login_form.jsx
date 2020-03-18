@@ -66,7 +66,11 @@ export default class LoginForm extends React.Component {
         password: this.state.password
       };
   
-      this.props.login({user}); 
+      this.props.login({user})
+        .then(() => {
+          this.props.closeModal()
+        }) 
+        .catch(() => this.setState({ frontErrors: ['Invalid Username/Password'] })) // This isn't working and I'm not sure why
     }
   }
 
