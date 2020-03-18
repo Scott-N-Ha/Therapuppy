@@ -1,7 +1,5 @@
 import React from 'react';
 
-import BookingIndexContainer from '../booking/booking_index_container.js';
-
 export default class Puppy extends React.Component {
   constructor(props){
     super(props);
@@ -16,7 +14,7 @@ export default class Puppy extends React.Component {
       <div className="puppy">
         Puppy Information goes here
         
-        <BookingIndexContainer puppyId={puppy.id} />
+        BookingContianer removed from here and moved to the PuppyShow container.
       </div>
     )
   }
