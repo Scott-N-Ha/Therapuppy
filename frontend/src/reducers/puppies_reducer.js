@@ -12,6 +12,7 @@ const puppiesReducer = (state = initialState, action) => {
     case RECEIVE_ALL_PUPPIES:
       return Object.assign(nextState, action.payload.puppies);
     case RECEIVE_PUPPY:
+      debugger
       nextState[action.payload.puppy._id] = action.payload.puppy
       return nextState
     default:

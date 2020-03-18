@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import PuppyForm from './puppy_form.jsx';
-import {  } from '../../actions/puppy_actions.js';
+import { createPuppy } from '../../actions/puppy_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  // NEEDS THE CREATE PUPPY ACTION MAPPED TO DISPATCH
+  createPuppy: puppyData => dispatch(createPuppy(puppyData))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PuppyForm));
