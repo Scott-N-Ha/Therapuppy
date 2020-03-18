@@ -235,7 +235,7 @@ export default class PuppyForm extends React.Component {
               />
             </label>
           </label>
-          <label className="puppy-form-label">Nature Rating:
+          <label className="puppy-form-label">
             <select
               name="natureRating"
               className="input-form natureRating-input"
