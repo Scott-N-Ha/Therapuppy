@@ -10,6 +10,10 @@ class MainPage extends React.Component {
     this.puppyFormRender = this.puppyFormRender.bind(this);
   }
 
+  componentWillUpdate(prevProps){
+    debugger
+  }
+
   puppyFormRender(){
     return (
       <PuppyFormContainer />
@@ -19,8 +23,6 @@ class MainPage extends React.Component {
   render(){
     const { user, loggedIn } = this.props;
 
-
-
     if (!loggedIn) {
       return (
         <div>
@@ -28,6 +30,7 @@ class MainPage extends React.Component {
         </div>
       )
     } else {
+      debugger //this debugger isn't being hit. what the fuck
       return (
         <div>
           Main Page when User is Logged In

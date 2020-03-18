@@ -8,16 +8,18 @@ import NavBarContainer from './nav/navbar_container.js';
 import LoginFormContainer from './session/login_form_container.js';
 import SignupFormContainer from './session/signup_form_container.js';
 
-const App = () => (
-  <div>
-    <NavBarContainer />
-    
-    <Switch>
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <AuthRoute exact path="/" component={MainPageContainer} />
-    </Switch>
-  </div>
-);
+const App = props => {
+  return (
+    <div className="app">
+      <NavBarContainer />
+      
+      <Switch>
+        <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <AuthRoute exact path="/" component={MainPageContainer} />
+      </Switch>
+    </div>
+  );
+};
 
 export default App;
