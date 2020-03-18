@@ -1,10 +1,13 @@
 import React from 'react';
 
 import PuppyFormContainer from '../puppy/puppy_form_container';
+import PuppyIndexContainer from '../puppy/puppy_index_container';
 
 export default class UserShow extends React.Component {
   constructor(props){
     super(props);
+
+    this.ownerRender = this.ownerRender.bind(this);
   }
 
   componentDidMount(){
@@ -50,6 +53,7 @@ export default class UserShow extends React.Component {
         </label>
         <br/>
         { isOwner && samePerson ? this.ownerRender() : null }
+        <PuppyIndexContainer ownerId={user._id} />
       </div>
     )
   }
