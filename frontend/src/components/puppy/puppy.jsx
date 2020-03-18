@@ -21,7 +21,7 @@ export default class Puppy extends React.Component {
         <br/>
         <label className="puppy-age">{age}</label>
         <br/>
-        <label className="puppy-breed" alt={breed.description}>{breed.name}</label>
+        <label className="puppy-breed">{breed}</label>
         <br/>
         <label className="puppy-fluffyRating">{fluffyRating}</label>
         <br/>

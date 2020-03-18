@@ -8,11 +8,11 @@ export default class PuppyForm extends React.Component {
       ownerId: this.props.owner.id,
       name: '',
       age: 0,
-      breedId: 0,
-      fluffyRating: 1,
-      earTypeId: 0,
+      breed: null,
+      fluffyRating: null,
+      earType: null,
       sex: '',
-      natureRating: 0,
+      natureRating: null,
       price: 0.0,
       frontErrors: [],
     };
@@ -36,7 +36,7 @@ export default class PuppyForm extends React.Component {
     inputs.forEach(input => {
       input.classList.remove('session-error');
 
-
+      // Need to add form validations here
     });
 
     if (allow){
@@ -54,11 +54,11 @@ export default class PuppyForm extends React.Component {
       ownerId: this.props.owner.id,
       name: '',
       age: 0,
-      breedId: 0,
-      fluffyRating: 1,
-      earTypeId: 0,
+      breed: null,
+      fluffyRating: null,
+      earType: null,
       sex: '',
-      natureRating: 0,
+      natureRating: null,
       price: 0.0,
       frontErrors: [],
     });
@@ -85,15 +85,23 @@ export default class PuppyForm extends React.Component {
   }
 
   render(){
-    const { owner, natureRatings, fluffyRatings } = this.props;
+    const { owner, breeds, earTypes, natureRatings, fluffyRatings } = this.props;
+
+    const breedOptions = breeds.map(breed => {
+      return <option value={breed.id}>{breed.name}</option>
+    });
+
+    const earTypeOptions = earTypes.map(ear => {
+      return <option value={ear.id}>{ear.name}</option>
+    });
 
     const natureOptions = natureRatings.map(rating => {
       return <option value={rating.id}>{rating.name}</option>
-    })
+    });
 
     const fluffyOptions = fluffyRatings.map(rating => {
       return <option value={rating.id}>{rating.name}</option>
-    })
+    });
 
     return (
       <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
@@ -117,7 +125,16 @@ export default class PuppyForm extends React.Component {
           placeholder="Age"
         />
         <br/>
-        <label>This is where breed would be</label>
+        <select
+          name="breed"
+          className="input-form breed-input"
+          onChange={this.handleChange}
+          value={this.state.breed}
+          placeholder="Breed"
+        >
+          <option selected disabled>Select a Breed</option>
+          { breedOptions }
+        </select>
         <br/>
         <select
           name="fluffyRating"
@@ -126,10 +143,20 @@ export default class PuppyForm extends React.Component {
           value={this.state.fluffyRating}
           placeholder="Fluffy Rating"
         >
+          <option selected disabled>Select a Fluffy Rating</option>
           { fluffyOptions }
         </select>
         <br/>
-        <label>This is where ear type would be</label>
+        <select
+          name="earType"
+          className="input-form earType-input"
+          onChange={this.handleChange}
+          value={this.state.earType}
+          placeholder="Ear Type"
+        >
+          <option selected disabled>Select an Ear Type</option>
+          { earTypeOptions }
+        </select>
         <br/>
         <label>M: 
           <input
@@ -157,6 +184,7 @@ export default class PuppyForm extends React.Component {
           value={this.state.natureRating}
           placeholder="Nature Rating"
         >
+          <option selected disabled>Select a Nature Rating</option>
           { natureOptions }
         </select>
         <br/>
