@@ -14,17 +14,27 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', 
-  passport.authenticate('jwt', { session: false}),
+  // passport.authenticate('jwt', { session: false}),
   (req, res) => {
     const {
       errors,
       isValid
-    } = validatePuppyInput(req.body);
+    } = validatePuppyInput(req.body.puppy);
 
     if (!isValid) {
         return res.status(404).json(errors);
     };
-
+    const { 
+      owner, 
+      name, 
+      age, 
+      breed, 
+      fluffyRating, 
+      earType, 
+      sex, 
+      natureRating, 
+      price 
+    } = req.body.puppy
     const newPuppy = new Puppy ({
         owner,
         name,
@@ -50,3 +60,4 @@ router.get('/:id', (req, res) => {
 });
 
 
+module.exports = router;
