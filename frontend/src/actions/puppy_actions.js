@@ -1,4 +1,5 @@
 import * as PuppyAPIUtil from '../util/puppy_api_util'
+import Puppy from '../components/puppy/puppy';
 
 // String Constants
 export const RECEIVE_ALL_PUPPIES = "RECEIVE_ALL_PUPPIES"
@@ -11,9 +12,9 @@ const receiveAllPuppies = payload => ({
     payload
 });
 
-const receivePuppy = puppy => ({
+const receivePuppy = payload => ({
     type: RECEIVE_PUPPY,
-    puppy
+    payload
 });
 
 const receivePuppyErrors = errors => ({
@@ -27,3 +28,21 @@ export const fetchAllPuppies = () => dispatch => (
         .then(res => dispatch(receiveAllPuppies(res.data)),
             err => dispatch(receivePuppyErrors(err.response.data)))
 );
+
+export const fetchPuppy = puppyId => dispatch => (
+    PuppyAPIUtil.fetchPuppy(puppyId)
+        .then(res => dispatch(receivePuppy(res.data)),
+        err => dispatch(receivePuppyErrors(err.response.data)))
+)
+
+export const createPuppy = puppyData => dispatch => (
+    PuppyAPIUtil.createPuppy(puppyData)
+        .then(res => dispatch(receivePuppy(res.data)),
+        err => dispatch(receivePuppyErrors(err.response.data)))
+)
+
+export const editPuppy = puppyData => dispatch => (
+    PuppyAPIUtil.editPuppy(puppyData)
+        .then(res => dispatch(receivePuppy(res.data)),
+        err => dispatch(receivePuppyErrors(err.response.data)))
+)
