@@ -10,6 +10,7 @@ const mapStateToProps = (state, { puppy }) => {
     breed: state.entities.breeds[puppy.breed].name,
     fluffyRating: state.entities.fluffyRatings[puppy.fluffyRating].name,
     natureRating: state.entities.natureRatings[puppy.natureRating].name,
+    earType: state.entities.earTypes[puppy.earType].name,
   };
 };
 
