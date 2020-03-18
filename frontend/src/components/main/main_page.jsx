@@ -6,8 +6,6 @@ import PuppyFormContainer from '../puppy/puppy_form_container.js';
 class MainPage extends React.Component {
   constructor(props){
     super(props);
-
-    this.puppyFormRender = this.puppyFormRender.bind(this);
   }
 
   componentWillUpdate(prevProps){
@@ -29,7 +27,7 @@ class MainPage extends React.Component {
         <div>
           Main Page when User is Logged In
           { user.isOwner ? <PuppyFormContainer /> : null }
-          
+
           There's a puppy index container right here.
           <PuppyIndexContainer />
         </div>
