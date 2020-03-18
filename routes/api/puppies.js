@@ -21,12 +21,12 @@ router.get('/', (req, res) => {
       }) 
       res.json({puppies: puppiesResult, users});
     })
-    .catch(err => res.status(404).json({err})
+    .catch(err => res.status(404).json({puppiesnotfound: "no pupppr"})
     ); 
 });
 
 router.post('/', 
-  passport.authenticate('jwt', { session: false}),
+  // passport.authenticate('jwt', { session: false}),
   (req, res) => {
     const {
       errors,
