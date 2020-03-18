@@ -7,6 +7,11 @@ export default class UserShow extends React.Component {
 
 
   render(){
-    if ()
+    // if ()
+    return (
+      <div className="user">
+        User Show Page
+      </div>
+    )
   }
 }
