@@ -65,7 +65,12 @@ router.post('/',
 
 router.get('/:id', (req, res) => {
   Puppy.findById(req.params.id)
-    .then(puppy => res.json({puppy}))
+    .populate('owner', '-password')
+    .then(puppy => {
+      owner = puppy.owner
+      puppy.owner = puppy.owner.id,
+      res.json({puppy, owner})
+    })
     .catch(err =>
       res.status(404).json({ nopuppyfound: 'No puppy found for id'})    
     );
