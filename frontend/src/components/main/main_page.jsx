@@ -8,8 +8,13 @@ class MainPage extends React.Component {
     super(props);
   }
 
-  // componentWillUpdate(prevProps){
-    
+  // Only uncomment if you want fun
+  // componentDidMount(){
+  //   const main = document.getElementById('main');
+  //   main.style.backgroundImage = "url(https://barkpost.com/wp-content/uploads/2015/03/puppy-run.gif)";
+  //   main.style.backgroundPosition = 'center';
+  //   main.style.backgroundSize = 'cover';
+  //   main.style.backgroundRepeat = 'no-repeat';
   // }
 
   render(){
@@ -21,7 +26,7 @@ class MainPage extends React.Component {
       </> ) : (<> Main Page when there is no user logged in </>)
       
     return (
-      <div>
+      <div className="main" id="main">
         <p>hello</p>
         {content}
       </div>
