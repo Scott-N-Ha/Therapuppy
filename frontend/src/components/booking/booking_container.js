@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
 
 
   return {
-    
+    isOwner: (state.session.user._id === ownProps.booking.owner),
   };
 };
 
