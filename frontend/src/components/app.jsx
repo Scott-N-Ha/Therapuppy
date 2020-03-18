@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util.js';
 
@@ -18,7 +18,7 @@ const App = props => {
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <ProtectedRoute exact path="/puppies/:puppyId" component={PuppyShowContainer} />
-        <AuthRoute exact path="/" component={MainPageContainer} />
+        <Route exact path="/" component={MainPageContainer} />
       </Switch>
     </div>
   );

@@ -8,32 +8,25 @@ class MainPage extends React.Component {
     super(props);
   }
 
-  componentWillUpdate(prevProps){
-    debugger
-  }
+  // componentWillUpdate(prevProps){
+    
+  // }
 
   render(){
     const { user, loggedIn } = this.props;
-
-    if (!loggedIn) {
-      return (
-        <div>
-          Main Page when there is no user logged in
-        </div>
-      )
-    } else {
-      debugger //this debugger isn't being hit. what the fuck
-      return (
-        <div>
-          Main Page when User is Logged In
-          { user.isOwner ? <PuppyFormContainer /> : null }
-
-          There's a puppy index container right here.
-          <PuppyIndexContainer />
-        </div>
+    console.log(loggedIn)
+    const content = loggedIn ? (<>Main Page when User is Logged In
+      { user.isOwner ? <PuppyFormContainer /> : null }
+      There's a puppy index container right here.
+      <PuppyIndexContainer />
+      </> ) : (<> Main Page when there is no user logged in </>)
+    return (
+      <div>
+        <p>hello</p>
+        {content}
+      </div>
       )
     }
   }
-}
 
 export default MainPage;

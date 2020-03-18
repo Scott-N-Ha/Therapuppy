@@ -8,6 +8,10 @@ export default class PuppyIndex extends React.Component {
 
   }
 
+  componentDidMount(){
+    this.props.fetchAllPuppies();
+  }
+
   render(){
     const { puppies } = this.props;
 
@@ -17,6 +21,7 @@ export default class PuppyIndex extends React.Component {
 
     return (
       <div className="puppy-index">
+        puppies exist
         { puppiesContainers }
       </div>
     )
