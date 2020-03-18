@@ -23,8 +23,7 @@ class NavBar extends React.Component {
     const {openModal} = this.props
     if (this.props.loggedIn){
       return (
-        <div>
-         
+        <div className="logout-button">
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       )
