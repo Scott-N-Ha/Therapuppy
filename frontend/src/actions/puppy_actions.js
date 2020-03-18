@@ -6,9 +6,9 @@ export const RECEIVE_PUPPY = "RECEIVE_PUPPY"
 export const RECEIVE_PUPPY_ERRORS = "RECEIVE_PUPPY_ERRORS"
 
 // Regular Actions
-const receiveAllPuppies = puppies => ({
+const receiveAllPuppies = payload => ({
     type: RECEIVE_ALL_PUPPIES,
-    puppies
+    payload
 });
 
 const receivePuppy = puppy => ({
@@ -24,6 +24,6 @@ const receivePuppyErrors = errors => ({
 // Thunk Actions
 export const fetchAllPuppies = () => dispatch => (
     PuppyAPIUtil.fetchPuppies()
-        .then(res => dispatch(receiveAllPuppies(res.data.puppies)),
+        .then(res => dispatch(receiveAllPuppies(res.data)),
             err => dispatch(receivePuppyErrors(err.response.data)))
 );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Puppy extends React.Component {
   constructor(props){
@@ -6,14 +7,16 @@ export default class Puppy extends React.Component {
   }
 
   render(){
-    const { puppy, owner } = this.props;
+    const { puppy, owner, breed, fluffyRating, natureRating } = this.props;
 
     if (puppy === undefined) return null;
 
-    const { name, age, breed, fluffyRating, earType, sex, natureRating, price } = puppy;
+    const { name, age, earType, sex, price } = puppy;
 
     return (
       <div className="puppy">
+        <label className="puppy-owner"><Link to={`/users/${owner}`}>{owner}</Link></label>
+        <br/>
         <label className="puppy-name">{name}</label>
         <br/>
         <label className="puppy-age">{age}</label>

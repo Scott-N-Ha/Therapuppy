@@ -10,7 +10,7 @@ const puppiesReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_PUPPIES:
-      return Object.assign(nextState, action.puppies);
+      return Object.assign(nextState, action.payload.puppies);
     default:
       return state;
   }
