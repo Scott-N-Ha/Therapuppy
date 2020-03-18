@@ -17,6 +17,7 @@ export default class PuppyIndex extends React.Component {
 
     return (
       <div className="puppy-index">
+        puppies exist
         { puppiesContainers }
       </div>
     )
