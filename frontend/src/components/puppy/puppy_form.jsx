@@ -126,30 +126,29 @@ export default class PuppyForm extends React.Component {
           value={this.state.fluffyRating}
           placeholder="Fluffy Rating"
         >
-          {/* <option value="1">Short Fur</option>
-          <option value="2">Furry Doge</option>
-          <option value="3">Pillow</option>
-          <option value="4">Part-Sheep</option>
-          <option value="5">Cloud</option> */}
           { fluffyOptions }
         </select>
         <br/>
         <label>This is where ear type would be</label>
         <br/>
-        <input
-          type="radio"
-          name="sex"
-          className="input-form sex-input"
-          onCHange={this.handleChange}
-          value="M"
-        />
-        <input
-          type="radio"
-          name="sex"
-          className="input-form sex-input"
-          onCHange={this.handleChange}
-          value="F"
-        />
+        <label>M: 
+          <input
+            type="radio"
+            name="sex"
+            className="input-form sex-input"
+            onCHange={this.handleChange}
+            value="M"
+            />
+        </label>
+        <label>F: 
+          <input
+            type="radio"
+            name="sex"
+            className="input-form sex-input"
+            onCHange={this.handleChange}
+            value="F"
+          />
+        </label>
         <br/>
         <select
           name="natureRating"
@@ -158,16 +157,6 @@ export default class PuppyForm extends React.Component {
           value={this.state.natureRating}
           placeholder="Nature Rating"
         >
-          {/* <option value="1">Lazy</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">Red Rocket</option> */}
           { natureOptions }
         </select>
         <br/>
