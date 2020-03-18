@@ -64,8 +64,8 @@ router.post('/',
 );
 
 router.get('/:id', (req, res) => {
-  Puppy.find({ id: req.params.id })
-    .then(puppy => res.json(puppy))
+  Puppy.findById(req.params.id)
+    .then(puppy => res.json({puppy}))
     .catch(err =>
       res.status(404).json({ nopuppyfound: 'No puppy found for id'})    
     );
