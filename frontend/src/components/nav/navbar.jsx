@@ -23,8 +23,7 @@ class NavBar extends React.Component {
     const {openModal} = this.props
     if (this.props.loggedIn){
       return (
-        <div>
-          <Link to='/puppies'>All Puppies</Link>
+        <div className="logout-button">
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       )
@@ -47,7 +46,10 @@ class NavBar extends React.Component {
   render(){
     return (
       <div className="nav-bar">
+        <div className="nav-bar-logo-container">
         <Link to="/"><h1 className="therapuppy rainbow-effect-persist">Therapuppy</h1></Link>
+        <Link to='/puppies'>All Puppies</Link>
+        </div>
         { this.getLinks() }
       </div>
     )

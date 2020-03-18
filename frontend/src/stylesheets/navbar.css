@@ -11,9 +11,22 @@
   align-items: center;
 }
 
+.nav-bar-logo-container {
+  display: flex;
+  padding: 10px
+}
+
+.nav-bar-logo-container > a:last-of-type {
+  margin-left: 10px;
+}
+
 .navbar-btn {
   width: 75px;
   height: 32px;
   padding: 10px;
   border-radius: 3px;
+}
+
+.logout-button {
+  padding: 10px;
 }
