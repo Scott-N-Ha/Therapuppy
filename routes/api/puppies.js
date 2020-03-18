@@ -4,24 +4,24 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const Booking = require("../../models/Booking");
 const validatePuppyInput = require("../../validations/puppy");
+const User = require("../../models/User");
 const Puppy = require("../../models/Puppy");
 
 router.get('/', (req, res) => {
   Puppy.find()
+    .populate('owner', '-password')
     .then(puppies => {
       const puppiesResult = {};
       const users = {};
       puppies.forEach( puppy => {
-
-        puppiesResult[puppy.id] = puppy
-        puppy.populate({path: 'owner'})
-              .exec((err, pup)=>{
-                users[pup.owner.id] = pup.owner;
-              })
-      })
+        const owner = puppy.owner;
+        users[owner.id] = owner;
+        puppy.owner = puppy.owner.id;
+        puppiesResult[puppy.id] = puppy;
+      }) 
       res.json({puppies: puppiesResult, users});
     })
-    .catch(err => res.status(404).json({ nopuppiesfound: 'No puppies found'})
+    .catch(err => res.status(404).json({err})
     ); 
 });
 
