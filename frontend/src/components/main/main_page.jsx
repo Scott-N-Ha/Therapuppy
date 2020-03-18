@@ -6,24 +6,16 @@ import PuppyFormContainer from '../puppy/puppy_form_container.js';
 class MainPage extends React.Component {
   constructor(props){
     super(props);
-
-    this.puppyFormRender = this.puppyFormRender.bind(this);
   }
 
   componentWillUpdate(prevProps){
     debugger
   }
 
-  puppyFormRender(){
-    return (
-      <PuppyFormContainer />
-    );
-  }
-
   render(){
     const { user, loggedIn } = this.props;
 
-    if (user._id === undefined) {
+    if (!loggedIn) {
       return (
         <div>
           Main Page when there is no user logged in
@@ -34,8 +26,9 @@ class MainPage extends React.Component {
       return (
         <div>
           Main Page when User is Logged In
-          There's a puppy index container right here but we have no puppies.
-          { user.isOwner ? this.puppyFormRender() : null }
+          { user.isOwner ? <PuppyFormContainer /> : null }
+
+          There's a puppy index container right here.
           <PuppyIndexContainer />
         </div>
       )

@@ -6,8 +6,8 @@ import MainPage from './main_page.jsx';
 const mapStateToProps = (state, ownProps) => {
 
   return {
-    loggedIn: !!state.session.user.id,
     user: state.session.user,
+    loggedIn: Boolean(state.session.user._id)
   }
 };
 
