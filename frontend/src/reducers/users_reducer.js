@@ -15,8 +15,7 @@ const usersReducer = (state = initialState, action) => {
     case RECEIVE_ALL_PUPPIES:
       return Object.assign(nextState, action.payload.users);
     case RECEIVE_PUPPY:
-      debugger
-      nextState[action.payload.user._id] = action.payload.user
+      nextState[action.payload.users._id] = action.payload.users
       return nextState
     default:
       return state;
