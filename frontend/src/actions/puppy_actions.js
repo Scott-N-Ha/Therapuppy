@@ -1,5 +1,4 @@
-import * as PuppyAPIUtil from '../util/puppy_api_util'
-import Puppy from '../components/puppy/puppy';
+import * as PuppyAPIUtil from '../util/puppy_api_util.js'
 
 // String Constants
 export const RECEIVE_ALL_PUPPIES = "RECEIVE_ALL_PUPPIES"
@@ -9,17 +8,17 @@ export const RECEIVE_PUPPY_ERRORS = "RECEIVE_PUPPY_ERRORS"
 // Regular Actions
 const receiveAllPuppies = payload => ({
     type: RECEIVE_ALL_PUPPIES,
-    payload
+    payload,
 });
 
 const receivePuppy = payload => ({
     type: RECEIVE_PUPPY,
-    payload
+    payload,
 });
 
 const receivePuppyErrors = errors => ({
     type: RECEIVE_PUPPY_ERRORS,
-    errors
+    errors,
 });
 
 // Thunk Actions
@@ -35,16 +34,16 @@ export const fetchPuppy = puppyId => dispatch => (
             
             return (dispatch(receivePuppy(res.data)))},
         err => dispatch(receivePuppyErrors(err.response.data)))
-)
+);
 
 export const createPuppy = puppyData => dispatch => (
     PuppyAPIUtil.createPuppy(puppyData)
         .then(res => dispatch(receivePuppy(res.data)),
         err => dispatch(receivePuppyErrors(err.response.data)))
-)
+);
 
 export const editPuppy = puppyData => dispatch => (
     PuppyAPIUtil.editPuppy(puppyData)
         .then(res => dispatch(receivePuppy(res.data)),
         err => dispatch(receivePuppyErrors(err.response.data)))
-)
+);
