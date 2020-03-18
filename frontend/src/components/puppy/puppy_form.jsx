@@ -121,7 +121,6 @@ export default class PuppyForm extends React.Component {
         natureRating: this.state.natureRating,
         price: this.state.price,
       }
-      debugger
       this.props.createPuppy({puppy})
     }
   }

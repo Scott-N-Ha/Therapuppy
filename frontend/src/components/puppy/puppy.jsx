@@ -17,7 +17,7 @@ export default class Puppy extends React.Component {
       <div className="puppy">
         <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
-        <label className="puppy-name">{name}</label>
+        <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
         <br/>
         <label className="puppy-age">{age}</label>
         <br/>
