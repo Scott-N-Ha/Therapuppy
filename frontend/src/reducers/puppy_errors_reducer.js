@@ -2,7 +2,7 @@ import { RECEIVE_PUPPY_ERRORS, RECEIVE_PUPPY, RECEIVE_ALL_PUPPIES } from '../act
 
 const _nullErrors = [];
 
-const SessionErrorsReducer = (state = _nullErrors, action) => {
+const PuppyErrorsReducer = (state = _nullErrors, action) => {
   Object.freeze(state);
   let nextState = Object.assign({}, state);
 
@@ -17,4 +17,4 @@ const SessionErrorsReducer = (state = _nullErrors, action) => {
   }
 };
 
-export default SessionErrorsReducer;
+export default PuppyErrorsReducer;
