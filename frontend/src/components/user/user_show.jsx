@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PuppyFormContainer from '../puppy/puppy_form_container';
+
 export default class UserShow extends React.Component {
   constructor(props){
     super(props);
@@ -18,11 +20,15 @@ export default class UserShow extends React.Component {
   }
 
   ownerRender(){
-    
+    return (
+      <div>
+        <PuppyFormContainer />
+      </div>
+    )
   }
 
   render(){
-    const { user } = this.props;
+    const { user, samePerson } = this.props;
 
     if (user === undefined) return this.missingUser();
 
@@ -43,7 +49,7 @@ export default class UserShow extends React.Component {
           { firstName } { lastName }
         </label>
         <br/>
-        { isOwner ? null : null }
+        { isOwner && samePerson ? this.ownerRender() : null }
       </div>
     )
   }
