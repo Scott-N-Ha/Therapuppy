@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Puppy from './puppy.jsx';
 
 const mapStateToProps = (state, { puppy }) => {
+  
   return {
     owner: state.entities.users[puppy.owner],
     breed: state.entities.breeds[puppy.breed],
