@@ -14,12 +14,6 @@ class MainPage extends React.Component {
     debugger
   }
 
-  puppyFormRender(){
-    return (
-      <PuppyFormContainer />
-    );
-  }
-
   render(){
     const { user, loggedIn } = this.props;
 
@@ -34,8 +28,9 @@ class MainPage extends React.Component {
       return (
         <div>
           Main Page when User is Logged In
-          There's a puppy index container right here but we have no puppies.
-          { user.isOwner ? this.puppyFormRender() : null }
+          { user.isOwner ? <PuppyFormContainer /> : null }
+          
+          There's a puppy index container right here.
           <PuppyIndexContainer />
         </div>
       )
