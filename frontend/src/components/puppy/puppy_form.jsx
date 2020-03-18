@@ -215,64 +215,6 @@ export default class PuppyForm extends React.Component {
             { earTypeOptions }
           </select>
           <br/>
-          <label>M: 
-            <input
-              type="text"
-              className="input-form name-input"
-              name="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-              placeholder="Name"
-            />
-          </label>
-          <label className="puppy-form-label">Age: 
-            <input
-              type="number"
-              className="input-form age-input"
-              name="age"
-              onChange={this.handleChange}
-              value={this.state.age}
-              min="1"
-              max="25"
-              placeholder="Age"
-            />
-          </label>
-          <label className="puppy-form-label">Breed: 
-            <select
-              name="breed"
-              className="input-form breed-input"
-              onChange={this.handleChange}
-              value={this.state.breed}
-              placeholder="Breed"
-            >
-              <option selected disabled>Select a Breed</option>
-              { breedOptions }
-            </select>
-          </label>
-          <label className="puppy-form-label">Fluffiness Rating: 
-            <select
-              name="fluffyRating"
-              className="input-form fluffyRating-input"
-              onChange={this.handleChange}
-              value={this.state.fluffyRating}
-              placeholder="Fluffy Rating"
-            >
-              <option selected disabled>Select a Fluffy Rating</option>
-              { fluffyOptions }
-            </select>
-          </label>
-          <label className="puppy-form-label">Ear Type:
-            <select
-              name="earType"
-              className="input-form earType-input"
-              onChange={this.handleChange}
-              value={this.state.earType}
-              placeholder="Ear Type"
-            >
-              <option selected disabled>Select an Ear Type</option>
-              { earTypeOptions }
-            </select>
-          </label>
           <label className="puppy-form-label">Sex: 
             <label className="puppy-form-label">M: 
               <input
