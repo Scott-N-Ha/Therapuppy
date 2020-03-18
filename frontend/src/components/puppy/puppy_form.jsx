@@ -111,17 +111,17 @@ export default class PuppyForm extends React.Component {
 
     if (this.validateForm()){
       let puppy = {
-        ownerId: this.state.ownerId,
+        owner: this.state.ownerId,
         name: this.state.name,
         age: this.state.age,
-        breedId: this.state.breed,
+        breed: this.state.breed,
         fluffyRating: this.state.fluffyRating,
-        earTypeId: this.state.earType,
+        earType: this.state.earType,
         sex: this.state.sex,
         natureRating: this.state.natureRating,
         price: this.state.price,
       }
-
+      debugger
       this.props.createPuppy({puppy})
     }
   }
