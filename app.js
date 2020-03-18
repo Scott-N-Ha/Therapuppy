@@ -8,6 +8,7 @@ const validateRegisterInput = require("./validations/register");
 const validatePuppyInput = require("./validations/puppy");
 const User = require('./models/User');
 const users = require("./routes/api/users")
+const puppies = require("./routes/api/puppies")
 const bookings = require("./routes/api/bookings")
 
 const app = express();
@@ -52,6 +53,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", users); 
+app.use("/api/puppies", puppies); 
 // app.unsubscribe("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000;

@@ -43,9 +43,9 @@ module.exports = function validateBookingInput(data) {
     //     errors.timeEnd = 'End time field must be in time format'
     // };
 
-    if (Validator.isEmpty(data.timeEnd)) {
-        errors.timeEnd = 'End time field is required'
-    };
+    // if (Validator.isEmpty(data.timeEnd)) {
+    //     errors.timeEnd = 'End time field is required'
+    // };
 
     if (Validator.isEmpty(data.statusId)) {
         errors.statusId = 'Status field is required'
