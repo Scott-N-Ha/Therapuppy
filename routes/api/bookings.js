@@ -66,7 +66,7 @@ router.get("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   Booking.findByIdAndUpdate(req.params.id, req.body, (err) => {
-    res.json({msg: "Success"});
+    res.json({msg: "Success"}); // Replaced with actual Booking
   });
 });
 
