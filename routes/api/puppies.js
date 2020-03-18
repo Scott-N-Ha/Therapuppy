@@ -9,11 +9,15 @@ const Puppy = require("../../models/Puppy");
 router.get('/', (req, res) => {
   Puppy.find()
     .then(puppies => {
-      const payload = {};
-      puppies.forEach( puppy => 
-        payload[puppy.id] = puppy
-        )
-      res.json({puppies: payload});
+      const puppiesResult = {};
+      const users = {};
+      puppies.forEach( puppy => {
+
+        puppiesResult[puppy.id] = puppy
+        const owner = puppy.populate('owner')
+        users[owner.id] = owner
+      })
+      res.json({puppies: puppiesResult, users});
     })
     .catch(err => res.status(404).json({ nopuppiesfound: 'No puppies found'})
     ); 
