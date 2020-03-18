@@ -1,11 +1,11 @@
 .nav-bar {
   width: 100%;
-  height: 50px;
+  height: 69px;
   position: sticky;
   top: 0;
-  z-index: 9000;
+  z-index: 2;
   box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .13);
-  background-color: lightgray;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,18 +15,42 @@
   display: flex;
   padding: 10px
 }
-
+/* 
 .nav-bar-logo-container > a:last-of-type {
   margin-left: 10px;
+} */
+
+.therapuppy-header {
+  color: #75b79e;
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
 }
 
 .navbar-btn {
-  width: 75px;
-  height: 32px;
-  padding: 10px;
-  border-radius: 3px;
+  width: 125px;
+  height: 35px;
+  border-radius: 10px;
+  line-height: 23px;
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 5px;
+  background-color: #75b79e;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  border-style: none;
+}
+
+.navbar-btn:hover {
+  background-color: #a7e9af;
 }
 
 .logout-button {
   padding: 10px;
+  
 }
+
+.login-buttons {
+  padding: 10px;
+  text-align: center;
+}
+
