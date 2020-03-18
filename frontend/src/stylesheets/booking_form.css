@@ -1,0 +1,9 @@
+.booking-form {
+  border: 2px solid lightgray;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+}
