@@ -5,8 +5,8 @@ import BookingForm from './booking_form.jsx';
 import { createBooking } from '../../actions/booking_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
   
+
   return {
     renterId: state.session.user._id,
   };
