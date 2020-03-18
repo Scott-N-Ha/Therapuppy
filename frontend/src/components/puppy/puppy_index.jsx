@@ -9,7 +9,7 @@ export default class PuppyIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchAllPuppies();
+    if (this.props.ownerId === undefined) this.props.fetchAllPuppies();
   }
 
   render(){
