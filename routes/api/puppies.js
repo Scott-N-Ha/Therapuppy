@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
       puppies.forEach( puppy => 
         payload[puppy.id] = puppy
         )
-      res.json(payload);
+      res.json({puppies: payload});
     })
     .catch(err => res.status(404).json({ nopuppiesfound: 'No puppies found'})
     ); 
