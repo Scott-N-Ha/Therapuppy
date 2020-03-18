@@ -11,6 +11,7 @@ import "./stylesheets/reset.css";
 import "./stylesheets/universal.css";
 import "./stylesheets/navbar.css";
 import "./stylesheets/session_form.scss";
+import "./stylesheets/puppy.css";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

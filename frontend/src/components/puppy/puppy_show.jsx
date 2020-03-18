@@ -26,7 +26,7 @@ export default class PuppyShow extends React.Component {
       <div className="puppy-show">
         Puppy information goes here
 
-        <BookingIndexContainer puppyId={puppy.id} />
+        <BookingIndexContainer puppyId={puppy._id} />
       </div>
     );
   }
