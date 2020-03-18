@@ -7,6 +7,7 @@ import breedsReducer from './breeds_reducer.js';
 import earTypeReducer from './ear_types_reducer.js';
 import fluffyRatingReducer from './fluffy_rating_reducer.js';
 import natureRatingReducer from './nature_rating_reducer.js';
+import statusReducer from './status_reducer.js';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -16,6 +17,7 @@ const entitiesReducer = combineReducers({
   earTypes: earTypeReducer,
   fluffyRatings: fluffyRatingReducer,
   natureRatings: natureRatingReducer,
+  status: statusReducer,
 });
 
 export default entitiesReducer;
