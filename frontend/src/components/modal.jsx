@@ -3,6 +3,8 @@ import {closeModal} from '../actions/modal_actions';
 import {connect} from 'react-redux';
 import LoginFormContainer from '../components/session/login_form_container';
 import SignUpFormContainer from '../components/session/signup_form_container';
+import PuppyFormContainer from '../components/puppy/puppy_form_container';
+
 
 function Modal({modal, closeModal}) {
     if (!modal) {
@@ -18,6 +20,9 @@ function Modal({modal, closeModal}) {
             break;
         case 'signup':
             component = <SignUpFormContainer />
+            break;
+        case 'createPuppy':
+            component = <PuppyFormContainer />
             break;
         default:
             return null;
