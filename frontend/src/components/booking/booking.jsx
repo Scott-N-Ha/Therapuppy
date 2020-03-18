@@ -4,12 +4,16 @@ export default class Booking extends React.Component{
   constructor(props){
     super(props);
 
+    this.state = this.props.booking;
+
     this.isOwnerRender = this.isOwnerRender.bind(this);
     this.editBooking = this.editBooking.bind(this);
   }
 
   editBooking(value){
-
+    this.setState({ status: (value ? 2 : 3) });
+    
+    this.props.updateBooting(this.state);
   }
 
   isOwnerRender(){
@@ -29,11 +33,11 @@ export default class Booking extends React.Component{
   }
 
   render(){
-    const { booking, isOwner } = this.props;
+    const { booking, isOwner, owner, renter, puppy, status } = this.props;
 
     if ( booking === undefined || isOwner === undefined ) return null;
 
-    const { owner, renter, puppy, status, totalCost } = booking;
+    const { totalCost } = booking;
 
     return (
       <div className="booking">
