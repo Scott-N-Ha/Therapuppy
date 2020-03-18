@@ -18,10 +18,10 @@ class MainPage extends React.Component {
   // }
 
   render(){
-    const { user, loggedIn } = this.props;
+    const { user, loggedIn, openModal } = this.props;
 
     const content = loggedIn ? (<>Main Page when User is Logged In
-      { user.isOwner ? <PuppyFormContainer /> : null }
+      { user.isOwner ? <button onClick={() => openModal("createPuppy")}>Add a Dogter</button> : null }
       <PuppyIndexContainer />
       </> ) : (<> Main Page when there is no user logged in </>)
       

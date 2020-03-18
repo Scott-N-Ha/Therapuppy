@@ -7,6 +7,7 @@ class NavBar extends React.Component {
 
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.handleModal = this.handleModal.bind(this)
   }
 
   logoutUser(e){
@@ -14,25 +15,30 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
+  handleModal(modal){
+    this.props.openModal(modal)
+  }
+
   getLinks(){
+    const {openModal} = this.props
     if (this.props.loggedIn){
       return (
         <div>
-          <Link to='/puppies'>Certified Dogters</Link>
+         
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       )
     } else {
       return (
         <div className="login-buttons">
-          { this.props.location.pathname === "/login" ? <Link
-            to='/signup'
-            className="navbar-btn">Signup</Link> : <Link
-            to='/login'
-            className="navbar-btn">Login</Link> }
-          { this.props.location.pathname === "/" ? <Link
-            to='/signup'
-            className="navbar-btn">Signup</Link> : null }
+          { this.props.location.pathname === "/login" ? <button
+            onClick={() => this.handleModal("signup")}
+            className="navbar-btn">Signup</button> : <button
+            onClick={() => this.handleModal("login")}
+            className="navbar-btn">Login</button> }
+          { this.props.location.pathname === "/" ? <button
+            onClick={() => this.handleModal("signup")}
+            className="navbar-btn">Signup</button> : null }
         </div>
       )
     }
@@ -41,7 +47,10 @@ class NavBar extends React.Component {
   render(){
     return (
       <div className="nav-bar">
+        <div className="nav-bar-logo-container">
         <Link to="/"><h1 className="therapuppy rainbow-effect-persist">Therapuppy</h1></Link>
+        <Link to='/puppies'>Certified Dogters</Link>
+        </div>
         { this.getLinks() }
       </div>
     )

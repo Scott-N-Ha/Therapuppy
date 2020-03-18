@@ -8,11 +8,11 @@ export default class PuppyForm extends React.Component {
       ownerId: this.props.owner._id,
       name: '',
       age: 0,
-      breed: null,
-      fluffyRating: null,
-      earType: null,
+      breed: undefined,
+      fluffyRating: undefined,
+      earType: undefined,
       sex: '',
-      natureRating: null,
+      natureRating: undefined,
       price: 0.0,
       frontErrors: [],
     };
@@ -141,82 +141,80 @@ export default class PuppyForm extends React.Component {
     const { owner, breeds, earTypes, natureRatings, fluffyRatings } = this.props;
 
     const breedOptions = breeds.map(breed => {
-      return <option value={breed.id}>{breed.name}</option>
+      return <option key={breed.id} value={breed.id}>{breed.name}</option>
     });
 
     const earTypeOptions = earTypes.map(ear => {
-      return <option value={ear.id}>{ear.name}</option>
+      return <option key={ear.id} value={ear.id}>{ear.name}</option>
     });
 
     const natureOptions = natureRatings.map(rating => {
-      return <option value={rating.id}>{rating.name}</option>
+      return <option key={rating.id} value={rating.id}>{rating.name}</option>
     });
 
     const fluffyOptions = fluffyRatings.map(rating => {
-      return <option value={rating.id}>{rating.name}</option>
+      return <option key={rating.id} value={rating.id}>{rating.name}</option>
     });
 
     return (
       <div className="puppy-form-div">
         <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
-          <label className="puppy-form-label">Name: 
-            <input
-              type="text"
-              className="input-form name-input"
-              name="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-              placeholder="Name"
-            />
-          </label>
-          <label className="puppy-form-label">Age: 
-            <input
-              type="number"
-              className="input-form age-input"
-              name="age"
-              onChange={this.handleChange}
-              value={this.state.age}
-              min="1"
-              max="25"
-              placeholder="Age"
-            />
-          </label>
-          <label className="puppy-form-label">Breed: 
-            <select
-              name="breed"
-              className="input-form breed-input"
-              onChange={this.handleChange}
-              value={this.state.breed}
-              placeholder="Breed"
-            >
-              <option selected disabled>Select a Breed</option>
-              { breedOptions }
-            </select>
-          </label>
-          <label className="puppy-form-label">Fluffiness Rating: 
-            <select
-              name="fluffyRating"
-              className="input-form fluffyRating-input"
-              onChange={this.handleChange}
-              value={this.state.fluffyRating}
-              placeholder="Fluffy Rating"
-            >
-              <option selected disabled>Select a Fluffy Rating</option>
-              { fluffyOptions }
-            </select>
-          </label>
-          <label className="puppy-form-label">Ear Type:
-            <select
-              name="earType"
-              className="input-form earType-input"
-              onChange={this.handleChange}
-              value={this.state.earType}
-              placeholder="Ear Type"
-            >
-              <option selected disabled>Select an Ear Type</option>
-              { earTypeOptions }
-            </select>
-          </label>
+          <input
+            type="text"
+            className="input-form name-input"
+            name="name"
+            onChange={this.handleChange}
+            value={this.state.name}
+            placeholder="Name"
+          />
+          <br/>
+          <input
+            type="number"
+            className="input-form age-input"
+            name="age"
+            onChange={this.handleChange}
+            value={this.state.age}
+            min="1"
+            max="25"
+            placeholder="Age"
+          />
+          <br/>
+          <select
+            name="breed"
+            className="input-form breed-input"
+            onChange={this.handleChange}
+            value={this.state.breed}
+            placeholder="Breed"
+            defaultValue="Select a Breed"
+          >
+            <option disabled>Select a Breed</option>
+            { breedOptions }
+          </select>
+          <br/>
+          <select
+            name="fluffyRating"
+            className="input-form fluffyRating-input"
+            onChange={this.handleChange}
+            value={this.state.fluffyRating}
+            placeholder="Fluffy Rating"
+            defaultValue="Select a Fluffy Rating"
+          >
+            <option disabled>Select a Fluffy Rating</option>
+            { fluffyOptions }
+          </select>
+          <br/>
+          <select
+            name="earType"
+            className="input-form earType-input"
+            onChange={this.handleChange}
+            value={this.state.earType}
+            placeholder="Ear Type"
+            defaultValue="Select an Ear Type"
+          >
+            <option disabled>Select an Ear Type</option>
+            { earTypeOptions }
+          </select>
+          <br/>
           <label className="puppy-form-label">Sex: 
             <label className="puppy-form-label">M: 
               <input
@@ -237,7 +235,7 @@ export default class PuppyForm extends React.Component {
               />
             </label>
           </label>
-          <label className="puppy-form-label">Nature Rating:
+          <label className="puppy-form-label">
             <select
               name="natureRating"
               className="input-form natureRating-input"

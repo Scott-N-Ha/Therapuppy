@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import PuppyForm from './puppy_form.jsx';
 import { createPuppy } from '../../actions/puppy_actions.js';
+import { closeModal } from '../../actions/modal_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -16,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createPuppy: puppyData => dispatch(createPuppy(puppyData))
+  createPuppy: puppyData => dispatch(createPuppy(puppyData)),
+  closeModal: () => dispatch(closeModal())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PuppyForm));
