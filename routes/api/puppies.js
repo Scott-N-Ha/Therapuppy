@@ -14,8 +14,10 @@ router.get('/', (req, res) => {
       puppies.forEach( puppy => {
 
         puppiesResult[puppy.id] = puppy
-        const owner = puppy.populate('owner')
-        users[owner.id] = owner
+        puppy.populate({path: 'owner'})
+              .exec((err, pup)=>{
+                users[pup.owner.id] = pup.owner;
+              })
       })
       res.json({puppies: puppiesResult, users});
     })

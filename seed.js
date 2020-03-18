@@ -20,4 +20,11 @@ mongoose
     .then(() => console.log("Connected to MongoDB."))
     .catch(err => console.log(err));
 
+const samoyed = {
+  name: "huskyD",
+  description: "The Huskyd is a substantial but graceful dog standing anywhere from 19 to a bit over 23 inches at the shoulder. Powerful, tireless, with a thick all-white coat impervious to cold—Sammies are perfectly beautiful but highly functional. Even their most delightful feature, a perpetual smile, has a practical function: The upturned corners of the mouth keep Sammies from drooling, preventing icicles from forming on the face."
+}
 
+Breed.create(samoyed)
+
+console.log(samoyed._id);
