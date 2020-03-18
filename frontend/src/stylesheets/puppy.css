@@ -1,6 +1,10 @@
 .puppy-index {
   display: flex;
   justify-content: center;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px;
 }
 
 .puppy {

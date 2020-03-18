@@ -1,3 +1,11 @@
 .puppy-creation-form {
-    background-color: white;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 10px;
+  padding: 5px;
 }

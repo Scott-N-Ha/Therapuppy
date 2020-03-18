@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import BookingIndexContainer from '../booking/booking_index_container.js';
+import BookingFormContainer from '../booking/booking_form_container.js';
 
 export default class PuppyShow extends React.Component {
   constructor(props){
@@ -16,18 +17,17 @@ export default class PuppyShow extends React.Component {
       </div>
     )
   }
-
-
   
   componentWillMount(){
-    this.props.fetchPuppy(this.props.match.params.puppyId)
+    if (this.props.puppy === undefined) this.props.fetchPuppy(this.props.match.params.puppyId);
   }
 
   render(){
-    const { puppy, owner, breed, fluffyRating, natureRating, earType } = this.props;
+    const { puppy, owner, breed, fluffyRating, natureRating, earType, isCurrentUserPuppy } = this.props;
+    
     if (puppy === undefined) return this.missingPuppy();
+    
     const { name, age, sex, price } = puppy;
-
 
     return (
       <div className="puppy-show">
@@ -50,6 +50,7 @@ export default class PuppyShow extends React.Component {
         <br/>
         <label className="puppy-price">${price}</label>
 
+        { !isCurrentUserPuppy ? <BookingFormContainer puppyId={puppy._id} /> : null}
         <BookingIndexContainer puppyId={puppy._id} />
       </div>
     );

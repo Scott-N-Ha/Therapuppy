@@ -10,6 +10,7 @@ import SignupFormContainer from './session/signup_form_container.js';
 import PuppyShowContainer from './puppy/puppy_show_container.js';
 import UserShowContainer from './user/user_show_container.js';
 import Modal from './modal'
+import PuppyIndexContainer from './puppy/puppy_index_container.js';
 
 const App = props => {
   return (
@@ -21,6 +22,7 @@ const App = props => {
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <ProtectedRoute exact path="/puppies/:puppyId" component={PuppyShowContainer} />
+        <ProtectedRoute exact path="/puppies/" component={PuppyIndexContainer} />
         <ProtectedRoute exact path="/users/:username" component={UserShowContainer} />
         <Route exact path="/" component={MainPageContainer} />
       </Switch>
