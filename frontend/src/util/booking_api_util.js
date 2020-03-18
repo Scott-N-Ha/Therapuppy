@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const fetchBookings = () => (
     axios.get('api/bookings')
 )

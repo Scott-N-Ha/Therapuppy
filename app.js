@@ -68,6 +68,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", users); 
 app.use("/api/puppies", puppies); 
+app.use("/api/bookings", bookings); 
 // app.unsubscribe("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000;

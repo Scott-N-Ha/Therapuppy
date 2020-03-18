@@ -7,33 +7,41 @@ const Puppy = require("../../models/Puppy");
 const validateBookingInput = require("../../validations/booking");
 
 router.post("/",
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        const { isValid, errors } = validateBookingInput(req.body);
+        // const { isValid, errors } = validateBookingInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
         const {
             puppyId,
             renter,
             date,
         } = req.body.booking
         Puppy.findById(puppyId)
-        const newBooking = new Booking({
-
-            owner,
-            renter,
-            puppy: id, 
-            date,
-            status,
-            totalCost,
-        });
-
-        newBooking
-            .save()
-            .then(booking => res.json(booking))
+            .then( puppy => {
+                    if (puppy){
+                        const {owner, price} = puppy
+                        console.log(puppy)
+                        const newBooking = new Booking({
+                        owner,
+                        renter,
+                        puppy: puppy.id,
+                        date,
+                        status: "5e717ae318716c8dc9bd5bf5",
+                        totalCost: price
+                        });
+                            
+                        newBooking
+                            .save()
+                            .then(booking => res.json(booking))
+                            .catch(err => console.log(err))
+                        }
+                    else{
+                        return res.status(400).json({puppynotfound: "cannot find puppp"});
+                    }
+                })
     }
 )
 
