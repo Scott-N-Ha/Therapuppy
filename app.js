@@ -3,18 +3,26 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path'); 
-const db = require("./config/keys.js").mongoURI;
-const validateRegisterInput = require("./validations/register");
-const validatePuppyInput = require("./validations/puppy");
-const User = require('./models/User');
-const users = require("./routes/api/users")
-const puppies = require("./routes/api/puppies")
-const bookings = require("./routes/api/bookings")
-
 let AWS = require("aws-sdk");
-const keys = require("./config/keys");
+
+const db = require("./config/keys.js").mongoURI;
+const validateRegisterInput = require("./validations/register.js");
+const validatePuppyInput = require("./validations/puppy.js");
+const User = require('./models/User.js');
+const users = require("./routes/api/users.js")
+const puppies = require("./routes/api/puppies.js")
+const bookings = require("./routes/api/bookings.js")
+
+const keys = require("./config/keys.js");
 
 const app = express();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'src', 'index.js'));
+  })
+}
 
 mongoose
   .connect(db, { useNewUrlParser: true })
