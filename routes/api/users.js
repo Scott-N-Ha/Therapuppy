@@ -210,7 +210,7 @@ router.get("/:username", (req,res) => {
 			puppies => { 
 				fetchBookings(user).then(
 					bookings => {
-						return res.json({ user, puppies, bookings })
+						return res.json({ user, puppies, bookings }) 
 					}
 				)
 			}
