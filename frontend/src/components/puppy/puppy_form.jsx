@@ -242,8 +242,9 @@ export default class PuppyForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.natureRating}
               placeholder="Nature Rating"
+              defaultValue="Select a Nature Rating"
             >
-              <option selected disabled>Select a Nature Rating</option>
+              <option disabled>Select a Nature Rating</option>
               { natureOptions }
             </select>
           </label>
