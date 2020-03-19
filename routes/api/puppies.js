@@ -79,7 +79,6 @@ router.post("/upload", upload.single("file"), function (req, res) {
   });
 });
 
-
 router.get('/', (req, res) => {
   Puppy.find()
     .populate('owner', '-password')
@@ -195,10 +194,10 @@ router.get('/:id', (req, res) => {
       users = puppy.owner;
       fetchBookings(puppy).then(({bookings, renters}) => {
         puppy.owner = puppy.owner.id;
+        puppy.photo = fetchUrl(puppy);
         res.json({
           puppy,
           users,
-          // users: Object.assign(users, renters),
           bookings,
         });
       });
