@@ -92,8 +92,6 @@ router.post('/',
   // passport.authenticate('jwt', { session: false}),
   upload.single("file"),
   (req, res) => {
-    console.log(req.file)
-    console.log(req.body)
     const {
       errors,
       isValid
@@ -130,7 +128,6 @@ router.post('/',
           description: req.body.description,
         };
         let s3Key = params.Key;
-        console.log(s3FileURL)
        
 
     const { 
@@ -159,7 +156,6 @@ router.post('/',
       s3Key
     });
 
-    console.log(newPuppy);
     newPuppy.save()
       .then(puppy => {
         let user = User.findById(newPuppy.owner).then(
