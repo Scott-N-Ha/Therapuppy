@@ -178,11 +178,12 @@ router.get('/:id', (req, res) => {
     .populate('owner', '-password')
     .then(puppy => {
       users = puppy.owner;
-      fetchBookings(puppy).then(bookings => {
+      fetchBookings(puppy).then(({bookings, renters}) => {
         puppy.owner = puppy.owner.id;
         res.json({
           puppy,
           users,
+          // users: Object.assign(users, renters),
           bookings,
         });
       });
@@ -196,13 +197,17 @@ router.get('/:id', (req, res) => {
 
 const fetchBookings = puppy => {
   return (
-    Booking.where('_id').in(puppy.id)
+    Booking.where('puppy').populate('renter').in(puppy.id)
     .then(res => {
       const bookings = {};
-      res.forEach(el =>
-        bookings[el.id] = el
-      )
-      return bookings;
+      const renters = {};
+
+      res.forEach(booking => {
+          bookings[booking.id] = booking;
+          // renters[booking.renter.id] = booking.renter
+      });
+
+      return { bookings, renters };
     })
   )
 };

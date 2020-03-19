@@ -7,7 +7,7 @@ import PuppyShow from './puppy_show.jsx';
 const mapStateToProps = (state, ownProps) => {
   let puppy = state.entities.puppies[ownProps.match.params.puppyId];
 
-  if (typeof puppy === "undefined") return {};
+  if (puppy === undefined) return {};
 
   return {
     puppy: puppy,

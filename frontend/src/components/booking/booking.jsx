@@ -38,9 +38,10 @@ export default class Booking extends React.Component{
   render(){
     const { booking, isOwner, owner, renter, puppy, status } = this.props;
 
-    if ( booking === undefined || renter === undefined ) return null;
+    // if ( booking === undefined || renter === undefined ) return null;
 
     const { totalCost } = booking;
+    debugger
 
     return (
       <div className="booking">

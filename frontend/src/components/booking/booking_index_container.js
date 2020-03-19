@@ -5,7 +5,7 @@ import BookingIndex from './booking_index.jsx';
 import { fetchAllBookings } from '../../actions/booking_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  let bookings = Object.values(state.entities.bookings)
+  let bookings = Object.values(state.entities.bookings);
   let bookingsForPuppy = bookings.filter(booking => ownProps.puppyId === booking.puppy);
 
   return {

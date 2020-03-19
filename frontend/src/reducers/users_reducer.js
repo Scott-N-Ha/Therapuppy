@@ -17,6 +17,15 @@ const usersReducer = (state = initialState, action) => {
       return Object.assign(nextState, action.payload.users);
     case RECEIVE_PUPPY:
       nextState[action.payload.users._id] = action.payload.users
+
+      let bookings = Object.values(action.payload.bookings);
+      bookings.forEach(({ renter }) => {
+        debugger
+        if (nextState[renter._id] === undefined) {
+          nextState[renter._id] = renter;
+        }
+      });
+
       return nextState;
     case RECEIVE_ALL_BOOKINGS:
       // debugger
