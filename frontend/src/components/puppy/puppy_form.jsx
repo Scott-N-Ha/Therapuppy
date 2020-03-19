@@ -14,11 +14,14 @@ export default class PuppyForm extends React.Component {
       sex: '',
       natureRating: undefined,
       price: 0.0,
+      file: undefined,
+      imageUrl: "",
       frontErrors: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFile = this.handleFile.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.cancel = this.cancel.bind(this);
@@ -96,32 +99,52 @@ export default class PuppyForm extends React.Component {
       ownerId: this.props.owner._id,
       name: '',
       age: 0,
-      breed: null,
-      fluffyRating: null,
-      earType: null,
+      breed: undefined,
+      fluffyRating: undefined,
+      earType: undefined,
       sex: '',
-      natureRating: null,
+      natureRating: undefined,
       price: 0.0,
+      file: undefined,
+      imageUrl: "",
       frontErrors: [],
     });
+  }
+
+  handleFile(e){
+    const file = e.currentTarget.files[0];
+
+    const fileReader = new FileReader();
+    let that = this;
+
+    fileReader.onloadend = () => {
+      that.setState({ imageUrl: fileReader.result });
+    }
+
+    if (file){
+      this.setState({ file: file });
+      fileReader.readAsDataURL(file);
+    }
   }
 
   handleSubmit(e){
     e.preventDefault();
 
     if (this.validateForm()){
-      let puppy = {
-        owner: this.state.ownerId,
-        name: this.state.name,
-        age: this.state.age,
-        breed: this.state.breed,
-        fluffyRating: this.state.fluffyRating,
-        earType: this.state.earType,
-        sex: this.state.sex,
-        natureRating: this.state.natureRating,
-        price: this.state.price,
-      }
-      this.props.createPuppy({puppy})
+      const formData = new FormData();
+
+      formData.append('puppy[owner]', this.state.ownerId);
+      formData.append('puppy[name]', this.state.name);
+      formData.append('puppy[age]', this.state.age);
+      formData.append('puppy[breed]', this.state.breed);
+      formData.append('puppy[fluffyRating]', this.state.fluffyRating);
+      formData.append('puppy[earType]', this.state.earType);
+      formData.append('puppy[sex]', this.state.sex);
+      formData.append('puppy[natureRating]', this.state.natureRating);
+      formData.append('puppy[price]', this.state.price);
+      formData.append('file', this.state.file);
+
+      this.props.createPuppy(formData);
     }
   }
 
@@ -159,6 +182,16 @@ export default class PuppyForm extends React.Component {
     return (
       <div className="puppy-form-div">
         <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
+          { this.state.imageUrl ? <img className="input-form dogter-image" src={this.state.imageUrl} alt={this.state.name} /> : <div className="input-form dogter-image">No Image</div> }
+          <input
+            type="file"
+            className="input-form file-input"
+            name="file"
+            onChange={this.handleFile}
+            placeholder="Upload a picture of your Dogter!"
+            accept="image/*"
+          />
+          <label className="puppy-form-label">Name: 
           <input
             type="text"
             className="input-form name-input"
@@ -167,7 +200,8 @@ export default class PuppyForm extends React.Component {
             value={this.state.name}
             placeholder="Name"
           />
-          <br/>
+          </label>
+          <label className="puppy-form-label">Age: 
           <input
             type="number"
             className="input-form age-input"
@@ -177,8 +211,9 @@ export default class PuppyForm extends React.Component {
             min="1"
             max="25"
             placeholder="Age"
-          />
-          <br/>
+            />
+          </label>
+          <label className="puppy-form-label">Breed: 
           <select
             name="breed"
             className="input-form breed-input"
@@ -186,11 +221,12 @@ export default class PuppyForm extends React.Component {
             value={this.state.breed}
             placeholder="Breed"
             defaultValue="Select a Breed"
-          >
+            >
             <option disabled>Select a Breed</option>
             { breedOptions }
           </select>
-          <br/>
+          </label>
+          <label className="puppy-form-label">Fluffy Rating:
           <select
             name="fluffyRating"
             className="input-form fluffyRating-input"
@@ -198,11 +234,12 @@ export default class PuppyForm extends React.Component {
             value={this.state.fluffyRating}
             placeholder="Fluffy Rating"
             defaultValue="Select a Fluffy Rating"
-          >
+            >
             <option disabled>Select a Fluffy Rating</option>
             { fluffyOptions }
           </select>
-          <br/>
+          </label>
+          <label className="puppy-form-label">Ear Type:
           <select
             name="earType"
             className="input-form earType-input"
@@ -210,11 +247,11 @@ export default class PuppyForm extends React.Component {
             value={this.state.earType}
             placeholder="Ear Type"
             defaultValue="Select an Ear Type"
-          >
+            >
             <option disabled>Select an Ear Type</option>
             { earTypeOptions }
           </select>
-          <br/>
+          </label>
           <label className="puppy-form-label">Sex: 
             <label className="puppy-form-label">M: 
               <input
@@ -232,7 +269,7 @@ export default class PuppyForm extends React.Component {
                 className="sex-input"
                 onChange={this.handleChange}
                 value="F"
-              />
+                />
             </label>
           </label>
           <label className="puppy-form-label">
@@ -262,7 +299,7 @@ export default class PuppyForm extends React.Component {
           </label>
           <button className="input-form submit-input">Register a new Dogter</button>
         </form>
-        { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
+        { this.state.frontErrors.length > 0 ? this.renderErrors() : undefined }
       </div>
     )
   }
