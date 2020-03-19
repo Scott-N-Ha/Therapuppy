@@ -4,6 +4,7 @@ const passport = require("passport");
 const mongoose = require('mongoose');
 const Booking = require("../../models/Booking");
 const Puppy = require("../../models/Puppy");
+const User = require("../../models/User");
 const validateBookingInput = require("../../validations/booking");
 
 router.post("/",
@@ -15,20 +16,20 @@ router.post("/",
     //     return res.status(400).json(errors);
     // }
 
-    const {
+    let {
       puppy,
       renter,
       date,
-    } = req.body;
+    } = req.body.booking;
 
     Puppy.findById(puppy)
       .then(puppy => {
         if (puppy) {
-          const {
+          let {
             owner,
             price
           } = puppy
-          console.log(puppy)
+        //   console.log(puppy)
           const newBooking = new Booking({
             owner,
             renter,
@@ -40,7 +41,20 @@ router.post("/",
 
           newBooking
             .save()
-            .then(booking => res.json(booking))
+            .then(booking => {
+
+                User.findById(owner)
+                    .then( owner => {
+                        owner.bookings.push(booking.id)
+                        owner.save()
+                        User.findById(renter)
+                            .then(renter => {
+                                renter.bookings.push(booking.id)
+                                renter.save()
+                                return res.json({booking, users: {[owner.id]: owner, [renter.id]: renter} })
+                            })
+                    });
+                })
             .catch(err => console.log(err))
         } else {
           return res.status(400).json({
@@ -54,16 +68,28 @@ router.post("/",
 router.get("/", (req, res) => {
   Booking.find()
     .then(bookings => {
-      const bookingsResult = {}
+      const bookingsResult = {};
+      const renters = {};
+
       bookings.forEach(booking => {
-        bookingsResult[booking.id] = booking
+        bookingsResult[booking.id] = booking;
+        
+        let renter = User.findById(booking.renter);
+        if (renter) renters[renter.id] = renter;
       });
+
       res.json({
-        bookings: bookingsResult
+        bookings: bookingsResult,
+        users: renters,
       })
     });
 });
 
+router.patch("/:id", (req, res) => {
+  Booking.findByIdAndUpdate(req.params.id, req.body, (err) => {
+    res.json({msg: "Success"}); // Replaced with actual Booking
+  });
+});
 
 router.delete("/:id",
   passport.authenticate('jwt', {

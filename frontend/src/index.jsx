@@ -15,6 +15,7 @@ import "./stylesheets/puppy.css";
 import "./stylesheets/puppy_form.css";
 import "./stylesheets/booking_form.css";
 import "./stylesheets/modal.scss";
+import './stylesheets/splash.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -23,7 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setAuthToken(localStorage.jwtToken);
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
-    const preloadedState = { session: { user: decodedUser } };
+    const preloadedState = {
+      entities: { users: { [decodedUser._id]: decodedUser } },
+      session: { user: decodedUser }
+    };
 
     store = configureStore(preloadedState);
 

@@ -13,8 +13,8 @@ const bookingsReducer = (state = initialState, action) => {
     case RECEIVE_ALL_BOOKINGS:
       return Object.assign(nextState, action.payload.bookings);
     case RECEIVE_BOOKING:
-      bookingId = Object.keys(action.payload.bookings)[0];
-      nextState[bookingId] = action.payload.bookings[bookingId];
+      let booking = action.payload;
+      nextState[booking._id] = booking;
       return nextState;
     default:
       return state;
