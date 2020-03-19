@@ -30,7 +30,7 @@ class MainPage extends React.Component {
         </div>
           <div className="splash-circle"></div>
         <div className="splash-text">
-          <h1>Main Page when there is no user logged in</h1> 
+          <h1>Therapy reimagined.</h1> 
           <p>puppy wuppy thewapy</p>
           <button className="start-button" onClick={() => openModal("signup")}>GET STARTED</button>
         </div>
