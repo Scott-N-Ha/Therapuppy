@@ -72,12 +72,9 @@ router.get('/', (req, res) => {
           Key: puppy.s3Key
         };
 
-
-
         s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
           puppy.photo = url;
         });
-
       })
 
       res.json({
@@ -111,7 +108,7 @@ router.post('/',
       Key: file.originalname,
       Body: file.buffer,
       ContentType: file.mimetype,
-      // ACL: "public-read"
+      ACL: "public-read"
     };
 
     s3bucket.upload(params, (err, data) => {
@@ -120,7 +117,6 @@ router.post('/',
           err
         });
       } else {
-        // res.send({ data });
         let photo = s3FileURL + file.originalname
         let newFileUploaded = {
           description: req.body.description,

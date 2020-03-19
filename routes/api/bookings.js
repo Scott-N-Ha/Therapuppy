@@ -29,7 +29,7 @@ router.post("/",
             owner,
             price
           } = puppy
-          //   console.log(puppy)
+          
           const newBooking = new Booking({
             owner,
             renter,
