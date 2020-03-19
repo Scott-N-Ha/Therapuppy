@@ -20,7 +20,7 @@ router.post("/",
       puppy,
       renter,
       date,
-    } = req.body;
+    } = req.body.booking;
 
     Puppy.findById(puppy)
       .then(puppy => {
