@@ -20,10 +20,17 @@ class MainPage extends React.Component {
   render(){
     const { user, loggedIn, openModal } = this.props;
 
-    const content = loggedIn ? (<>Main Page when User is Logged In
-      {/* { user.isOwner ? <button onClick={() => openModal("createPuppy")}>Add a Dogter</button> : null } */}
+    const content = loggedIn ? (<div className="main-content-container">
+      <div className="welcome-text-container">
+        <p>it's time to unbury those bones</p>
+        <h1>You'll never be late to this appointment, {user.firstName}.</h1>
+      {/* <hr/>
+      <p>Choose one of our Certified Dogters to start enjoying life again!</p> */}
+      </div>
+    <div className="puppies-bg">
       <PuppyIndexContainer />
-      </> ) : (
+    </div>
+      </div> ) : (
         <div>
       <div className="splash-container">
         <div className="splash-image">

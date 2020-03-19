@@ -5,11 +5,10 @@ import Booking from './booking.jsx';
 import { updateBooking } from '../../actions/booking_actions.js';
 
 const mapStateToProps = (state, { booking: { owner, renter, puppy, status } }) => {
-
   return {
     isOwner: (state.session.user._id === owner),
     owner: state.entities.users[owner],
-    renter: state.entities.users[renter],
+    renter: state.entities.users[renter._id],
     puppy: state.entities.puppies[puppy],
     status: state.entities.status[status],
   };

@@ -1,7 +1,7 @@
 .puppy-index {
   display: flex;
   justify-content: center;
-  border: 2px solid lightgray;
+  /* border: 2px solid lightgray; */
   border-radius: 3px;
   margin: 10px;
   padding: 5px;
@@ -9,9 +9,41 @@
 }
 
 .puppy {
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  padding: 5px;
-  margin: 5px;
+  /* border: 1px solid lightgray; */
+  border-radius: 10px;
+  /* padding: 20px; */
+  margin: 6px;
+  height: 250px;
   min-width: 250px;
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  overflow: hidden;
+}
+
+.puppy a {
+  align-self: flex-end;
+  width: 100%;
+
+}
+
+.puppy-info-container {
+  background-color: #2b3d79;
+  height: 50px;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.puppy-name {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: white
+}
+
+.puppy-price {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: White
 }

@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const mongoose = require("mongoose");
-const Booking = require("../../models/Booking");
+const multer = require("multer");
 const validatePuppyInput = require("../../validations/puppy");
+const keys = require('../../config/keys');
+
 const User = require("../../models/User");
 const Puppy = require("../../models/Puppy");
-const multer = require("multer");
-const keys = require('../../config/keys');
+const Booking = require("../../models/Booking");
 
 let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
@@ -15,11 +16,11 @@ let upload = multer({
   storage: storage
 });
 
-  let s3bucket = new AWS.S3({
-    accessKeyId: keys.accessKeyId,
-    secretAccessKey: keys.secretAccessKey,
-    region: "us-west-2"
-  });
+let s3bucket = new AWS.S3({
+  accessKeyId: keys.accessKeyId,
+  secretAccessKey: keys.secretAccessKey,
+  region: "us-west-2"
+});
 
 router.post("/upload", upload.single("file"), function (req, res) {
   const file = req.file;
@@ -46,7 +47,9 @@ router.post("/upload", upload.single("file"), function (req, res) {
         s3_key: params.Key
       };
 
-      res.json({newFileUploaded});
+      res.json({
+        newFileUploaded
+      });
     }
   });
 });
@@ -108,7 +111,7 @@ router.post('/',
       Key: file.originalname,
       Body: file.buffer,
       ContentType: file.mimetype,
-      ACL: "public-read"
+      // ACL: "public-read"
     };
 
     s3bucket.upload(params, (err, data) => {
@@ -125,56 +128,65 @@ router.post('/',
         let s3Key = params.Key;
         console.log(s3FileURL)
 
-    const { 
-      owner, 
-      name, 
-      age, 
-      breed, 
-      fluffyRating, 
-      earType, 
-      sex, 
-      natureRating, 
-      price 
-    } = req.body.puppy;
+        const {
+          owner,
+          name,
+          age,
+          breed,
+          fluffyRating,
+          earType,
+          sex,
+          natureRating,
+          price
+        } = req.body.puppy;
 
-    const newPuppy = new Puppy ({
-      owner,
-      name,
-      age,
-      breed,
-      fluffyRating,
-      earType,
-      sex,
-      natureRating,
-      price,
-      photo,
-      s3Key
-    });
+        const newPuppy = new Puppy({
+          owner,
+          name,
+          age,
+          breed,
+          fluffyRating,
+          earType,
+          sex,
+          natureRating,
+          price,
+          photo,
+          s3Key
+        });
 
-    newPuppy.save()
-      .then(puppy => {
-        let user = User.findById(newPuppy.owner).then(
-            user => {
-              user.puppies.push(newPuppy.id);
-              user.save();
-              res.json({puppy, users: user});
-            })
-      })
-      .catch(err => res.status(404).json({err}));
-    }
-  })
-});
+        newPuppy.save()
+          .then(puppy => {
+            let user = User.findById(newPuppy.owner).then(
+              user => {
+                user.puppies.push(newPuppy.id);
+                user.save();
+                res.json({
+                  puppy,
+                  users: user
+                });
+              })
+          })
+          .catch(err => res.status(404).json({
+            err
+          }));
+      }
+    })
+  });
 
 router.get('/:id', (req, res) => {
   Puppy.findById(req.params.id)
     .populate('owner', '-password')
     .then(puppy => {
-      users = puppy.owner
-      puppy.owner = puppy.owner.id,
+      users = puppy.owner;
+      fetchBookings(puppy).then(({bookings, renters}) => {
+        puppy.owner = puppy.owner.id;
         res.json({
           puppy,
-          users
-        })
+          users,
+          // users: Object.assign(users, renters),
+          bookings,
+        });
+      });
     })
     .catch(err =>
       res.status(404).json({
@@ -183,5 +195,21 @@ router.get('/:id', (req, res) => {
     );
 });
 
+const fetchBookings = puppy => {
+  return (
+    Booking.where('puppy').populate('renter').in(puppy.id)
+    .then(res => {
+      const bookings = {};
+      const renters = {};
+
+      res.forEach(booking => {
+          bookings[booking.id] = booking;
+          // renters[booking.renter.id] = booking.renter
+      });
+
+      return { bookings, renters };
+    })
+  )
+};
 
 module.exports = router;

@@ -16,7 +16,7 @@ export default class BookingIndex extends React.Component{
 
     let bookingContainers = bookings.map(booking => {
       return <BookingContainer booking={booking} />
-    })
+    });
 
     return (
       <div className="booking-index">

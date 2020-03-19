@@ -14,9 +14,9 @@ export default class Puppy extends React.Component {
     const { name, age, sex, price, photo } = puppy;
 
     return (
-      <div className="puppy">
-        { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> }
-        <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
+      <div className="puppy" style={{backgroundImage:`url(${photo})`}}>
+        {/* { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> } */}
+        {/* <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
         <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
         <br/>
@@ -32,7 +32,13 @@ export default class Puppy extends React.Component {
         <br/>
         <label className="puppy-natureRating">{natureRating}</label>
         <br/>
-        <label className="puppy-price">${price}</label>
+        <label className="puppy-price">${price}</label> */}
+        <Link to={`/puppies/${puppy._id}`}>
+          <div className="puppy-info-container">
+          <label className="puppy-name">{name}</label>
+          <label className="puppy-price">${price}</label>
+        </div>
+        </Link>
       </div>
     )
   }

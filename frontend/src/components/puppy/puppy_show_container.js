@@ -7,7 +7,7 @@ import PuppyShow from './puppy_show.jsx';
 const mapStateToProps = (state, ownProps) => {
   let puppy = state.entities.puppies[ownProps.match.params.puppyId];
 
-  if (typeof puppy === "undefined") return {};
+  if (puppy === undefined) return {};
 
   return {
     puppy: puppy,
@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapStateToDispatch = dispatch => ({
-  fetchPuppy: puppyId => dispatch(fetchPuppy(puppyId))
-})
+  fetchPuppy: puppyId => dispatch(fetchPuppy(puppyId)),
+
+});
 
 export default withRouter(connect(mapStateToProps, mapStateToDispatch)(PuppyShow));
