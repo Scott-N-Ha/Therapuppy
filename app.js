@@ -70,7 +70,8 @@ app.get("/test", (req, res) => {
   };
   let s3bucket = new AWS.S3({
     accessKeyId: keys.accessKeyId,
-    secretAccessKey: keys.secretAccessKey
+    secretAccessKey: keys.secretAccessKey,
+    region: "us-west-3"
   });
 
   s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
