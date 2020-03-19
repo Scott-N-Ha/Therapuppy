@@ -29,7 +29,7 @@ export default class PuppyShow extends React.Component {
 
     return (
       <div className="puppy-show">
-        <PuppyContainer puppy={puppy} showMore="true" />
+        <PuppyContainer puppy={puppy} showMore={true} />
         {/* <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
         <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
