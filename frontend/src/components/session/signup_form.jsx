@@ -19,7 +19,7 @@ export default class SignupForm extends React.Component {
       address2: '',
       city: 'San Francisco',
       state: 'CA',
-      zip: undefined,
+      zip: "94103",
       errors: {},
       frontErrors: [],
     };
@@ -92,7 +92,7 @@ export default class SignupForm extends React.Component {
         state: this.state.state,
         zip: this.state.zip,
       };
-  
+      debugger
       this.props.signup({user})
         .then(() => {
           this.props.closeModal()
@@ -214,7 +214,7 @@ export default class SignupForm extends React.Component {
             {/* <br/> */}
               <input type="text"
                 name="city"
-                placeholder="San Francisco, CA"
+                value="San Francisco, CA"
                 disabled
                 className="input-form city-input"
               />

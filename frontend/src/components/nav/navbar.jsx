@@ -8,7 +8,7 @@ class NavBar extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
     this.handleModal = this.handleModal.bind(this)
-    this.handleModal = this.handleDropdown.bind(this)
+    this.handleDropdown = this.handleDropdown.bind(this)
   }
 
   logoutUser(e){
@@ -21,9 +21,10 @@ class NavBar extends React.Component {
   }
 
   handleDropdown(){
-    debugger
+    // debugger
     const drop = document.getElementsByClassName("dropdown-container")[0]
     if (typeof drop === "undefined") return null;
+    drop.className.includes("active") ? (drop.className="dropdown-container") : (drop.className = "dropdown-container active") 
   
   }
 
@@ -39,13 +40,13 @@ class NavBar extends React.Component {
         <div className="nav-bar-links">
           <Link to='/puppies'><p>Certified Dogters</p></Link>
           {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : (null)}
-          <div id="dropdown-list" className="dropdown-container" onClick={this.handleDropdown()}>
-          <text className="dropdown">hi, {currentUser.username}
+          <div id="dropdown-list" className="dropdown-container" onClick={() => this.handleDropdown()}>
+          <text className="dropdown">hi, {currentUser.username}</text>
             <div className="dropdown-content">
-              <a onClick={this.logoutUser}>Logout
-                </a>
+              <Link to={`users/${currentUser.username}`}>Profile</Link>
+              <div className="separator"></div>
+              <a className="logout" onClick={this.logoutUser}>Logout</a>
             </div>
-          </text>
           </div>
         </div>
         </div>
