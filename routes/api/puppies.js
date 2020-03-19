@@ -22,6 +22,31 @@ let s3bucket = new AWS.S3({
   region: "us-west-2"
 });
 
+const fetchUrl = function(puppy) {
+  const urlParams = {
+    Bucket: "therapuppy-test",
+    Key: puppy.s3Key
+  };
+
+  return s3bucket.getSignedUrl("getObject", urlParams);
+};
+
+const fetchBookings = puppy => {
+  return Booking.where("puppy")
+    .populate("renter")
+    .in(puppy.id)
+    .then(res => {
+      const bookings = {};
+      const renters = {};
+
+      res.forEach(booking => {
+        bookings[booking.id] = booking;
+      });
+
+      return { bookings, renters };
+    });
+};
+
 router.post("/upload", upload.single("file"), function (req, res) {
   const file = req.file;
   const s3FileURL = keys.s3FileURL;
@@ -54,7 +79,6 @@ router.post("/upload", upload.single("file"), function (req, res) {
   });
 });
 
-
 router.get('/', (req, res) => {
   Puppy.find()
     .populate('owner', '-password')
@@ -65,27 +89,21 @@ router.get('/', (req, res) => {
         const owner = puppy.owner;
         users[owner.id] = owner;
         puppy.owner = puppy.owner.id;
+
         puppiesResult[puppy.id] = puppy;
-
-        const urlParams = {
-          Bucket: "therapuppy-test",
-          Key: puppy.s3Key
-        };
-
-        s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
-          puppy.photo = url;
-        });
-      })
-
-      res.json({
-        puppies: puppiesResult,
-        users
+        puppy.photo = fetchUrl(puppy);
       });
+      res.json({
+          puppies: puppiesResult,
+          users
+        });
     })
     .catch(err => res.status(404).json({
       puppiesnotfound: "no puppies were found",
     }));
 });
+
+
 
 router.post('/',
   // passport.authenticate('jwt', { session: false}),
@@ -176,10 +194,10 @@ router.get('/:id', (req, res) => {
       users = puppy.owner;
       fetchBookings(puppy).then(({bookings, renters}) => {
         puppy.owner = puppy.owner.id;
+        puppy.photo = fetchUrl(puppy);
         res.json({
           puppy,
           users,
-          // users: Object.assign(users, renters),
           bookings,
         });
       });
@@ -191,21 +209,5 @@ router.get('/:id', (req, res) => {
     );
 });
 
-const fetchBookings = puppy => {
-  return (
-    Booking.where('puppy').populate('renter').in(puppy.id)
-    .then(res => {
-      const bookings = {};
-      const renters = {};
-
-      res.forEach(booking => {
-          bookings[booking.id] = booking;
-          // renters[booking.renter.id] = booking.renter
-      });
-
-      return { bookings, renters };
-    })
-  )
-};
 
 module.exports = router;
