@@ -124,11 +124,12 @@ router.post('/',
         res.status(404).json({ err });
       } else {
         // res.send({ data });
-        let pictureUrl = s3FileURL + file.originalname
+        let photo = s3FileURL + file.originalname
         let newFileUploaded = {
           description: req.body.description,
         };
-        let s3_key = params.Key;
+        let s3Key = params.Key;
+       
 
     const { 
       owner, 
@@ -151,8 +152,8 @@ router.post('/',
       sex,
       natureRating,
       price,
-      pictureUrl,
-      s3_key
+      photo,
+      s3Key
     });
     console.log(newPuppy);
     newPuppy.save()
@@ -162,7 +163,7 @@ router.post('/',
               user.puppies.push(newPuppy.id);
               user.save();
             })
-            res.json({puppy});
+            res.json({puppy, users: user});
       })
       // .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
       .catch(err => res.status(404).json({err}))
