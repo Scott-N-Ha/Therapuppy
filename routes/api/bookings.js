@@ -93,12 +93,27 @@ router.get("/", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-  Booking.findByIdAndUpdate(req.params.id, req.body, (err) => {
-    res.json({
-      msg: "Success"
-    }); // Replaced with actual Booking
-  });
-});
+    const { isValid, errors } = validateBookingInput(req.body.booking);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+   
+
+  Booking.findByIdAndUpdate(req.params.id, req.body.booking, (err) => {
+    res.status(404).res.json(err)
+  }).then(booking => {
+
+    Puppy.findById(booking.puppy)
+      .then(puppy => {
+        if (puppy) {
+          res.json({ booking, puppy })
+        }
+      })
+
+    })
+}); // Replaced with actual Booking
 
 router.delete("/:id",
   passport.authenticate('jwt', {
