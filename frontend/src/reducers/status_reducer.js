@@ -15,6 +15,10 @@ const initialState = {
     id: "5e717b24bfcc758e062a05e6",
     name: "COMPLETED",
   },
+  "5e73eb531c9d4400008a4313": {
+    id: "5e73eb531c9d4400008a4313",
+    name: "EXPIRED",
+  },
 };
 
 const statusReducer = (state = initialState, action) => {
