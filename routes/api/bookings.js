@@ -52,6 +52,7 @@ router.post("/",
                       renter.bookings.push(booking.id)
                       renter.save()
                       return res.json({
+                        status: "success",
                         booking,
                         users: {
                           [owner.id]: owner,
