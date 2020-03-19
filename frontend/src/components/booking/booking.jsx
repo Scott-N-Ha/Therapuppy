@@ -20,9 +20,13 @@ export default class Booking extends React.Component{
     // }
   }
 
+  // componentWillUpdate(prevProps){
+  //   debugger
+  // }
+
   editBooking(value){
     return (e) => {
-      this.setState({ status: (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb") });
+      this.state.status = (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb");
       
       this.props.updateBooking(this.state);
     }
