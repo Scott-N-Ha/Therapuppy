@@ -36,7 +36,7 @@
 
 .therapuppy-header {
   color:white;
-  font-weight: lighter;
+  font-weight: 300;
   /* color: #75b79e; */
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
@@ -48,7 +48,7 @@
   border-radius: 10px;
   line-height: 23px;
   font-size: 18px;
-  font-weight: bolder;
+  font-weight: 700;
   margin: 5px;
   background-color:#fea5ad;
   /* background-color: #75b79e; */

@@ -54,8 +54,10 @@
   border: 0;
   border-bottom: 1px solid #999999;
   font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   background-color: #fefefe;
   margin-bottom: 24px;
+  font-weight: 300;
 }
 
 .login-form input:focus, .signup-form input:focus {
@@ -75,6 +77,9 @@
 
 .login-form h3 {
   margin-bottom: 25px;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .login-image > p {
@@ -117,6 +122,12 @@
   border: 2px solid red;
 }
 
+.auth-errors {
+  color: red;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
 .session-error-list {
   display: flex;
   flex-direction: column;
@@ -145,7 +156,11 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  // align-self: flex-start;
+}
+
+.owner-option p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
 .owner-option input {

@@ -6,13 +6,13 @@
 
 .splash-image {
     background-image: url("../images/dog-splash.jpg");
-    min-width: 2500px;
+    min-width: 3200px;
     width: 100%;
     height: 100%;
     /* background-position: center; */
-    background-position-x: 450px;
-    background-position-y: -31;
-    background-size: 30%;
+    background-position-x: 420px;
+    background-position-y: -69px;
+    background-size: 32%;
     background-repeat: no-repeat;
     position: absolute;
 }
@@ -128,4 +128,9 @@ $color: #ffebd9;
     font-family: 'Lato', sans-serif;
     font-size: 20px;
     margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
 }

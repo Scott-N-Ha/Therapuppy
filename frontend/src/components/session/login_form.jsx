@@ -16,7 +16,7 @@ export default class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
+    // this.renderErrors = this.renderErrors.bind(this);
     this.validateForms = this.validateForms.bind(this);
   }
 
@@ -36,9 +36,7 @@ export default class LoginForm extends React.Component {
     let allow = true;
     const inputs = document.querySelectorAll('input');
     const newErrors = [];
-    
     inputs.forEach(input => input.classList.remove('session-error'));
-    
     inputs.forEach(input => {
       if(input.name !== "submit" && input.value.length < 1){
         allow = false;
@@ -47,13 +45,17 @@ export default class LoginForm extends React.Component {
       }
     });
 
-    if (allow) {
-      this.setState({ frontErrors: [] });
-      inputs.forEach(input => input.classList.remove('session-error'));
-    } else {
-      this.setState({ frontErrors: newErrors });
-    }
-
+    newErrors.forEach(error => {
+      error.includes("Email") ? (this.emailError = error) : (this.passwordError = error)
+    })
+    
+    // if (allow) {
+    //   this.setState({ frontErrors: [] });
+    //   inputs.forEach(input => input.classList.remove('session-error'));
+    // } else {
+    //   this.setState({ frontErrors: newErrors });
+    // }
+    
     return allow;
   }
 
@@ -67,34 +69,38 @@ export default class LoginForm extends React.Component {
       };
   
       this.props.login({user})
-        .then(() => {
-          this.props.closeModal()
+        .then((res) => {
+          debugger
+          !!res.errors ? (this.setState({frontErrors: ['Invalid Username/Password']})) : (
+            this.props.closeModal()
+          )
         }) 
-        .catch(() => this.setState({ frontErrors: ['Invalid Username/Password'] })) // This isn't working and I'm not sure why
-    }
+        // .catch(() => this.setState({ frontErrors: ['Invalid Username/Password'] })) // This isn't working and I'm not sure why
+    } 
+    
   }
 
-  renderErrors() {
-    // return(
-    //   <ul>
-    //     {Object.keys(this.state.errors).map((error, i) => (
-    //       <li key={`error-${i}`}>
-    //         {this.state.errors[error]}
-    //       </li>
-    //     ))}
-    //   </ul>
-    // );
+  // renderErrors() {
+  //   // return(
+  //   //   <ul>
+  //   //     {Object.keys(this.state.errors).map((error, i) => (
+  //   //       <li key={`error-${i}`}>
+  //   //         {this.state.errors[error]}
+  //   //       </li>
+  //   //     ))}
+  //   //   </ul>
+  //   // );
 
-    const formattedErrors = this.state.frontErrors.map(error => {
-      return <li className="session-error-list-item">{error}</li>
-    });
+  //   // const formattedErrors = this.state.frontErrors.forEach(error => {
+  //   //   error.includes("Email") ? (this.emailError = error) : (this.passwordError = error)
+  //   // });
 
-    return (
-      <ul className="session-error-list">
-        { formattedErrors }
-      </ul>
-    );
-  }
+  //   // return (
+  //   //   <ul className="session-error-list">
+  //   //     { formattedErrors }
+  //   //   </ul>
+  //   // );
+  // }
 
   render() {
     return (
@@ -103,6 +109,8 @@ export default class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form">
           <h2>Welcome back !</h2>
           <h3>*tail wags*</h3>
+          <span>{this.state.frontErrors}</span>
+          <span className="auth-errors">{this.emailError}</span>
               <input type="text"
                 name="email"
                 value={this.state.email}
@@ -111,6 +119,7 @@ export default class LoginForm extends React.Component {
                 className="input-form email-input"
               />
             <br/>
+            <span className="auth-errors">{this.passwordError}</span>
               <input type="password"
                 name="password"
                 value={this.state.password}
@@ -119,8 +128,8 @@ export default class LoginForm extends React.Component {
                 className="input-form password-input"
               />
             <br/>
-            <button className="login-button">Login</button>
-        { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
+            <button name="submit" className="login-button">Login</button>
+        {/* { this.state.frontErrors.length > 0 ? this.renderErrors() : null } */}
           <div className="options-container">
               <span onClick={() => this.props.openModal("signup")}>No account ? Make one now !</span>
             </div>
