@@ -11,6 +11,20 @@
   align-items: center;
 }
 
+.nav-bar.logged {
+  width: 100%;
+  height: 69px;
+  position: relative;
+  background-color: #58cfbf;
+  top: 0;
+  z-index: 2;
+  /* box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .13); */
+  /* background-color: white; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav-bar-logo-container {
   display: flex;
   padding: 10px
