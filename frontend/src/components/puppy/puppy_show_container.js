@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapStateToDispatch = dispatch => ({
-  fetchPuppy: puppyId => dispatch(fetchPuppy(puppyId))
-})
+  fetchPuppy: puppyId => dispatch(fetchPuppy(puppyId)),
+
+});
 
 export default withRouter(connect(mapStateToProps, mapStateToDispatch)(PuppyShow));
