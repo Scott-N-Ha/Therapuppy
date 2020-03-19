@@ -141,7 +141,8 @@ router.post('/',
       sex, 
       natureRating, 
       price 
-    } = req.body.puppy
+    } = req.body.puppy;
+
     const newPuppy = new Puppy ({
       owner,
       name,
@@ -155,18 +156,18 @@ router.post('/',
       pictureUrl,
       s3_key
     });
+
     console.log(newPuppy);
     newPuppy.save()
       .then(puppy => {
-        User.findById(newPuppy.owner).then(
+        let user = User.findById(newPuppy.owner).then(
             user => {
               user.puppies.push(newPuppy.id);
               user.save();
-            })
-            res.json({puppy});
+            });
+        res.json({puppy, user});
       })
-      // .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
-      .catch(err => res.status(404).json({err}))
+      .catch(err => res.status(404).json({err}));
     }
   })
 });
