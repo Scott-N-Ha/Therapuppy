@@ -36,19 +36,20 @@ router.post("/upload", upload.single("file"), function (req, res) {
   let s3bucket = new AWS.S3({
     accessKeyId: keys.accessKeyId,
     secretAccessKey: keys.secretAccessKey,
+    region: "us-west-2",
   });
 
   let params = {
-    Bucket: keys.bucketName,
-    Key: file.originalname,
+    Bucket: keys.bucketName, 
+    Key: file.originalname, 
     Body: file.buffer,
     ContentType: file.mimetype,
     ACL: "public-read"
   };
 
-  s3bucket.upload(params, (err, data) => {
-    if (err) {
-      res.status(404).json({ upload: "Unable to upload to S3" });
+  s3bucket.upload(params, function (error, data) {
+    if (error) { 
+      res.status(500).json({ error });
     } else {
       res.send({ data });
       let newFileUploaded = {

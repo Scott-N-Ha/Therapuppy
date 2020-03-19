@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import PuppyIndex from './puppy_index.jsx';
 import { fetchAllPuppies } from '../../actions/puppy_actions.js';
-import { fetchAllBookings } from '../../actions/booking_actions.js';
+// import { fetchAllBookings } from '../../actions/booking_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
   let puppies;
@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchAllPuppies: () => dispatch(fetchAllPuppies()),
-  fetchAllBookings: () => dispatch(fetchAllBookings()),
+  // fetchAllBookings: () => dispatch(fetchAllBookings()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PuppyIndex));

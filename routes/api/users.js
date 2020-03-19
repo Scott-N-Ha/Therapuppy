@@ -165,37 +165,6 @@ router.get('/current', passport.authenticate('jwt', {
 });
 
 
-// router.get('/:user_id/puppies', (req, res) => {
-// 	Puppy.find({
-// 			owner: req.params.user_id
-// 		})
-// 		.then(puppies => res.json(puppies))
-// 		.catch(err =>
-// 			res.status(404).json({
-// 				nopuppiesfound: 'No puppies found from user'
-// 			})
-// 		)
-// 	Booking.find({
-// 			owner: req.params.user_id
-// 		})
-// 		.then(bookings => res.json(bookings))
-// 		.catch(err =>
-// 			res.status(404).json({
-// 				nobookingsfound: 'No bookings found from user'
-// 			})
-// 		);
-// });
-
-// router.get('/puppies/:puppy_id', (req, res) => {
-//   Puppy.findById({
-//       id: req.params.puppy_id
-//     })
-//     .then(puppy => res.json(puppy))
-//     .catch(err =>
-//       res.status(404).json({
-//         nopuppyfound: 'No puppy found with that Id'
-//       }))
-// })
 
 router.get('/', (req, res) => {
 	User.find()
@@ -253,3 +222,36 @@ router.get("/:username", (req,res) => {
 })
 
 module.exports = router;
+
+
+// router.get('/:user_id/puppies', (req, res) => {
+// 	Puppy.find({
+// 			owner: req.params.user_id
+// 		})
+// 		.then(puppies => res.json(puppies))
+// 		.catch(err =>
+// 			res.status(404).json({
+// 				nopuppiesfound: 'No puppies found from user'
+// 			})
+// 		)
+// 	Booking.find({
+// 			owner: req.params.user_id
+// 		})
+// 		.then(bookings => res.json(bookings))
+// 		.catch(err =>
+// 			res.status(404).json({
+// 				nobookingsfound: 'No bookings found from user'
+// 			})
+// 		);
+// });
+
+// router.get('/puppies/:puppy_id', (req, res) => {
+//   Puppy.findById({
+//       id: req.params.puppy_id
+//     })
+//     .then(puppy => res.json(puppy))
+//     .catch(err =>
+//       res.status(404).json({
+//         nopuppyfound: 'No puppy found with that Id'
+//       }))
+// })
