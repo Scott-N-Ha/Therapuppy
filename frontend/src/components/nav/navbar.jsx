@@ -8,6 +8,7 @@ class NavBar extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
     this.handleModal = this.handleModal.bind(this)
+    this.handleDropdown = this.handleDropdown.bind(this)
   }
 
   logoutUser(e){
@@ -19,17 +20,39 @@ class NavBar extends React.Component {
     this.props.openModal(modal)
   }
 
+  handleDropdown(){
+    // debugger
+    const drop = document.getElementsByClassName("dropdown-container")[0]
+    if (typeof drop === "undefined") return null;
+    drop.className.includes("active") ? (drop.className="dropdown-container") : (drop.className = "dropdown-container active") 
+  
+  }
+
   getLinks(){
-    const {openModal} = this.props
+    const {openModal, currentUser} = this.props
+    
     if (this.props.loggedIn){
       return (
         <div className="nav-bar logged">
           <div className="nav-bar-logo-container">
         <Link to="/"><h1 className="therapuppy-header">THERAP(UPP)Y</h1></Link>
         </div>
-        <div className="logout-button">
-          <Link to='/puppies'>Certified Dogters</Link>
-          <button onClick={this.logoutUser}>Logout</button>
+        <div className="nav-bar-links">
+          <Link to='/puppies'><p>Certified Dogters</p></Link>
+          {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : (null)}
+          <div id="dropdown-list" className="dropdown-container" onClick={() => this.handleDropdown()}>
+          <text className="dropdown">hi, {currentUser.username}</text>
+            <div className="dropdown-content">
+              <div className="dropdown-user-info">
+                <span >{currentUser.firstName} {currentUser.lastName}</span>
+                <span className="user-city">{currentUser.city}, {currentUser.state}</span>
+              </div>
+              <div className="separator"></div>
+              <Link to={`users/${currentUser.username}`}>Profile</Link>
+              <div className="separator"></div>
+              <a className="logout" onClick={this.logoutUser}>Logout</a>
+            </div>
+          </div>
         </div>
         </div>
       )

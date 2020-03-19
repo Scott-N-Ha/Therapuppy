@@ -42,6 +42,12 @@ const PuppySchema = new Schema({
     price: {
         type: Number, 
         required: true
+    },
+    photo: {
+      type: String
+    },
+    s3Key: {
+        type: String
     }
 });
 

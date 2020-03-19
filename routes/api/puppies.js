@@ -90,7 +90,10 @@ router.get('/', (req, res) => {
 
 router.post('/', 
   // passport.authenticate('jwt', { session: false}),
+  upload.single("file"),
   (req, res) => {
+    console.log(req.file)
+    console.log(req.body)
     const {
       errors,
       isValid
@@ -99,6 +102,35 @@ router.post('/',
     if (!isValid) {
         return res.status(404).json(errors);
     };
+
+    const file = req.file;
+    const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+
+    let s3bucket = new AWS.S3({
+      accessKeyId: keys.accessKeyId,
+      secretAccessKey: keys.secretAccessKey,
+      region: "us-west-2"
+    });
+
+    let params = {
+      Bucket: keys.bucketName,
+      Key: file.originalname,
+      Body: file.buffer,
+      ContentType: file.mimetype
+      // ACL: "public-read"
+    };
+
+    s3bucket.upload(params, (err, data) => {
+      if (err) {
+        res.status(404).json({ err });
+      } else {
+        // res.send({ data });
+        let pictureUrl = s3FileURL + file.originalname
+        let newFileUploaded = {
+          description: req.body.description,
+        };
+        let s3_key = params.Key;
+
     const { 
       owner, 
       name, 
@@ -111,30 +143,33 @@ router.post('/',
       price 
     } = req.body.puppy
     const newPuppy = new Puppy ({
-        owner,
-        name,
-        age,
-        breed,
-        fluffyRating,
-        earType,
-        sex,
-        natureRating,
-        price
+      owner,
+      name,
+      age,
+      breed,
+      fluffyRating,
+      earType,
+      sex,
+      natureRating,
+      price,
+      pictureUrl,
+      s3_key
     });
-
+    console.log(newPuppy);
     newPuppy.save()
       .then(puppy => {
-        
         User.findById(newPuppy.owner).then(
-          user => {
-            user.puppies.push(newPuppy.id);
-            user.save();
-          })
-        res.json({puppy});
-    })
-      .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
-  }
-);
+            user => {
+              user.puppies.push(newPuppy.id);
+              user.save();
+            })
+            res.json({puppy});
+      })
+      // .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
+      .catch(err => res.status(404).json({err}))
+    }
+  })
+});
 
 router.get('/:id', (req, res) => {
   Puppy.findById(req.params.id)
