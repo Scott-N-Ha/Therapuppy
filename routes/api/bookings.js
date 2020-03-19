@@ -93,11 +93,11 @@ router.get("/", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-    // const { isValid, errors } = validateBookingInput(req.body.booking);
+    const { isValid, errors } = validateBookingInput(req.body.booking);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
 
   Booking.findOneAndUpdate(req.params.id, req.body.booking).then(booking => {
