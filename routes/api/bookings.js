@@ -68,16 +68,28 @@ router.post("/",
 router.get("/", (req, res) => {
   Booking.find()
     .then(bookings => {
-      const bookingsResult = {}
+      const bookingsResult = {};
+      const renters = {};
+
       bookings.forEach(booking => {
-        bookingsResult[booking.id] = booking
+        bookingsResult[booking.id] = booking;
+        
+        let renter = User.findById(booking.renter);
+        if (renter) renters[renter.id] = renter;
       });
+
       res.json({
-        bookings: bookingsResult
+        bookings: bookingsResult,
+        users: renters,
       })
     });
 });
 
+router.patch("/:id", (req, res) => {
+  Booking.findByIdAndUpdate(req.params.id, req.body, (err) => {
+    res.json({msg: "Success"}); // Replaced with actual Booking
+  });
+});
 
 router.delete("/:id",
   passport.authenticate('jwt', {

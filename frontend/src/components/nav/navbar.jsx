@@ -24,21 +24,21 @@ class NavBar extends React.Component {
     if (this.props.loggedIn){
       return (
         <div className="logout-button">
+          <Link to='/puppies'>Certified Dogters</Link>
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       )
     } else {
       return (
-        <div className="login-buttons">
-          { this.props.location.pathname === "/login" ? <button
-            onClick={() => this.handleModal("signup")}
-            className="navbar-btn">Signup</button> : <button
-            onClick={() => this.handleModal("login")}
-            className="navbar-btn">Login</button> }
-          { this.props.location.pathname === "/" ? <button
-            onClick={() => this.handleModal("signup")}
-            className="navbar-btn">Signup</button> : null }
-        </div>
+        // <div className="login-buttons">
+        //   <button
+        //     onClick={() => this.handleModal("login")}
+        //     className="navbar-btn">Login</button>
+        //   <button
+        //     onClick={() => this.handleModal("signup")}
+        //     className="navbar-btn">Wagister</button>
+        // </div>
+        null
       )
     }
   }
@@ -47,8 +47,7 @@ class NavBar extends React.Component {
     return (
       <div className="nav-bar">
         <div className="nav-bar-logo-container">
-        <Link to="/"><h1 className="therapuppy rainbow-effect-persist">Therapuppy</h1></Link>
-        <Link to='/puppies'>Certified Dogters</Link>
+        <Link to="/"><h1 className="therapuppy-header">THERAP(UPP)Y</h1></Link>
         </div>
         { this.getLinks() }
       </div>
