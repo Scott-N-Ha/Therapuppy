@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 const db = require("./config/keys.js").mongoURI;
 const validateRegisterInput = require("./validations/register");
@@ -29,75 +31,90 @@ mongoose
 
 // console.log(samoyed._id);
 
-const u1 = User.create({
-    username: "testtest",
-    email: "test@aa.io",
-    firstName: "testuser",
-    lastName: "Leung",
-    password: "password",
-    password2: "password",
-    address1: "125 battery",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94133",
-    isOwner: "true"
-})
+// const u1 = User.create({
+//     username: "testtest",
+//     email: "test@aa.io",
+//     firstName: "testuser",
+//     lastName: "Leung",
+//     password: "password",
+//     password2: "password",
+//     address1: "125 battery",
+//     city: "San Francisco",
+//     state: "CA",
+//     zip: "94133",
+//     isOwner: "true"
+// })
 const u2 = User.create({
-  firstName: "Frederic",
-  lastName: "Harber",
-  email: "shara.botsford@rempelgislason.name",
-  password: "q2aw31",
-  password2: "q2aw31",
+  firstName: "Clay",
+  lastName: "Renner",
+  username: "ClayRenner",
+  email: "bobbie@beier.name",
+  password: "qoyb6q",
+  password2: "qoyb6q",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
 });
 const u3 = User.create({
-  firstName: "Pearlene",
-  lastName: "Terry",
-  email: "vanesa_waelchi@steuber.io",
-  password: "pmsve5",
-  password2: "pmsve5",
+  firstName: "Yuri",
+  lastName: "Wuckert",
+  username: "YuriWuckert",
+  email: "noreen@donnellyzulauf.io",
+  password: "xsulul",
+  password2: "xsulul",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
 });
 const u4 = User.create({
-  firstName: "Mohammad",
-  lastName: "O'Reilly",
-  email: "ferne@thielwisozk.net",
-  password: "ya4dpt",
-  password2: "ya4dpt",
+  firstName: "Man",
+  lastName: "Oberbrunner",
+  username: "ManOberbrunner",
+  email: "dorathy@bednar.biz",
+  password: "5mxig2",
+  password2: "5mxig2",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
 });
 const u5 = User.create({
-  firstName: "Teressa",
-  lastName: "Beier",
-  email: "kip@wunschmcglynn.co",
-  password: "m47doe",
-  password2: "m47doe",
+  firstName: "Leon",
+  lastName: "Pollich",
+  username: "LeonPollich",
+  email: "josie.kaulke@kunze.net",
+  password: "igdqb4",
+  password2: "igdqb4",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
 });
 const u6 = User.create({
-  firstName: "Jerrell",
-  lastName: "Price",
-  email: "xiao_wunsch@lubowitz.co",
-  password: "j068s7",
-  password2: "j068s7",
+  firstName: "Blossom",
+  lastName: "Bogan",
+  username: "BlossomBogan",
+  email: "kerry@herzog.org",
+  password: "3mba0r",
+  password2: "3mba0r",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
 });
 
-console.log("test")
-
-// User.create(user)
+User.findById("").then(newUser => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.save()
+      .then(user => {
+          console.log(user);
+      })
+      .catch(err => console.log(err));
+    })
+  }) 
+})
