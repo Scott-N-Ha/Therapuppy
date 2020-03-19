@@ -20,7 +20,7 @@ router.post("/",
       puppy,
       renter,
       date,
-    } = req.body.booking;
+    } = req.body;
 
     Puppy.findById(puppy)
       .then(puppy => {
@@ -29,7 +29,7 @@ router.post("/",
             owner,
             price
           } = puppy
-        //   console.log(puppy)
+          //   console.log(puppy)
           const newBooking = new Booking({
             owner,
             renter,
@@ -43,18 +43,24 @@ router.post("/",
             .save()
             .then(booking => {
 
-                User.findById(owner)
-                    .then( owner => {
-                        owner.bookings.push(booking.id)
-                        owner.save()
-                        User.findById(renter)
-                            .then(renter => {
-                                renter.bookings.push(booking.id)
-                                renter.save()
-                                return res.json({booking, users: {[owner.id]: owner, [renter.id]: renter} })
-                            })
-                    });
-                })
+              User.findById(owner)
+                .then(owner => {
+                  owner.bookings.push(booking.id)
+                  owner.save()
+                  User.findById(renter)
+                    .then(renter => {
+                      renter.bookings.push(booking.id)
+                      renter.save()
+                      return res.json({
+                        booking,
+                        users: {
+                          [owner.id]: owner,
+                          [renter.id]: renter
+                        }
+                      })
+                    })
+                });
+            })
             .catch(err => console.log(err))
         } else {
           return res.status(400).json({
@@ -73,7 +79,7 @@ router.get("/", (req, res) => {
 
       bookings.forEach(booking => {
         bookingsResult[booking.id] = booking;
-        
+
         let renter = User.findById(booking.renter);
         if (renter) renters[renter.id] = renter;
       });
@@ -87,7 +93,9 @@ router.get("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   Booking.findByIdAndUpdate(req.params.id, req.body, (err) => {
-    res.json({msg: "Success"}); // Replaced with actual Booking
+    res.json({
+      msg: "Success"
+    }); // Replaced with actual Booking
   });
 });
 

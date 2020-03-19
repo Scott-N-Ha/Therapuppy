@@ -31,7 +31,7 @@ let upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("file"), function (req, res) {
   const file = req.file;
-  const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+  const s3FileURL = keys.s3FileURL;
 
   let s3bucket = new AWS.S3({
     accessKeyId: keys.accessKeyId,
@@ -125,11 +125,13 @@ router.post('/',
         res.status(404).json({ err });
       } else {
         // res.send({ data });
-        let pictureUrl = s3FileURL + file.originalname
+        let photo = s3FileURL + file.originalname
         let newFileUploaded = {
           description: req.body.description,
         };
-        let s3_key = params.Key;
+        let s3Key = params.Key;
+        console.log(s3FileURL)
+       
 
     const { 
       owner, 
@@ -141,7 +143,8 @@ router.post('/',
       sex, 
       natureRating, 
       price 
-    } = req.body.puppy
+    } = req.body.puppy;
+
     const newPuppy = new Puppy ({
       owner,
       name,
@@ -152,21 +155,21 @@ router.post('/',
       sex,
       natureRating,
       price,
-      pictureUrl,
-      s3_key
+      photo,
+      s3Key
     });
+
     console.log(newPuppy);
     newPuppy.save()
       .then(puppy => {
-        User.findById(newPuppy.owner).then(
+        let user = User.findById(newPuppy.owner).then(
             user => {
               user.puppies.push(newPuppy.id);
               user.save();
               res.json({puppy, users: user});
             })
       })
-      // .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
-      .catch(err => res.status(404).json({err}))
+      .catch(err => res.status(404).json({err}));
     }
   })
 });
