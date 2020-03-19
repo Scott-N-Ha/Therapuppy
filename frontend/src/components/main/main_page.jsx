@@ -32,7 +32,7 @@ class MainPage extends React.Component {
         <div className="splash-text">
           <h1>Main Page when there is no user logged in</h1> 
           <p>puppy wuppy thewapy</p>
-          <button onClick={() => openModal("signup")}>GET STARTED</button>
+          <button className="start-button" onClick={() => openModal("signup")}>GET STARTED</button>
         </div>
       </div>
         </div>

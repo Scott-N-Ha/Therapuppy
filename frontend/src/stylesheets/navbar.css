@@ -22,9 +22,10 @@
 
 .therapuppy-header {
   color:white;
+  font-weight: lighter;
   /* color: #75b79e; */
   font-family: 'Roboto', sans-serif;
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .navbar-btn {
