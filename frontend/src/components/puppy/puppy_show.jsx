@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+
+import PuppyContainer from './puppy_container.js';
 import BookingIndexContainer from '../booking/booking_index_container.js';
-import BookingFormContainer from '../booking/booking_form_container'
+import BookingFormContainer from '../booking/booking_form_container.js';
 
 export default class PuppyShow extends React.Component {
   constructor(props){
@@ -17,18 +19,18 @@ export default class PuppyShow extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.puppy === undefined) this.props.fetchPuppy(this.props.match.params.puppyId);
+    this.props.fetchPuppy(this.props.match.params.puppyId);
   }
 
   render(){
     const { puppy, owner, breed, fluffyRating, natureRating, earType, isCurrentUserPuppy } = this.props;
     if (puppy === undefined) return this.missingPuppy();
-    const { name, age, sex, price } = puppy;
+    const { name, age, sex, price, photo } = puppy;
 
     return (
       <div className="puppy-show">
-        Puppy information goes here
-        <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
+        <PuppyContainer puppy={puppy} showMore="true" />
+        {/* <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
         <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
         <br/>
@@ -44,7 +46,7 @@ export default class PuppyShow extends React.Component {
         <br/>
         <label className="puppy-natureRating">{natureRating}</label>
         <br/>
-        <label className="puppy-price">${price}</label>
+        <label className="puppy-price">${price}</label> */}
         { !isCurrentUserPuppy ? <BookingFormContainer puppy={puppy} /> : null}
         <BookingIndexContainer puppyId={puppy._id} />
       </div>

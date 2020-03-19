@@ -20,8 +20,7 @@ export default class Booking extends React.Component{
   }
 
   isOwnerRender(status){
-    debugger
-    if (status._id === "5e717ae318716c8dc9bd5bf5"){
+    if (status.id === "5e717ae318716c8dc9bd5bf5"){
       return (
         <div className="booking-buttons">
           <button

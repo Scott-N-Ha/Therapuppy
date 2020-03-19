@@ -18,7 +18,7 @@ export default class PuppyIndex extends React.Component {
     const { puppies } = this.props;
 
     const puppiesContainers = puppies.map(puppy => {
-      return <PuppyContainer puppy={puppy} />
+      return <PuppyContainer puppy={puppy} showMore="false" />
     });
 
     return (
