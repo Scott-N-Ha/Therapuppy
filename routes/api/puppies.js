@@ -118,8 +118,6 @@ router.post('/',
   // passport.authenticate('jwt', { session: false}),
   upload.single("file"),
   (req, res) => {
-    console.log(req.file)
-    console.log(req.body)
     const {
       errors,
       isValid
@@ -158,54 +156,47 @@ router.post('/',
           description: req.body.description,
         };
         let s3Key = params.Key;
-        console.log(s3FileURL)
+       
 
+    const { 
+      owner, 
+      name, 
+      age, 
+      breed, 
+      fluffyRating, 
+      earType, 
+      sex, 
+      natureRating, 
+      price 
+    } = req.body.puppy;
 
-        const {
-          owner,
-          name,
-          age,
-          breed,
-          fluffyRating,
-          earType,
-          sex,
-          natureRating,
-          price
-        } = req.body.puppy;
+    const newPuppy = new Puppy ({
+      owner,
+      name,
+      age,
+      breed,
+      fluffyRating,
+      earType,
+      sex,
+      natureRating,
+      price,
+      photo,
+      s3Key
+    });
 
-        const newPuppy = new Puppy({
-          owner,
-          name,
-          age,
-          breed,
-          fluffyRating,
-          earType,
-          sex,
-          natureRating,
-          price,
-          photo,
-          s3Key
-        });
-
-        console.log(newPuppy);
-        newPuppy.save()
-          .then(puppy => {
-            let user = User.findById(newPuppy.owner).then(
-              user => {
-                user.puppies.push(newPuppy.id);
-                user.save();
-                res.json({
-                  puppy,
-                  users: user
-                });
-              })
-          })
-          .catch(err => res.status(404).json({
-            err
-          }));
-      }
-    })
-  });
+    newPuppy.save()
+      .then(puppy => {
+        let user = User.findById(newPuppy.owner).then(
+            user => {
+              user.puppies.push(newPuppy.id);
+              user.save();
+              res.json({puppy, users: user});
+            })
+      })
+      .catch(err => res.status(404).json({err}));
+    }
+  })
+});
 
 router.get('/:id', (req, res) => {
   Puppy.findById(req.params.id)
