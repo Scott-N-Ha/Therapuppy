@@ -43,6 +43,11 @@ class NavBar extends React.Component {
           <div id="dropdown-list" className="dropdown-container" onClick={() => this.handleDropdown()}>
           <text className="dropdown">hi, {currentUser.username}</text>
             <div className="dropdown-content">
+              <div className="dropdown-user-info">
+                <span >{currentUser.firstName} {currentUser.lastName}</span>
+                <span className="user-city">{currentUser.city}, {currentUser.state}</span>
+              </div>
+              <div className="separator"></div>
               <Link to={`users/${currentUser.username}`}>Profile</Link>
               <div className="separator"></div>
               <a className="logout" onClick={this.logoutUser}>Logout</a>
