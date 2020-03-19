@@ -29,42 +29,43 @@ let upload = multer({ storage: storage });
 //   );
 // });
 
-// router.post("/upload", upload.single("file"), function (req, res) {
-//   const file = req.file;
-//   const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+router.post("/upload", upload.single("file"), function (req, res) {
+  const file = req.file;
+  const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
 
-//   let s3bucket = new AWS.S3({
-//     accessKeyId: keys.accessKeyId,
-//     secretAccessKey: keys.secretAccessKey,
-//   });
+  let s3bucket = new AWS.S3({
+    accessKeyId: keys.accessKeyId,
+    secretAccessKey: keys.secretAccessKey,
+  });
 
-//   var params = {
-//     Bucket: keys.bucketName,
-//     Key: file.originalname,
-//     Body: file.buffer,
-//     ContentType: file.mimetype,
-//     ACL: "public-read"
-//   };
+  let params = {
+    Bucket: keys.bucketName,
+    Key: file.originalname,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+    ACL: "public-read"
+  };
 
-//   s3bucket.upload(params, function (err, data) {
-//     if (err) {
-//       res.status(500).json({ error: true, Message: err });
-//     } else {
-//       res.send({ data });
-//       var newFileUploaded = {
-//         description: req.body.description,
-//         fileLink: s3FileURL + file.originalname,
-//         s3_key: params.Key
-//       };
-//       var document = new DOCUMENT(newFileUploaded);
-//       document.save(function (error, newFile) {
-//         if (error) {
-//           throw error;
-//         }
-//       });
-//     }
-//   });
-// });
+  s3bucket.upload(params, function (err, data) {
+    if (err) {
+      res.status(500).json({ upload: "Unable to upload to S3" });
+    } else {
+      res.send({ data });
+      let newFileUploaded = {
+        description: req.body.description,
+        fileLink: s3FileURL + file.originalname,
+        s3_key: params.Key
+      };
+      // var document = new DOCUMENT(newFileUploaded);
+      res.json({newFileUploaded});
+      // document.save( (error, newFile) => {
+      //   if (error) {
+      //     throw error;
+      //   }
+      // });
+    }
+  });
+});
 
 
 router.get('/', (req, res) => {
