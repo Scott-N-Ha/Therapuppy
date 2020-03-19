@@ -16,7 +16,7 @@ export default class PuppyShow extends React.Component {
     )
   }
 
-  componentWillMount(){
+  componentDidMount(){
     if (this.props.puppy === undefined) this.props.fetchPuppy(this.props.match.params.puppyId);
   }
 
