@@ -195,7 +195,7 @@ export default class SignupForm extends React.Component {
                   className="input-form lastName-input"
                 />
               </div>
-            <br/>
+            {/* <br/> */}
               <input type="text"
                 name="address1"
                 value={this.state.address1}
@@ -218,7 +218,7 @@ export default class SignupForm extends React.Component {
                 disabled
                 className="input-form city-input"
               />
-            <br/>
+            {/* <br/> */}
             {/* <br/>
               <input
                 type="number"
@@ -243,13 +243,16 @@ export default class SignupForm extends React.Component {
               <p>Yes!</p>
               </label>
             <br/>
+            <div className="button-container">
             <button
               type="submit"
               name="submit"
               className="signup-button">Sign up
             </button>
+            </div>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
         <div className="options-container">
+         
             <span onClick={() => this.props.openModal("login")}>Already have an account?</span>
           </div>
         </form>
