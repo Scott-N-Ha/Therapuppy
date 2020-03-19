@@ -13,40 +13,22 @@ let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
 let upload = multer({ storage: storage });
 
-// router.route("/").get((req, res, next) => {
-//   Puppy.find(
-//     {},
-//     null,
-//     {
-//       sort: { createdAt: 1 }
-//     },
-//     (err, docs) => {
-//       if (err) {
-//         return next(err);
-//       }
-//       res.status(200).send(docs);
-//     }
-//   );
-// });
+  let s3bucket = new AWS.S3({
+    accessKeyId: keys.accessKeyId,
+    secretAccessKey: keys.secretAccessKey,
+    region: "us-west-2"
+  });
 
 router.post("/upload", upload.single("file"), function (req, res) {
   const file = req.file;
   const s3FileURL = keys.s3FileURL;
-
-  let s3bucket = new AWS.S3({
-    accessKeyId: keys.accessKeyId,
-    secretAccessKey: keys.secretAccessKey,
-    region: "us-west-2",
-  });
-
   let params = {
-    Bucket: keys.bucketName, 
-    Key: file.originalname, 
+    Bucket: keys.bucketName,
+    Key: file.originalname,
     Body: file.buffer,
     ContentType: file.mimetype,
     ACL: "public-read"
   };
-
   s3bucket.upload(params, function (error, data) {
     if (error) { 
       res.status(500).json({ error });
@@ -57,13 +39,8 @@ router.post("/upload", upload.single("file"), function (req, res) {
         fileLink: s3FileURL + file.originalname,
         s3_key: params.Key
       };
-      // var document = new DOCUMENT(newFileUploaded);
+
       res.json({newFileUploaded});
-      // document.save( (error, newFile) => {
-      //   if (error) {
-      //     throw error;
-      //   }
-      // });
     }
   });
 });
@@ -85,10 +62,8 @@ router.get('/', (req, res) => {
           Bucket: "therapuppy-test",
           Key: puppy.s3Key
         };
-        let s3bucket = new AWS.S3({
-          accessKeyId: keys.accessKeyId,
-          secretAccessKey: keys.secretAccessKey
-        });
+
+
 
         s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
           puppy.photo = url ;
@@ -120,18 +95,12 @@ router.post('/',
     const file = req.file;
     const s3FileURL = keys.s3FileURL;
 
-    let s3bucket = new AWS.S3({
-      accessKeyId: keys.accessKeyId,
-      secretAccessKey: keys.secretAccessKey,
-      region: "us-west-2"
-    });
-
     let params = {
       Bucket: keys.bucketName,
       Key: file.originalname,
       Body: file.buffer,
-      ContentType: file.mimetype
-      // ACL: "public-read"
+      ContentType: file.mimetype,
+      ACL: "public-read"
     };
 
     s3bucket.upload(params, (err, data) => {
@@ -145,7 +114,6 @@ router.post('/',
         };
         let s3Key = params.Key;
         console.log(s3FileURL)
-       
 
     const { 
       owner, 
