@@ -44,12 +44,12 @@ router.post("/upload", upload.single("file"), function (req, res) {
     Key: file.originalname, 
     Body: file.buffer,
     ContentType: file.mimetype,
-    // ACL: "public-read"
+    ACL: "public-read"
   };
 
-  s3bucket.upload(params, function (err, data) {
-    if (err) { 
-      res.status(500).json({ err });
+  s3bucket.upload(params, function (error, data) {
+    if (error) { 
+      res.status(500).json({ error });
     } else {
       res.send({ data });
       let newFileUploaded = {
