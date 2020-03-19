@@ -14,25 +14,35 @@ export default class Puppy extends React.Component {
     const { name, age, sex, price } = puppy;
 
     return (
-      <div>
+      <div className="puppy-info-more">
       {/* { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> } */}
-        <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
-        <br/>
-        <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
-        <br/>
-        <label className="puppy-age">{age}</label>
-        <br/>
-        <label className="puppy-breed">{breed}</label>
-        <br/>
-        <label className="puppy-fluffyRating">{fluffyRating}</label>
-        <br/>
-        <label className="puppy-earType">{earType}</label>
-        <br/>
-        <label className="puppy-sex">{sex}</label>
-        <br/>
-        <label className="puppy-natureRating">{natureRating}</label>
-        <br/>
-        <label className="puppy-price">${price}</label>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Owner:</label> <Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link>
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Puppy:</label> <Link to={`/puppies/${puppy._id}`}>{name}</Link>
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Age:</label> {age}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Breed:</label> {breed}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Fluffy Rating:</label> {fluffyRating}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Ear Type:</label> {earType}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Sex:</label> {sex}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Nature Rating:</label> {natureRating}
+        </div>
+        <div className="puppy-label-div">
+          <label className="puppy-label">Price:</label> ${price}
+        </div>
       </div>
     )
   }
