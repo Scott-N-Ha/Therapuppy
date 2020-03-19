@@ -1,0 +1,34 @@
+.booking {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 6px;
+  padding: 5px;
+  display: flex;
+  overflow: hidden;
+  flex-flow: column;
+  background-color: white;
+}
+
+.booking-label-div {
+  margin: 5px;
+}
+
+.booking-label {
+  margin: 3px;
+  padding: 3px;
+  border-radius: 2px;
+  font-weight: 300;
+  background-color: #58cfbf;
+  color: white;
+}
+
+.booking a {
+  color: white;
+}
+
+.old {
+  color: gray;
+  background-color: lightgray;
+}
+
+/* 58cfbf */
