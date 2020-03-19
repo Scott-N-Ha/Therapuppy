@@ -7,6 +7,7 @@ const validatePuppyInput = require("../../validations/puppy");
 const User = require("../../models/User");
 const Puppy = require("../../models/Puppy");
 const multer = require("multer");
+const keys = require('../../config/keys');
 
 let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
@@ -33,15 +34,12 @@ let upload = multer({ storage: storage });
 //   const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
 
 //   let s3bucket = new AWS.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     region: process.env.AWS_REGION
+//     accessKeyId: keys.accessKeyId,
+//     secretAccessKey: keys.secretAccessKey,
 //   });
 
-//   //Where you want to store your file
-
 //   var params = {
-//     Bucket: process.env.AWS_BUCKET_NAME,
+//     Bucket: keys.bucketName,
 //     Key: file.originalname,
 //     Body: file.buffer,
 //     ContentType: file.mimetype,
@@ -81,6 +79,7 @@ router.get('/', (req, res) => {
         puppy.owner = puppy.owner.id;
         puppiesResult[puppy.id] = puppy;
       }) 
+
       res.json({puppies: puppiesResult, users});
     })
     .catch(err => res.status(404).json({puppiesnotfound: "no pupppr"})
