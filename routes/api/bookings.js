@@ -45,13 +45,14 @@ router.post("/",
 
               User.findById(owner)
                 .then(owner => {
-                  owner.bookings.push(booking.id)
-                  owner.save()
+                  owner.bookings.push(booking.id);
+                  owner.save();
                   User.findById(renter)
                     .then(renter => {
                       renter.bookings.push(booking.id)
                       renter.save()
                       return res.json({
+                        status: "success",
                         booking,
                         users: {
                           [owner.id]: owner,
@@ -63,8 +64,8 @@ router.post("/",
             })
             .catch(err => console.log(err))
         } else {
-          return res.status(400).json({
-            puppynotfound: "cannot find puppp"
+          return res.status(404).json({
+            puppynotfound: "cannot find puppy",
           });
         }
       })
