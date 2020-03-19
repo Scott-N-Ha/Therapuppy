@@ -16,6 +16,7 @@ import "./stylesheets/puppy_form.css";
 import "./stylesheets/booking_form.css";
 import "./stylesheets/modal.scss";
 import './stylesheets/splash.scss'
+import './stylesheets/main_content.css'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
