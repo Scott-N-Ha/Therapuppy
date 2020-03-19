@@ -100,7 +100,7 @@ router.patch("/:id", (req, res) => {
     // }
 
 
-  Booking.findOneAndUpdate(req.params.id, req.body.booking).then(booking => {
+  Booking.findByIdAndUpdate(req.params.id, req.body.booking).then(booking => {
     Puppy.findById(booking.puppy)
       .then(puppy => {
         if (puppy) {
