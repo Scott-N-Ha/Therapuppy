@@ -19,20 +19,25 @@ export default class Booking extends React.Component{
     }
   }
 
-  isOwnerRender(){
-    return (
-      <div className="booking-buttons">
-        <button
-          className="booking-button booking-approve"
-          onClick={this.editBooking(true)}
-        >APPROVE</button>
+  isOwnerRender(status){
+    debugger
+    if (status._id === "5e717ae318716c8dc9bd5bf5"){
+      return (
+        <div className="booking-buttons">
+          <button
+            className="booking-button booking-approve"
+            onClick={this.editBooking(true)}
+          >APPROVE</button>
+  
+          <button 
+            className="booking-button booking-deny"
+            onClick={this.editBooking(false)}
+          >DENY</button>
+        </div>
+      )
+    }
 
-        <button 
-          className="booking-button booking-deny"
-          onClick={this.editBooking(false)}
-        >DENY</button>
-      </div>
-    )
+    return null;
   }
 
   render(){
@@ -41,14 +46,13 @@ export default class Booking extends React.Component{
     // if ( booking === undefined || renter === undefined ) return null;
 
     const { totalCost } = booking;
-    debugger
 
     return (
       <div className="booking">
         <label><Link to={`/${renter.username}`}>{renter.username}</Link></label>
         <label>Total Cost: ${totalCost}</label>
         <label>Status: {status.name}</label>
-        { isOwner ? this.isOwnerRender() : null }
+        { isOwner ? this.isOwnerRender(status) : null }
       </div>
     )
   }

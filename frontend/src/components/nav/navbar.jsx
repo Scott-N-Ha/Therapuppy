@@ -21,7 +21,6 @@ class NavBar extends React.Component {
   }
 
   handleDropdown(){
-    // debugger
     const drop = document.getElementsByClassName("dropdown-container")[0]
     if (typeof drop === "undefined") return null;
     drop.className.includes("active") ? (drop.className="dropdown-container") : (drop.className = "dropdown-container active") 
