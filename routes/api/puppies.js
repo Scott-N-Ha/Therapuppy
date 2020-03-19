@@ -110,7 +110,7 @@ router.get('/', (req, res) => {
       });
     })
     .catch(err => res.status(404).json({
-      puppiesnotfound: "no pupppr"
+      puppiesnotfound: "no puppies were found",
     }));
 });
 
