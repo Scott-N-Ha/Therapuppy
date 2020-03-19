@@ -16,16 +16,11 @@
   height: 250px;
   min-width: 250px;
   background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-}
-
-.puppy a {
-  align-self: flex-end;
-  width: 100%;
-
 }
 
 .puppy-info-container {
@@ -34,6 +29,11 @@
   padding: 15px 10px;
   display: flex;
   justify-content: space-between;
+}
+
+.puppy a {
+  align-self: flex-start;
+  width: 100%;
 }
 
 .puppy-name {
@@ -46,4 +46,16 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: White
+}
+
+.puppy-hover{
+  /* display: none; */
+  content: ""
+}
+
+.puppy:hover .puppy-hover {
+  display: block;
+  flex: 1;
+  background-color: rgba(255, 151, 151, 0.548);
+  z-index: 20;
 }

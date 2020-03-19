@@ -19,7 +19,7 @@
     font-size: 23px;
     text-align: center;
     /* width: 260px; */
-    color: #58cfbf;
+    color: #ffc38d;
     /* align-self: center; */
 }
 
@@ -49,8 +49,8 @@
 
 }
 
-body, .puppies-bg {
-    background-color: #ffebd9;
+.puppies-bg {
+    background-color: #deeeec;
     height: 100vh;
     width: 100vw;
 }
