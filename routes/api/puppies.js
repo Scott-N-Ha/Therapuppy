@@ -118,7 +118,7 @@ router.post('/',
     };
 
     const file = req.file;
-    const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+    const s3FileURL = keys.s3FileURL;
 
     let s3bucket = new AWS.S3({
       accessKeyId: keys.accessKeyId,
