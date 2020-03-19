@@ -52,8 +52,12 @@ const UserSchema = new Schema({
     },
     puppies:{
         type: [Schema.Types.ObjectId],
-        ref: "puppies",
-        default: undefined
+        ref: "puppies"
+        // default: undefined
+    },
+    bookings:{
+        type: [Schema.Types.ObjectId],
+        ref: "bookings"
     }
 });
 

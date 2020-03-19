@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
@@ -202,18 +203,53 @@ router.get('/', (req, res) => {
 		.catch(err => 
 			res.status(404).json({
 					nousersfound: "No users found"
-			})
-		)
-})
+			}) 
+		) 
+}) 
 
-// router.get("/:username", (req,res) => {
-//   User.find({username: req.params.username})
-// 	.then( user => {
-//       const puppies = {};
-//       const bookings = {};
-//       user.puppies.forEach
-//     } 
-// 		.catch(err => res.status(404).json({usernotfound: "user not found"}))
-// })
+const fetchPuppies = (user) => {
+	return Puppy.where('_id').in(user.puppies)
+		.then(res => { 
+			const puppies = {}; 
+			res.forEach(el =>
+				puppies[el.id] = el
+				)
+			return puppies;
+		});
+};
+
+const fetchBookings = (user) => {
+	const userId = new ObjectId(user._id)
+	return Booking.find({
+		$or:
+			[{ owner: userId },
+			{ renter: userId }]
+	}).then(res => {
+		const bookings = {}; 
+		res.forEach(el =>
+			bookings[el.id] = el
+		)
+		return bookings; 
+	});
+}
+
+router.get("/:username", (req,res) => {
+	User
+	.findOne({username: req.params.username})
+	.then( (user) => {
+		fetchPuppies(user).then(
+			puppies => { 
+				fetchBookings(user).then(
+					bookings => {
+						return res.json({ user, puppies, bookings })
+					}
+				)
+			}
+		)
+		const bookings = {};
+
+	} )
+	.catch(err => res.status(404).json({usernotfound: "user not found"}))
+})
 
 module.exports = router;
