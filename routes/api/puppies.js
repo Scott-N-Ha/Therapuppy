@@ -80,6 +80,20 @@ router.get('/', (req, res) => {
         users[owner.id] = owner;
         puppy.owner = puppy.owner.id;
         puppiesResult[puppy.id] = puppy;
+
+        const urlParams = { 
+          Bucket: "therapuppy-test",
+          Key: puppy.s3Key
+        };
+        let s3bucket = new AWS.S3({
+          accessKeyId: keys.accessKeyId,
+          secretAccessKey: keys.secretAccessKey
+        });
+
+        s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
+          puppy.photo = url ;
+        });
+
       }) 
 
       res.json({puppies: puppiesResult, users});
