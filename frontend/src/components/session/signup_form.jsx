@@ -146,10 +146,7 @@ export default class SignupForm extends React.Component {
       <div className="signup-div">
         <div className="signup-image"></div>
         <form onSubmit={this.handleSubmit} className="signup-form" >
-        <div className="options-container">
-            <span onClick={() => this.props.openModal("login")}>LOGIN</span>
-            <span onClick={() => this.props.openModal("signup")}>SIGNUP</span>
-          </div>
+          <h2>Create an account</h2>
             <br/>
               <input type="text"
                 name="email"
@@ -199,17 +196,6 @@ export default class SignupForm extends React.Component {
                 />
               </div>
             <br/>
-              <label>
-                Is an Owner: 
-                <input
-                  type="checkbox"
-                  name="isOwner"
-                  onChange={this.handleChange}
-                  value={this.state.isOwner}
-                  className="input-form isOwner-input"
-                />
-              </label>
-            <br/>
               <input type="text"
                 name="address1"
                 value={this.state.address1}
@@ -218,31 +204,22 @@ export default class SignupForm extends React.Component {
                 className="input-form address1-input"
               />
             <br/>
-              <input type="text"
+              {/* <input type="text"
                 name="address2"
                 value={this.state.address2}
                 onChange={this.handleChange}
                 placeholder="Address 2"
                 className="input-form address2-input"
-              />
-            <br/>
+              /> */}
+            {/* <br/> */}
               <input type="text"
                 name="city"
-                value={this.state.city}
-                onChange={this.handleChange}
-                placeholder="City"
+                placeholder="San Francisco, CA"
                 disabled
                 className="input-form city-input"
               />
             <br/>
-              <select
-                name="state"
-                disabled
-                className="input-form state-input"
-              >
-                <option value="CA">CA</option>
-              </select>
-            <br/>
+            {/* <br/>
               <input
                 type="number"
                 name="zip"
@@ -253,15 +230,29 @@ export default class SignupForm extends React.Component {
                 max="99999"
                 className="input-form zip-input"
               />
+            <br/> */}
+            <label className="owner-option">
+                <p>Are you an Owner?</p> 
+                <input
+                  type="checkbox"
+                  name="isOwner"
+                  onChange={this.handleChange}
+                  value={this.state.isOwner}
+                  className="input-form isOwner-input"
+                />
+              <p>Yes!</p>
+              </label>
             <br/>
-            <input
+            <button
               type="submit"
               name="submit"
-              value="Submit"
-              className="input-form submit-input"
-            />
-        </form>
+              className="signup-button">Sign up
+            </button>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
+        <div className="options-container">
+            <span onClick={() => this.props.openModal("login")}>Already have an account?</span>
+          </div>
+        </form>
       </div>
     );
   }
