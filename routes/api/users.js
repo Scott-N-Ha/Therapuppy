@@ -12,6 +12,28 @@ const keys = require('../../config/keys');
 const Puppy = require('../../models/Puppy')
 const Booking = require('../../models/Booking')
 
+
+const fetchPuppies = user => {
+  return Puppy.where("_id")
+    .in(user.puppies)
+    .then(res => {
+      const puppies = {};
+      res.forEach(el => (puppies[el.id] = el));
+      return puppies;
+    });
+};
+
+const fetchBookings = user => {
+  const userId = new ObjectId(user._id);
+  return Booking.find({
+    $or: [{ owner: userId }, { renter: userId }]
+  }).then(res => {
+    const bookings = {};
+    res.forEach(el => (bookings[el.id] = el));
+    return bookings;
+  });
+};
+
 router.post("/register", (req, res) => {
 	const {
 		errors,
@@ -164,8 +186,6 @@ router.get('/current', passport.authenticate('jwt', {
 	});
 });
 
-
-
 router.get('/', (req, res) => {
 	User.find()
 		.then(users => res.json(users))
@@ -176,47 +196,18 @@ router.get('/', (req, res) => {
 		) 
 }) 
 
-const fetchPuppies = (user) => {
-	return Puppy.where('_id').in(user.puppies)
-		.then(res => { 
-			const puppies = {}; 
-			res.forEach(el =>
-				puppies[el.id] = el
-				)
-			return puppies;
-		});
-};
-
-const fetchBookings = (user) => {
-	const userId = new ObjectId(user._id)
-	return Booking.find({
-		$or:
-			[{ owner: userId },
-			{ renter: userId }]
-	}).then(res => {
-		const bookings = {}; 
-		res.forEach(el =>
-			bookings[el.id] = el
-		)
-		return bookings; 
-	});
-}
-
 router.get("/:username", (req,res) => {
 	User
 	.findOne({username: req.params.username})
 	.then( (user) => {
 		fetchPuppies(user).then(
-			puppies => { 
-				fetchBookings(user).then(
-					bookings => {
-						return res.json({ user, puppies, bookings }) 
-					}
-				)
-			}
-		)
-
-	} )
+				puppies => { 
+					fetchBookings(user).then(
+						bookings => {
+							return res.json({ user, puppies, bookings }) 
+					})
+		})
+	})
 	.catch(err => res.status(404).json({usernotfound: "user not found"}))
 })
 
