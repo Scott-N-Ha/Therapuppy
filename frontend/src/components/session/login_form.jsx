@@ -73,7 +73,7 @@ export default class LoginForm extends React.Component {
     // debugger
       this.props.login({user})
         .then((res) => {
-          debugger
+          // debugger
           (res !== undefined) ? (this.setState({emailError:'', passwordError: '', frontErrors: ["Invalid Username/Password"]})) : (
             this.props.closeModal()
           )

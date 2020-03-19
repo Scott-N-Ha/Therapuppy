@@ -4,9 +4,11 @@ export const fetchBookings = () => (
     axios.get('api/bookings')
 );
 
-export const createBooking = bookingData => (
+export const createBooking = bookingData => {
+    debugger
+    return(
     axios.post('api/bookings', bookingData)
-);
+);}
 
 export const updateBooking = bookingData => {
     return axios.patch(`api/bookings/${bookingData._id}`, bookingData)
