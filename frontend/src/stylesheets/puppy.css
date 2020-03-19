@@ -35,9 +35,9 @@
 }
 
 .puppy-info-container {
-  background-color: #2b3d79;
+  background-color: #ffc38d;
   height: 50px;
-  padding: 15px 10px;
+  padding: 17px 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -50,23 +50,30 @@
 .puppy-name {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  color: white
+  color: white;
 }
 
 .puppy-price {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: White
+  color: White;
 }
 
 .puppy-hover{
   /* display: none; */
-  content: ""
+  content: "";
+}
+
+.puppy:hover {
+  box-sizing: border-box;
+  transform: scale(1.1);
+  transition: all 500ms ease-in-out;
+  border: 5px solid rgba(255, 151, 151, 1);
 }
 
 .puppy:hover .puppy-hover {
   display: block;
   flex: 1;
-  background-color: rgba(255, 151, 151, 0.548);
+  /* background-color: rgba(255, 151, 151, 0.548); */
   z-index: 20;
 }

@@ -72,11 +72,12 @@
   color: white;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-
+  transition: all 300ms ease-in-out;
 }
 
 .nav-bar-links p:hover, .nav-bar-links text:hover {
-  color: #2b3d79
+  color: #2b3d79;
+  transition: all 300ms ease-in-out;
 }
 
 .nav-bar-links text {
@@ -184,7 +185,7 @@ span.user-city {
 
 .dropdown-content > a {
   padding: 10px 10px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   color: #2b3d79;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -201,7 +202,10 @@ span.user-city {
 
 .dropdown-content a:hover {
   /* color: white; */
-  background-color: #fff7f0
+  /* background-color: #fff7f0; */
+  color: white;
+  background-color: #6cafa6;
+  transition: all 300ms ease-in-out;
 }
 
 .logout-button {
