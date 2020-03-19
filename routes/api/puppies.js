@@ -59,7 +59,17 @@ router.post('/',
         price
     });
 
-    newPuppy.save().then(puppy => res.json({puppy}));
+    newPuppy.save()
+      .then(puppy => {
+        
+        User.findById(newPuppy.owner).then(
+          user => {
+            user.puppies.push(newPuppy.id);
+            user.save();
+          })
+        res.json({puppy});
+    })
+      .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
   }
 );
 
