@@ -31,9 +31,15 @@ class MainPage extends React.Component {
           <div className="splash-circle"></div>
         <div className="splash-text">
           <h1>Therapy reimagined.</h1> 
-          <p>puppy wuppy thewapy</p>
+          <p>We have all wanted to know the joy of having a dog. We know that people are busy and may not be able to take care of their own pup. </p>
           <button className="start-button" onClick={() => openModal("signup")}>GET STARTED</button>
         </div>
+      </div>
+      <div className="info-container">
+        <h1>join over 1 million people who already improved their lives with us</h1>
+        <p>
+        Therapuppy is right for everyone ! Puppy therapy lets you connect with your inner-child and is extremely affordable, not to mention, extremely adorable.
+        </p>
       </div>
         </div>
       )
