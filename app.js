@@ -58,13 +58,16 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 app.use(bodyParser.urlencoded({
-  extended: true,
+  extended: true, 
 }));
-
+  
 app.use(bodyParser.json());
-
-app.get("/", (req, res) => {
-  const urlParams = { Bucket: "therapuppy-test", Key: "IMG_1060.JPG" };
+ 
+app.get("/test", (req, res) => {
+  const urlParams = {
+    Bucket: "therapuppy-test",
+    Key: "159ccedd-7ea9-420e-a741-61f228d7575a.jpeg"
+  };
   let s3bucket = new AWS.S3({
     accessKeyId: keys.accessKeyId,
     secretAccessKey: keys.secretAccessKey
@@ -73,6 +76,7 @@ app.get("/", (req, res) => {
   s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
     console.log(url);
   });
+  
   res.send("its running");
 });
 
