@@ -215,7 +215,6 @@ router.get("/:username", (req,res) => {
 				)
 			}
 		)
-		const bookings = {};
 
 	} )
 	.catch(err => res.status(404).json({usernotfound: "user not found"}))

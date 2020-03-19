@@ -10,11 +10,11 @@ const validateBookingInput = require("../../validations/booking");
 router.post("/",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // const { isValid, errors } = validateBookingInput(req.body);
+    const { isValid, errors } = validateBookingInput(req.body);
 
-    // if (!isValid) {
-    //     return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
 
     let {
       puppy,
