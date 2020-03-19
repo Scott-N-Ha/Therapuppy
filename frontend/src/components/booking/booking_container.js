@@ -8,7 +8,7 @@ const mapStateToProps = (state, { booking: { owner, renter, puppy, status } }) =
   return {
     isOwner: (state.session.user._id === owner),
     owner: state.entities.users[owner],
-    renter: state.entities.users[renter._id],
+    renter: state.entities.users[(renter._id ? renter._id : renter )],
     puppy: state.entities.puppies[puppy],
     status: state.entities.status[status],
   };
