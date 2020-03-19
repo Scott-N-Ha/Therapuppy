@@ -31,8 +31,8 @@ export default class BookingForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-
-    this.props.createBooking(this.state);
+    debugger
+    this.props.createBooking({booking: this.state});
   }
 
   render(){

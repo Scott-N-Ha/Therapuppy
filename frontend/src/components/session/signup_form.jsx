@@ -92,9 +92,10 @@ export default class SignupForm extends React.Component {
         state: this.state.state,
         zip: this.state.zip,
       };
-      debugger
+      
       this.props.signup({user})
-        .then(() => {
+        .then((res) => {
+          
           this.props.closeModal()
         }); 
     }

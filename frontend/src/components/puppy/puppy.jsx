@@ -11,10 +11,11 @@ export default class Puppy extends React.Component {
 
     if (puppy === undefined) return null;
 
-    const { name, age, sex, price } = puppy;
+    const { name, age, sex, price, photo } = puppy;
 
     return (
       <div className="puppy">
+        { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> }
         <label className="puppy-owner"><Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link></label>
         <br/>
         <label className="puppy-name"><Link to={`/puppies/${puppy._id}`}>{name}</Link></label>
