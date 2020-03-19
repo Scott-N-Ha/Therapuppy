@@ -11,7 +11,9 @@ const keys = require('../../config/keys');
 
 let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
-let upload = multer({ storage: storage });
+let upload = multer({
+  storage: storage
+});
 
 // router.route("/").get((req, res, next) => {
 //   Puppy.find(
@@ -40,25 +42,31 @@ router.post("/upload", upload.single("file"), function (req, res) {
   });
 
   let params = {
-    Bucket: keys.bucketName, 
-    Key: file.originalname, 
+    Bucket: keys.bucketName,
+    Key: file.originalname,
     Body: file.buffer,
     ContentType: file.mimetype,
     ACL: "public-read"
   };
 
   s3bucket.upload(params, function (error, data) {
-    if (error) { 
-      res.status(500).json({ error });
+    if (error) {
+      res.status(500).json({
+        error
+      });
     } else {
-      res.send({ data });
+      res.send({
+        data
+      });
       let newFileUploaded = {
         description: req.body.description,
         fileLink: s3FileURL + file.originalname,
         s3_key: params.Key
       };
       // var document = new DOCUMENT(newFileUploaded);
-      res.json({newFileUploaded});
+      res.json({
+        newFileUploaded
+      });
       // document.save( (error, newFile) => {
       //   if (error) {
       //     throw error;
@@ -75,20 +83,38 @@ router.get('/', (req, res) => {
     .then(puppies => {
       const puppiesResult = {};
       const users = {};
-      puppies.forEach( puppy => {
+      puppies.forEach(puppy => {
         const owner = puppy.owner;
         users[owner.id] = owner;
         puppy.owner = puppy.owner.id;
         puppiesResult[puppy.id] = puppy;
-      }) 
 
-      res.json({puppies: puppiesResult, users});
+        const urlParams = {
+          Bucket: "therapuppy-test",
+          Key: puppy.s3Key
+        };
+        let s3bucket = new AWS.S3({
+          accessKeyId: keys.accessKeyId,
+          secretAccessKey: keys.secretAccessKey
+        });
+
+        s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
+          puppy.photo = url;
+        });
+
+      })
+
+      res.json({
+        puppies: puppiesResult,
+        users
+      });
     })
-    .catch(err => res.status(404).json({puppiesnotfound: "no pupppr"})
-    ); 
+    .catch(err => res.status(404).json({
+      puppiesnotfound: "no pupppr"
+    }));
 });
 
-router.post('/', 
+router.post('/',
   // passport.authenticate('jwt', { session: false}),
   upload.single("file"),
   (req, res) => {
@@ -98,7 +124,7 @@ router.post('/',
     } = validatePuppyInput(req.body.puppy);
 
     if (!isValid) {
-        return res.status(404).json(errors);
+      return res.status(404).json(errors);
     };
 
     const file = req.file;
@@ -114,13 +140,15 @@ router.post('/',
       Bucket: keys.bucketName,
       Key: file.originalname,
       Body: file.buffer,
-      ContentType: file.mimetype
-      // ACL: "public-read"
+      ContentType: file.mimetype,
+      // ACL: "public-read",
     };
 
     s3bucket.upload(params, (err, data) => {
       if (err) {
-        res.status(404).json({ err });
+        res.status(404).json({
+          err
+        });
       } else {
         // res.send({ data });
         let photo = s3FileURL + file.originalname
@@ -176,10 +204,15 @@ router.get('/:id', (req, res) => {
     .then(puppy => {
       users = puppy.owner
       puppy.owner = puppy.owner.id,
-      res.json({puppy, users})
+        res.json({
+          puppy,
+          users
+        })
     })
     .catch(err =>
-      res.status(404).json({ nopuppyfound: 'No puppy found for id'})    
+      res.status(404).json({
+        nopuppyfound: 'No puppy found for id'
+      })
     );
 });
 

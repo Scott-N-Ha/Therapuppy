@@ -30,6 +30,8 @@
 .splash-text {
     margin-top: 120px;
     padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     position: absolute;
     color: white;
     max-width: 550px;
@@ -43,6 +45,8 @@
     font-size: 45px;
     line-height: 58px;
     margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
     /* max-width: 550px; */
 }
 
@@ -61,7 +65,7 @@ $color: #ffebd9;
     display: inline-block;
     padding: .75rem 1.25rem;
     border-radius: 10rem;
-    color: #309285;
+    color: #43b4a5;
     text-transform: uppercase;
     font-size: 1rem;
     letter-spacing: .15rem;
@@ -125,11 +129,15 @@ $color: #ffebd9;
 
 .info-container > h1 {
     text-transform: uppercase;
-    font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    font-size: 26px;
     margin-bottom: 10px;
 }
 
+.info-container > p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
 .button-container {
     display: flex;
     justify-content: center;
