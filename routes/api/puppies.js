@@ -162,8 +162,8 @@ router.post('/',
             user => {
               user.puppies.push(newPuppy.id);
               user.save();
+              res.json({puppy, users: user});
             })
-            res.json({puppy});
       })
       // .catch(err => res.status(404).json({cantsave: "cant save purrr"}))
       .catch(err => res.status(404).json({err}))
