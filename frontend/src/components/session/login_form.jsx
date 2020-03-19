@@ -12,6 +12,8 @@ export default class LoginForm extends React.Component {
       email: '',
       password: '',
       errors: {},
+      passwordError: '',
+      emailError: '',
       frontErrors: [],
     };
 
@@ -28,7 +30,8 @@ export default class LoginForm extends React.Component {
 
   update(field) {
     return e => this.setState({
-      [field]: e.currentTarget.value
+      [field]: e.currentTarget.value,
+      passwordError: "", emailError: "", frontErrors: []
     });
   }
 
@@ -46,7 +49,7 @@ export default class LoginForm extends React.Component {
     });
 
     newErrors.forEach(error => {
-      error.includes("Email") ? (this.emailError = error) : (this.passwordError = error)
+      error.includes("Email") ? (this.setState({emailError: error})) : (this.setState({passwordError: error}))
     })
     
     // if (allow) {
@@ -70,8 +73,8 @@ export default class LoginForm extends React.Component {
   
       this.props.login({user})
         .then((res) => {
-          debugger
-          !!res.errors ? (this.setState({frontErrors: ['Invalid Username/Password']})) : (
+          // debugger
+          !!res.errors ? (this.setState({emailError:'', passwordError: '', frontErrors: ["Invalid Username/Password"]})) : (
             this.props.closeModal()
           )
         }) 
@@ -109,8 +112,8 @@ export default class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form">
           <h2>Welcome back !</h2>
           <h3>*tail wags*</h3>
-          <span>{this.state.frontErrors}</span>
-          <span className="auth-errors">{this.emailError}</span>
+    <span className="auth-errors">{this.state.frontErrors}</span>
+          <span className="auth-errors">{this.state.emailError}</span>
               <input type="text"
                 name="email"
                 value={this.state.email}
@@ -119,7 +122,7 @@ export default class LoginForm extends React.Component {
                 className="input-form email-input"
               />
             <br/>
-            <span className="auth-errors">{this.passwordError}</span>
+            <span className="auth-errors">{this.state.passwordError}</span>
               <input type="password"
                 name="password"
                 value={this.state.password}
