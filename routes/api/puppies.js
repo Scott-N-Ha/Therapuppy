@@ -7,6 +7,7 @@ const validatePuppyInput = require("../../validations/puppy");
 const User = require("../../models/User");
 const Puppy = require("../../models/Puppy");
 const multer = require("multer");
+const keys = require('../../config/keys');
 
 let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
@@ -28,45 +29,43 @@ let upload = multer({ storage: storage });
 //   );
 // });
 
-// router.post("/upload", upload.single("file"), function (req, res) {
-//   const file = req.file;
-//   const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
+router.post("/upload", upload.single("file"), function (req, res) {
+  const file = req.file;
+  const s3FileURL = process.env.AWS_Uploaded_File_URL_LINK;
 
-//   let s3bucket = new AWS.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     region: process.env.AWS_REGION
-//   });
+  let s3bucket = new AWS.S3({
+    accessKeyId: keys.accessKeyId,
+    secretAccessKey: keys.secretAccessKey,
+  });
 
-//   //Where you want to store your file
+  let params = {
+    Bucket: keys.bucketName,
+    Key: file.originalname,
+    Body: file.buffer,
+    ContentType: file.mimetype,
+    ACL: "public-read"
+  };
 
-//   var params = {
-//     Bucket: process.env.AWS_BUCKET_NAME,
-//     Key: file.originalname,
-//     Body: file.buffer,
-//     ContentType: file.mimetype,
-//     ACL: "public-read"
-//   };
-
-//   s3bucket.upload(params, function (err, data) {
-//     if (err) {
-//       res.status(500).json({ error: true, Message: err });
-//     } else {
-//       res.send({ data });
-//       var newFileUploaded = {
-//         description: req.body.description,
-//         fileLink: s3FileURL + file.originalname,
-//         s3_key: params.Key
-//       };
-//       var document = new DOCUMENT(newFileUploaded);
-//       document.save(function (error, newFile) {
-//         if (error) {
-//           throw error;
-//         }
-//       });
-//     }
-//   });
-// });
+  s3bucket.upload(params, function (err, data) {
+    if (err) {
+      res.status(500).json({ upload: "Unable to upload to S3" });
+    } else {
+      res.send({ data });
+      let newFileUploaded = {
+        description: req.body.description,
+        fileLink: s3FileURL + file.originalname,
+        s3_key: params.Key
+      };
+      // var document = new DOCUMENT(newFileUploaded);
+      res.json({newFileUploaded});
+      // document.save( (error, newFile) => {
+      //   if (error) {
+      //     throw error;
+      //   }
+      // });
+    }
+  });
+});
 
 
 router.get('/', (req, res) => {
@@ -81,6 +80,7 @@ router.get('/', (req, res) => {
         puppy.owner = puppy.owner.id;
         puppiesResult[puppy.id] = puppy;
       }) 
+
       res.json({puppies: puppiesResult, users});
     })
     .catch(err => res.status(404).json({puppiesnotfound: "no pupppr"})

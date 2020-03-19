@@ -11,6 +11,9 @@ const users = require("./routes/api/users")
 const puppies = require("./routes/api/puppies")
 const bookings = require("./routes/api/bookings")
 
+let AWS = require("aws-sdk");
+const keys = require("./config/keys");
+
 const app = express();
 
 mongoose
@@ -61,6 +64,15 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
+  const urlParams = { Bucket: "therapuppy-test", Key: "IMG_1060.JPG" };
+  let s3bucket = new AWS.S3({
+    accessKeyId: keys.accessKeyId,
+    secretAccessKey: keys.secretAccessKey
+  });
+
+  s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
+    console.log(url);
+  });
   res.send("its running");
 });
 
