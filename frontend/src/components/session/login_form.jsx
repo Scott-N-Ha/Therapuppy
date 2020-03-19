@@ -99,11 +99,10 @@ export default class LoginForm extends React.Component {
   render() {
     return (
       <div className="login-div">
+        <div className="login-image"><p>*boop*</p></div>
         <form onSubmit={this.handleSubmit} className="login-form">
-          <div className="options-container">
-            <span onClick={() => this.props.openModal("login")}>LOGIN</span>
-            <span onClick={() => this.props.openModal("signup")}>SIGNUP</span>
-          </div>
+          <h2>Welcome back !</h2>
+          <h3>*tail wags*</h3>
               <input type="text"
                 name="email"
                 value={this.state.email}
@@ -120,12 +119,12 @@ export default class LoginForm extends React.Component {
                 className="input-form password-input"
               />
             <br/>
-            <input
-              type="submit" 
-              name="submit"
-              value="Submit" />
-        </form>
+            <button className="login-button">Login</button>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
+          <div className="options-container">
+              <span onClick={() => this.props.openModal("signup")}>No account ? Make one now !</span>
+            </div>
+        </form>
       </div>
     );
   }

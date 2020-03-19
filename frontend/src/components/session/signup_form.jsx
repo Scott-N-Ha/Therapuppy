@@ -144,6 +144,7 @@ export default class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-div">
+        <div className="signup-image"></div>
         <form onSubmit={this.handleSubmit} className="signup-form" >
         <div className="options-container">
             <span onClick={() => this.props.openModal("login")}>LOGIN</span>

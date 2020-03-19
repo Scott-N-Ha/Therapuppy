@@ -32,7 +32,7 @@ class MainPage extends React.Component {
         <div className="splash-text">
           <h1>Therapy reimagined.</h1> 
           <p>We have all wanted to know the joy of having a dog. We know that people are busy and may not be able to take care of their own pup. </p>
-          <button className="start-button" onClick={() => openModal("signup")}>GET STARTED</button>
+          <button className="start-button" onClick={() => openModal("login")}>GET STARTED</button>
         </div>
       </div>
       <div className="info-container">
