@@ -41,13 +41,17 @@ export default class Puppy extends React.Component {
     const { puppy } = this.props;
     const { name, price } = puppy;
 
-    return (
+    return (<>
+      <div className="puppy-hover">
+          
+      </div>
       <Link to={`/puppies/${puppy._id}`}>
         <div className="puppy-info-container">
           <label className="puppy-name">{name}</label>
           <label className="puppy-price">${price}</label>
         </div>
       </Link>
+      </>
     )
   }
 
