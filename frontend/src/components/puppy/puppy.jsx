@@ -60,7 +60,7 @@ export default class Puppy extends React.Component {
 
     return (
       <div className="puppy" style={{backgroundImage:`url(${photo})`}}>
-        { showMore ? this.renderMore() : this.renderLess() }
+        { showMore ? (this.renderMore()) : (this.renderLess()) }
       </div>
     )
   }

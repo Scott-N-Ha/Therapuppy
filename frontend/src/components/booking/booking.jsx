@@ -44,13 +44,14 @@ export default class Booking extends React.Component{
 
     // if ( booking === undefined || renter === undefined ) return null;
 
-    const { totalCost } = booking;
+    const { totalCost, date } = booking;
 
     return (
       <div className="booking">
-        <label><Link to={`/${renter.username}`}>{renter.username}</Link></label>
-        <label>Total Cost: ${totalCost}</label>
-        <label>Status: {status.name}</label>
+        <label className="booking-label"><Link to={`/${renter.username}`}>{renter.username}</Link></label>
+        <label className="booking-label">Date: {date.slice(0,10)}</label>
+        <label className="booking-label">Total Cost: ${totalCost}</label>
+        <label className="booking-label">Status: {status.name}</label>
         { isOwner ? this.isOwnerRender(status) : null }
       </div>
     )
