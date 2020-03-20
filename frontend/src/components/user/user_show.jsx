@@ -15,6 +15,14 @@ export default class UserShow extends React.Component {
     this.props.fetchSingleUser(this.props.match.params.username);
   }
 
+  componentDidUpdate(prevProps){
+    const { match: { params: { username } }, fetchSingleUser } = this.props;
+
+    if (username !== prevProps.match.params.username){
+      fetchSingleUser(username);
+    }
+  }
+
   missingUser(){
     return (
       <div>
@@ -45,6 +53,10 @@ export default class UserShow extends React.Component {
         <h1>Your good boys and girls are bringing us all to your yard.</h1>
       </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
+        <div>
+          {firstName} {lastName}
+          {email}
+        </div>
         { isOwner ? <BookingPendingContainer ownerId={user._id} /> : null }
         <PuppyIndexContainer ownerId={user._id} />
       </div>
