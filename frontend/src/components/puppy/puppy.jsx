@@ -73,7 +73,7 @@ export default class Puppy extends React.Component {
     const { photo } = puppy;
 
     return (
-      <div className="puppy" style={{backgroundImage:`url(${photo})`}}>
+      <div className={`puppy ${ showMore ? "more" : "less"}`} style={{backgroundImage:`url(${photo})`}}>
         { showMore ? (this.renderMore()) : (this.renderLess()) }
       </div>
     )

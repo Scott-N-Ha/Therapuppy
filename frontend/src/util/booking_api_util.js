@@ -11,6 +11,5 @@ export const createBooking = bookingData => {
 };
 
 export const updateBooking = bookingData => {
-  debugger
   return axios.patch(`api/bookings/${bookingData._id}`, {booking: bookingData})
 };

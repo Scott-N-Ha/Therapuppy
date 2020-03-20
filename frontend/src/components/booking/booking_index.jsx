@@ -9,6 +9,13 @@ export default class BookingIndex extends React.Component{
 
   componentDidMount(){
     this.props.fetchAllBookings();
+
+    this.props.bookings.forEach(booking => {
+      if (Date.parse(booking.date) < Date.now()) {
+        booking.status = "5e73eb531c9d4400008a4313";
+        this.props.updateBooking(booking);
+      }
+    });
   }
 
   render(){

@@ -70,7 +70,7 @@
   content: "";
 }
 
-.puppy:hover {
+.less:hover {
   /* box-sizing: border-box; */
   transform: scale(1.1);
   transition: all 100ms ease-in-out;
