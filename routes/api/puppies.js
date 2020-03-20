@@ -47,37 +47,6 @@ const fetchBookings = puppy => {
     });
 };
 
-router.post("/upload", upload.single("file"), function (req, res) {
-  const file = req.file;
-  const s3FileURL = keys.s3FileURL;
-  let params = {
-    Bucket: keys.bucketName,
-    Key: file.originalname,
-    Body: file.buffer,
-    ContentType: file.mimetype
-  };
-  s3bucket.upload(params, function (error, data) {
-    if (error) {
-      res.status(500).json({
-        error
-      });
-    } else {
-      res.send({
-        data
-      });
-      let newFileUploaded = {
-        description: req.body.description,
-        fileLink: s3FileURL + file.originalname,
-        s3_key: params.Key
-      };
-
-      res.json({
-        newFileUploaded
-      });
-    }
-  });
-});
-
 router.get('/', (req, res) => {
   Puppy.find()
     .populate('owner', '-password')
@@ -105,7 +74,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/',
-  // passport.authenticate('jwt', { session: false}),
+  passport.authenticate('jwt', { session: false}),
   upload.single("file"),
   (req, res) => {
     const {
