@@ -57,7 +57,7 @@ export default class UserShow extends React.Component {
           {firstName} {lastName}
           {email}
         </div>
-        { isOwner ? <BookingPendingContainer ownerId={user._id} /> : null }
+        { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
         <PuppyIndexContainer ownerId={user._id} />
       </div>
     )
