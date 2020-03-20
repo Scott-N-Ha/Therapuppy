@@ -56,16 +56,22 @@ const u10 = {"firstName":"Idalia","lastName":"Grant","username":"IdaliaGrant","e
 const u11 = {"firstName":"Edmundo","lastName":"Gutkowski","username":"EdmundoGutkowski","email":"paz@hirthe.name","password":"75y8ir","password2":"75y8ir","address1":"3009 Janine Crossroad","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
 ["u2", "u3", "u4", "u5", "u6", "u7", "u8", "u9", "u10", "u11"]
 
-User.findById("").then(newUser => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save()
-      .then(user => {
+const userArray = [u2, u3, u4, u5, u6]
+
+// User.find().then( users => {
+  userArray.forEach( newUser => {
+    console.log(newUser)
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        User.create(newUser)
+        .then(user => {
           console.log(user);
+        })
+        .catch(err => console.log(err));
       })
-      .catch(err => console.log(err));
-    })
-  }) 
-})
+    }) 
+  })
+// })
+console.log("seeding ends ")
