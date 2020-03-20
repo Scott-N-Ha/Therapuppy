@@ -64,7 +64,7 @@ export default class Booking extends React.Component{
         <div className="booking-label-div">
           <label className="booking-label">Status:</label> {status.name}
         </div>
-        { isOwner ? this.isOwnerRender(status, old) : null }
+        { isOwner ? this.isOwnerRender(status, old) : <button className="pending">Waiting..</button> }
       </div>
     )
   }

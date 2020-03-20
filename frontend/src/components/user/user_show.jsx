@@ -39,19 +39,10 @@ export default class UserShow extends React.Component {
 
     return (
       <div className="user">
-        User Show Page
-        <label>
-          { username }
-        </label>
-        <br/>
-        <label>
-          { email }
-        </label>
-        <br/>
-        <label>
-          { firstName } { lastName }
-        </label>
-        <br/>
+       <div className="welcome-text-container">
+        <p>who's a good dogter? all of you!</p>
+        <h1>Your good boys and girls are bringing us all to your yard.</h1>
+      </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
         <PuppyIndexContainer ownerId={user._id} />
       </div>

@@ -168,6 +168,10 @@
   font-weight: 400;
 }
 
+.dropdown-user-info span:first-of-type {
+  text-transform: capitalize;
+}
+
 .therapuppy-button {
   display: flex;
   justify-items: center;

@@ -27,7 +27,9 @@ export default class BookingIndex extends React.Component{
 
     return (
       <div className="booking-index">
+        <div className="booking-index-container">
         { bookingContainers }
+        </div>
       </div>
     )
   }
