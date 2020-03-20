@@ -22,6 +22,14 @@ export default class PuppyShow extends React.Component {
     this.props.fetchPuppy(this.props.match.params.puppyId);
   }
 
+  componentDidUpdate(prevProps){
+    const { match: { params: { puppyId } }, fetchPuppy } = this.props;
+
+    if (puppyId !== prevProps.match.params.puppyId){
+      fetchPuppy(puppyId);
+    }
+  }
+
   render(){
     const { puppy, owner, breed, fluffyRating, natureRating, earType, isCurrentUserPuppy } = this.props;
     if (puppy === undefined) return this.missingPuppy();
