@@ -168,15 +168,38 @@
   font-weight: 400;
 }
 
+.therapuppy-button {
+  display: flex;
+  justify-items: center;
+  padding: 10px 0 10px 12px;
+}
+
+.paw-image {
+  background-image: url('../images/white-paw.png');
+  background-color: #ffc38d;
+  background-position: center;
+  background-size: 69%;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 .dropdown-user-info {
   display: flex;
   flex-direction: column;
   padding: 10px 10px;
-  
+  cursor: default;
   color: #2b3d79;
 }
 
-span.user-city {
+.dropdown-user-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span.user-small {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 14px;
