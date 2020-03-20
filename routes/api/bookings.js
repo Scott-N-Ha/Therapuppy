@@ -15,7 +15,6 @@ router.post("/",
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
     let {
       puppy,
       renter,
