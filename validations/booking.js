@@ -3,7 +3,7 @@ const Validator = require('validator');
 module.exports = function validateBookingInput(data) {
     let errors = {};
 
-    if (Validator.isEmpty(data.renter)) {
+    if (Validator.isEmpty(data.renter._id)) {
         errors.renterId = 'Renter Id field is required'
     };
 

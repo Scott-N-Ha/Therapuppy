@@ -1,6 +1,7 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions.js';
 import { RECEIVE_ALL_PUPPIES, RECEIVE_PUPPY } from '../actions/puppy_actions.js';
 import { RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING } from '../actions/booking_actions.js';
+import { RECEIVE_USER } from '../actions/user_actions.js';
 
 const initialState = {
 
@@ -22,8 +23,7 @@ const usersReducer = (state = initialState, action) => {
       nextState[action.payload.users._id] = action.payload.users
       
       if (action.payload.bookings !== undefined){
-        let bookings = Object.values(action.payload.bookings);
-        bookings.forEach(({ renter }) => {
+        Object.values(action.payload.bookings).forEach(({ renter }) => {
           if (nextState[renter._id] === undefined) {
             nextState[renter._id] = renter;
           }
@@ -37,6 +37,17 @@ const usersReducer = (state = initialState, action) => {
 
     case RECEIVE_BOOKING:
       return Object.assign(nextState, action.payload.users);
+
+    case RECEIVE_USER:
+      if (action.payload.bookings !== undefined){
+        Object.values(action.payload.bookings).forEach(({ renter }) => {
+          if (nextState[renter._id] === undefined) {
+            nextState[renter._id] = renter;
+          }
+        });
+      }
+
+      return Object.assign(nextState, action.payload.user);
       
     default:
       return state;

@@ -49,14 +49,11 @@ export default class Puppy extends React.Component {
     const { name, price } = puppy;
 
     return (<>
-      <div className="puppy-hover">
-      </div>
-      <Link to={`/puppies/${puppy._id}`}>
+      
         <div className="puppy-info-container">
           <label className="puppy-name">{name}</label>
           <label className="puppy-price">${price}</label>
         </div>
-      </Link>
       </>
     )
   }
@@ -69,9 +66,11 @@ export default class Puppy extends React.Component {
     const { photo } = puppy;
 
     return (<div className="puppy-show-container">
+      <Link to={`/puppies/${puppy._id}`}>
       <div className={`puppy ${ showMore ? "more" : "less"}`} style={{backgroundImage:`url(${photo})`}}>
       { showMore ? isCurrentUserPuppy ? (<div className="puppy-more-label owner">Dogter {puppy.name}</div>) : (<div onClick={() => openModal("requestDogter")} className="puppy-more-label">Request Dogter {puppy.name}</div>) : (this.renderLess()) }
       </div>
+      </Link>
         { showMore ? (this.renderMore()) : "" }
         </div>
     )
