@@ -88,7 +88,8 @@ router.get("/", (req, res) => {
         bookings: bookingsResult,
         users: renters,
       })
-    });
+    })
+    .catch(err => res.status(404).json({bookingsnotfound: err}));
 });
 
 router.patch("/:id", (req, res) => {
