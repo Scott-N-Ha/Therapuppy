@@ -11,19 +11,6 @@ export default class Booking extends React.Component{
     this.editBooking = this.editBooking.bind(this);
   }
 
-  componentDidMount(){
-    // if (Date.parse(this.props.booking.date) < Date.now()){
-    //   let bookingDiv = document.querySelector('.booking');
-
-
-    //   bookingDiv.classList.add('old');
-    // }
-  }
-
-  // componentWillUpdate(prevProps){
-  //   debugger
-  // }
-
   editBooking(value){
     return (e) => {
       this.state.status = (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb");
@@ -66,7 +53,7 @@ export default class Booking extends React.Component{
     return (
       <div className={`booking ${ old ? 'old' : '' }`}>
         <div className="booking-label-div">
-          <label className="booking-label"><Link to={`/${renter.username}`}>{renter.username}</Link></label>
+          <label className="booking-label">Renter:</label> <Link to={`/${renter.username}`} className="underline-magic" >{renter.username}</Link>
         </div>
         <div className="booking-label-div">
           <label className="booking-label">Date:</label> {date.slice(0,10)}
@@ -77,7 +64,7 @@ export default class Booking extends React.Component{
         <div className="booking-label-div">
           <label className="booking-label">Status:</label> {status.name}
         </div>
-        { isOwner ? this.isOwnerRender(status, old) : null }
+        { isOwner ? this.isOwnerRender(status, old) : <button className="pending">Waiting..</button> }
       </div>
     )
   }

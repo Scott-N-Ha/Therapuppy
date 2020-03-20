@@ -27,9 +27,7 @@ class MainPage extends React.Component {
       {/* <hr/>
       <p>Choose one of our Certified Dogters to start enjoying life again!</p> */}
       </div>
-    <div className="puppies-bg">
       <PuppyIndexContainer />
-    </div>
       </div> ) : (
         <div>
       <div className="splash-container">

@@ -6,9 +6,8 @@
   /* margin: 10px; */
   padding: 5px;
   flex-wrap: wrap;
-  background-image: url('../images/puppies_bg.png');
-  background-size: contain;
-  height: 100vh;
+  position: absolute;
+  /* margin-top: 100px; */
 }
 
 .puppy {
@@ -24,14 +23,21 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+
+  /*background properties*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .puppies-bg {
   /* background-color: #deeeec; */
   background-image: url('../images/puppies_bg.png');
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  background-size: 50%;
+  background-repeat: repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
 }
 
 .puppy-info-container {
@@ -64,7 +70,7 @@
   content: "";
 }
 
-.puppy:hover {
+.less:hover {
   /* box-sizing: border-box; */
   transform: scale(1.1);
   transition: all 100ms ease-in-out;
@@ -89,11 +95,55 @@
 .puppy-label {
   /* margin: 5px; */
   padding: 3px;
-  font-weight: bold;
-  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: black;
   border-radius: 3px;
-  background-color: #58cfbf;
+  /* background-color: #58cfbf; */
   margin: 3px 0px 3px 0px;
 
   /* -webkit-text-stroke: 1px solid black; */
+}
+
+.puppy-label-div a, .puppy-label-div p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.puppy.more {
+  background-size: 100%;
+  background-position: center;
+  width: 800px;
+  height: 300px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.puppy-more-label {
+  background-color: #ffc38d;
+    height: 50px;
+    padding: 17px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.puppy-more-label.owner {
+  cursor: default;
+}
+
+.puppy-show-container {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+}
+
+.puppy-info-more {
+  width: 500px;
+  font-family: 'Roboto', sans-serif;
 }

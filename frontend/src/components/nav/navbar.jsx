@@ -38,16 +38,26 @@ class NavBar extends React.Component {
         </div>
         <div className="nav-bar-links">
           <Link to='/puppies'><p>Certified Dogters</p></Link>
-          {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : (null)}
+          {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : <Link to={`/users/${currentUser.username}`}><p>Your Bookings</p></Link>}
           <div id="dropdown-list" className="dropdown-container" onClick={() => this.handleDropdown()}>
           <text className="dropdown">hi, {currentUser.username}</text>
             <div className="dropdown-content">
-              <div className="dropdown-user-info">
-                <span >{currentUser.firstName} {currentUser.lastName}</span>
-                <span className="user-city">{currentUser.city}, {currentUser.state}</span>
+              <div className="dropdown-user-info-container">
+                <div className="therapuppy-button">
+                  <div className="paw-image"></div>
+                </div>
+                <div className="dropdown-user-info">
+                  <span >{currentUser.firstName} {currentUser.lastName}</span>
+                  <span className="user-small">{currentUser.email}</span>
+                  <span className="user-small">{currentUser.city}, {currentUser.state}</span>
+                </div>
               </div>
               <div className="separator"></div>
-              <Link to={`users/${currentUser.username}`}>Profile</Link>
+              <Link to={`/users/${currentUser.username}`}>Profile</Link>
+              <div className="separator"></div>
+                <a>(0) Pending Bookings</a>
+                <a>(0) Approved Bookings</a>
+                <a>(0) Denied Bookings</a>
               <div className="separator"></div>
               <a className="logout" onClick={this.logoutUser}>Logout</a>
             </div>
