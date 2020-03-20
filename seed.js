@@ -44,77 +44,34 @@ mongoose
 //     zip: "94133",
 //     isOwner: "true"
 // })
-const u2 = User.create({
-  firstName: "Clay",
-  lastName: "Renner",
-  username: "ClayRenner",
-  email: "bobbie@beier.name",
-  password: "qoyb6q",
-  password2: "qoyb6q",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u3 = User.create({
-  firstName: "Yuri",
-  lastName: "Wuckert",
-  username: "YuriWuckert",
-  email: "noreen@donnellyzulauf.io",
-  password: "xsulul",
-  password2: "xsulul",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u4 = User.create({
-  firstName: "Man",
-  lastName: "Oberbrunner",
-  username: "ManOberbrunner",
-  email: "dorathy@bednar.biz",
-  password: "5mxig2",
-  password2: "5mxig2",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u5 = User.create({
-  firstName: "Leon",
-  lastName: "Pollich",
-  username: "LeonPollich",
-  email: "josie.kaulke@kunze.net",
-  password: "igdqb4",
-  password2: "igdqb4",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u6 = User.create({
-  firstName: "Blossom",
-  lastName: "Bogan",
-  username: "BlossomBogan",
-  email: "kerry@herzog.org",
-  password: "3mba0r",
-  password2: "3mba0r",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
+const u2 = {"firstName":"Earle","lastName":"Kuhlman","username":"EarleKuhlman","email":"glynis@lindgren.com","password":"yngcp6","password2":"yngcp6","address1":"4637 Brett Islands","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u3 = {"firstName":"Janiece","lastName":"Gleason","username":"JanieceGleason","email":"yael_medhurst@rippin.net","password":"80mkrj","password2":"80mkrj","address1":"1226 Blick Landing","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u4 = {"firstName":"Myron","lastName":"Rowe","username":"MyronRowe","email":"doug_hodkiewicz@mueller.info","password":"aygq5e","password2":"aygq5e","address1":"94833 Curt Mission","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u5 = {"firstName":"Aubrey","lastName":"Balistreri","username":"AubreyBalistreri","email":"alonzo_reinger@harris.io","password":"8qbhkr","password2":"8qbhkr","address1":"960 Bashirian Ridges","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u6 = {"firstName":"Benedict","lastName":"Botsford","username":"BenedictBotsford","email":"palmer@kreigeryundt.io","password":"f5amwc","password2":"f5amwc","address1":"258 Ileana Isle","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u7 = {"firstName":"Soon","lastName":"Doyle","username":"SoonDoyle","email":"judson@king.io","password":"091oil","password2":"091oil","address1":"2313 Towne Oval","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u8 = {"firstName":"Johnie","lastName":"Flatley","username":"JohnieFlatley","email":"marlene_kuhic@gusikowski.name","password":"t3lpvh","password2":"t3lpvh","address1":"8930 Schoen Road","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u9 = {"firstName":"Ronnie","lastName":"Carter","username":"RonnieCarter","email":"damon@nienowosinski.com","password":"0aqvco","password2":"0aqvco","address1":"202 Lowell Villages","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u10 = {"firstName":"Idalia","lastName":"Grant","username":"IdaliaGrant","email":"yang@koeppharvey.io","password":"nha902","password2":"nha902","address1":"164 Moen Mountains","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+const u11 = {"firstName":"Edmundo","lastName":"Gutkowski","username":"EdmundoGutkowski","email":"paz@hirthe.name","password":"75y8ir","password2":"75y8ir","address1":"3009 Janine Crossroad","city":"San Francisco","state":"CA","zip":"94133","isOwner":"false"}
+["u2", "u3", "u4", "u5", "u6", "u7", "u8", "u9", "u10", "u11"]
 
-User.findById("").then(newUser => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save()
-      .then(user => {
+const userArray = [u2, u3, u4, u5, u6]
+
+// User.find().then( users => {
+  userArray.forEach( newUser => {
+    console.log(newUser)
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        User.create(newUser)
+        .then(user => {
           console.log(user);
+        })
+        .catch(err => console.log(err));
       })
-      .catch(err => console.log(err));
-    })
-  }) 
-})
+    }) 
+  })
+// })
+console.log("seeding ends ")
