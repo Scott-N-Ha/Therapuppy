@@ -38,8 +38,9 @@ export default class BookingForm extends React.Component {
     const input = document.querySelector('.date-input');
 
     if (Date.parse(input.value) < Date.now()){
+      debugger
       allow = false;
-      newErrors.push('Date must be set to a future date.');
+      newErrors.push('Date must be at least two days in the future.');
       input.classList.add('session-error');
     } else {
       input.classList.remove('session-error');
