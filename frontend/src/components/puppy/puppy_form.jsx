@@ -143,7 +143,7 @@ export default class PuppyForm extends React.Component {
       let registerButton = document.querySelector('.register-dogter');
 
       registerButton.disabled = true;
-      registerButton.textContent = "Registering";
+      registerButton.textContent = "Registering...";
 
       const formData = new FormData();
 
