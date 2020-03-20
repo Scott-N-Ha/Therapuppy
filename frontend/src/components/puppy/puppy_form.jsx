@@ -163,7 +163,7 @@ export default class PuppyForm extends React.Component {
           this.cancel();
           this.props.closeModal();
           this.props.history.push(`/puppies/${res.payload.puppy._id}`);
-        })
+        });
     }
   }
 

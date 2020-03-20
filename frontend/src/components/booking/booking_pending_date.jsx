@@ -27,8 +27,8 @@ export default class BookingPendingDate extends React.Component {
 
     const renderBookings = bookings.map(booking => {
       return (
-        <div>
-          <label>Renter: <Link to={`/users/${booking.renter.username}`}>{booking.renter.username}</Link></label>
+        <div className="booking-pending-info">
+          <label className="booking-pending-renter">Renter: <Link to={`/users/${booking.renter.username}`}>{booking.renter.username}</Link></label>
           <div className="booking-buttons">
             <button
               className="booking-button booking-approve"
@@ -41,7 +41,7 @@ export default class BookingPendingDate extends React.Component {
 
     return (
       <div className="booking-date-div">
-        <label>Bookings for the Date of {date.slice(0,10)}</label>
+        <label>Date of {date.slice(0,10)}</label>
         { renderBookings }
       </div>
     )
