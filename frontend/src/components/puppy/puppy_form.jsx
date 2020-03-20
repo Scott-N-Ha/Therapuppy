@@ -52,13 +52,17 @@ export default class PuppyForm extends React.Component {
 
       if (input.type === "text" && input.value.length < 1){
         allow = false;
-        newErrors.push(this.formError(input.name,"blank"));
+        newErrors.push(this.formError(input.name,"blank."));
         input.classList.add('session-error');
       } else if (input.type === "number" && input.value <= 0) {
         allow = false;
         newErrors.push(this.formError(input.name,"less than zero."));
         input.classList.add('session-error');
-      } 
+      } else if (input.type === "file" && input.files.length < 1) {
+        allow = false;
+        newErrors.push(this.formError(input.name,"blank."));
+        input.classList.add('session-error');
+      }
     });
 
     const radios = document.querySelectorAll('input[type="radio"]');
@@ -109,6 +113,11 @@ export default class PuppyForm extends React.Component {
       imageUrl: "",
       frontErrors: [],
     });
+
+    let registerButton = document.querySelector('.register-dogter');
+
+    registerButton.disabled = false;
+    registerButton.textContent = "Register a new Dogter";
   }
 
   handleFile(e){
@@ -131,6 +140,11 @@ export default class PuppyForm extends React.Component {
     e.preventDefault();
 
     if (this.validateForm()){
+      let registerButton = document.querySelector('.register-dogter');
+
+      registerButton.disabled = true;
+      registerButton.textContent = "Registering";
+
       const formData = new FormData();
 
       formData.append('puppy[owner]', this.state.ownerId);
@@ -144,7 +158,16 @@ export default class PuppyForm extends React.Component {
       formData.append('puppy[price]', this.state.price);
       formData.append('file', this.state.file);
 
-      this.props.createPuppy(formData);
+      this.props.createPuppy(formData)
+        .then(res => {
+          this.cancel();
+          this.props.closeModal();
+          this.props.history.push(`/puppies/${res.payload.puppy._id}`);
+        })
+        .catch(err => {
+          // debugger // tell me how you would get here, between our frontend validations and our backend validations. Maybe the internet cut out while the user was uploading?
+          // this.cancel();
+        });
     }
   }
 
@@ -297,7 +320,7 @@ export default class PuppyForm extends React.Component {
               placeholder="Price"
             />
           </label>
-          <button className="input-form submit-input">Register a new Dogter</button>
+          <button className="input-form submit-input register-dogter">Register a new Dogter</button>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : undefined }
       </div>

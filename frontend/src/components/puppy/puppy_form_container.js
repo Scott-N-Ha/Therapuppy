@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   createPuppy: puppyData => dispatch(createPuppy(puppyData)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PuppyForm));

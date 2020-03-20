@@ -9,7 +9,7 @@ const initialState = {
 const usersReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = Object.assign({}, state);
-  
+
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       nextState[action.currentUser._id] = action.currentUser
@@ -31,11 +31,13 @@ const usersReducer = (state = initialState, action) => {
       }
       
       return nextState;
+
     case RECEIVE_ALL_BOOKINGS:
       return nextState;
 
     case RECEIVE_BOOKING:
-      return Object.assign(nextState, action.payload.users)
+      return Object.assign(nextState, action.payload.users);
+      
     default:
       return state;
   }
