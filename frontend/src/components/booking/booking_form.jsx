@@ -117,10 +117,10 @@ export default class BookingForm extends React.Component {
     return (
       <div className="booking-form-div">
         <form className="booking-form" onSubmit={this.handleSubmit}>
-          <label>Date: 
+          <label>Choose a Date: 
             <input  className="input-form date-input" type="date" name="date" value={this.state.date} onChange={this.handleChange} min={Date.now()} />
           </label>
-          <label>Cost: 
+          <label>Therapuppy Price: 
             <input  className="input-form cost-input" type="number" name="totalCost" value={this.state.totalCost} disabled />
           </label>
           <button className="input-form submit-input" >Request a Session with this Dogter!</button>

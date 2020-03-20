@@ -1,11 +1,12 @@
 .booking-form {
-  /* border: 2px solid lightgray; */
-  border-radius: 3px;
-  margin: 10px;
-  padding: 5px;
-
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+  background: rgba(255, 255, 255, 0.514);
+  padding: 15px;
+  border-radius: 2rem;
+  height: 100%;
 }
 
 .booking-form-div {
@@ -21,8 +22,25 @@
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
   border-style: none;
   overflow: hidden;
-  height: 200px;
+  height: 300px;
   width: 300px;
+  background-image: url('../images/puppies_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 25px;
+}
+
+.booking-form label {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Abel', sans-serif;
+    font-size: 24px;
+}
+
+.booking-form input {
+  border-style: none;
+  height: 30px;
 }
 
 .input-form.submit-input {
@@ -34,8 +52,9 @@
     border-radius: 10rem;
     border-style: none;
     color: white;
-    background-color: #58cfbf;
+    background-color: #ffc38d;
     text-transform: uppercase;
     font-size: 1rem;
     letter-spacing: .15rem;
+    cursor: pointer;
 }
