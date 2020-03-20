@@ -93,16 +93,12 @@ router.get("/", (req, res) => {
 
 router.patch("/:id", (req, res) => {
     // const { isValid, errors } = validateBookingInput(req.body.booking);
-
     // if (!isValid) {
     //   return res.status(400).json(errors);
     // }
   // console.log(req.body.booking)
   Booking.findByIdAndUpdate(req.params.id, req.body.booking, {new: true})
-    .then( booking  => {
-         res.json({ booking, puppy })
-        })
-    })
+    .then( booking  => res.json({ booking }))
     .catch( err => res.status(422).json({updatefailed: "cannot update la"}))
   //   .catch(err => res.json(err))
 }); // Replaced with actual Booking
@@ -116,6 +112,7 @@ router.delete("/:id",
       _id: req.params.id
     }, err => res.status(404).json(err))
   });
+
 // router.get("/puppy/:puppy_id", (req, res) => {
 //     Booking.find({puppy: req.params.puppy_id})
 //         .then(booking => res.json(booking))

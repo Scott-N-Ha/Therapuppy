@@ -44,77 +44,89 @@ mongoose
 //     zip: "94133",
 //     isOwner: "true"
 // })
-const u2 = User.create({
-  firstName: "Clay",
-  lastName: "Renner",
-  username: "ClayRenner",
-  email: "bobbie@beier.name",
-  password: "qoyb6q",
-  password2: "qoyb6q",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u3 = User.create({
-  firstName: "Yuri",
-  lastName: "Wuckert",
-  username: "YuriWuckert",
-  email: "noreen@donnellyzulauf.io",
-  password: "xsulul",
-  password2: "xsulul",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u4 = User.create({
-  firstName: "Man",
-  lastName: "Oberbrunner",
-  username: "ManOberbrunner",
-  email: "dorathy@bednar.biz",
-  password: "5mxig2",
-  password2: "5mxig2",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u5 = User.create({
-  firstName: "Leon",
-  lastName: "Pollich",
-  username: "LeonPollich",
-  email: "josie.kaulke@kunze.net",
-  password: "igdqb4",
-  password2: "igdqb4",
-  city: "San Francisco",
-  state: "CA",
-  zip: "94133",
-  isOwner: "true"
-});
-const u6 = User.create({
-  firstName: "Blossom",
+const u2 = {
+  firstName: "Shan",
   lastName: "Bogan",
-  username: "BlossomBogan",
-  email: "kerry@herzog.org",
-  password: "3mba0r",
-  password2: "3mba0r",
+  username: "ShanBogan",
+  email: "shawn@hegmann.info",
+  password: "wqwvgr",
+  password2: "wqwvgr",
+  address1: "111 Rusty Locks",
   city: "San Francisco",
   state: "CA",
   zip: "94133",
   isOwner: "true"
-});
+};
+const u3 = {
+  firstName: "Dovie",
+  lastName: "Mitchell",
+  username: "DovieMitchell",
+  email: "norene@lueilwitzbeer.io",
+  password: "b6lh3o",
+  password2: "b6lh3o",
+  address1: "95070 Julius Point",
+  city: "San Francisco",
+  state: "CA",
+  zip: "94133",
+  isOwner: "true"
+};
+const u4 = {
+  firstName: "Ebony",
+  lastName: "Hudson",
+  username: "EbonyHudson",
+  email: "floria@mills.net",
+  password: "renpnp",
+  password2: "renpnp",
+  address1: "355 Roob Mount",
+  city: "San Francisco",
+  state: "CA",
+  zip: "94133",
+  isOwner: "true"
+};
+const u5 = {
+  firstName: "Del",
+  lastName: "Torp",
+  username: "DelTorp",
+  email: "mathilda.rath@emmerich.biz",
+  password: "835bdl",
+  password2: "835bdl",
+  address1: "79390 Armando Knolls",
+  city: "San Francisco",
+  state: "CA",
+  zip: "94133",
+  isOwner: "true"
+};
+const u6 = {
+  firstName: "Fritz",
+  lastName: "Powlowski",
+  username: "FritzPowlowski",
+  email: "renee.strosin@turner.com",
+  password: "vh168t",
+  password2: "vh168t",
+  address1: "6844 Zane Gateway",
+  city: "San Francisco",
+  state: "CA",
+  zip: "94133",
+  isOwner: "true"
+};
 
-User.findById("").then(newUser => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save()
-      .then(user => {
+
+const userArray = [u2, u3, u4, u5, u6]
+
+// User.find().then( users => {
+  userArray.forEach( newUser => {
+    console.log(newUser)
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        User.create(newUser)
+        .then(user => {
           console.log(user);
+        })
+        .catch(err => console.log(err));
       })
-      .catch(err => console.log(err));
-    })
-  }) 
-})
+    }) 
+  })
+// })
+console.log("seeding ends ")
