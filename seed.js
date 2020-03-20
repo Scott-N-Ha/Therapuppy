@@ -14,6 +14,7 @@ const puppies = require("./routes/api/puppies");
 const bookings = require("./routes/api/bookings");
 const Breed = require('./models/Breed');
 const Status = require('./models/Status')
+const keys = require('./config/keys')
 
 const app = express();
 
@@ -2227,3 +2228,23 @@ console.log("seeding ends ")
 //   },
 // };
 
+const p1 = { owner: "", name: "Elyana", age: "4", breed: "111", fluffyRating: "2", earType: "12", sex: "F", natureRating: "3", price: "30", photo: keys.s3FileUrl + "Elyana.jpg", s3_key: "Elyana.jpg"  }
+const p2 = { owner: "", name: "Jaehaerys", age: "1", breed: "515", fluffyRating: "3", earType: "1", sex: "M", natureRating: "3", price: "30", photo: keys.s3FileUrl + "Jaehaerys.jpg", s3_key: "Jaehaerys.jpg"  }
+const p3 = { owner: "", name: "Edwyd", age: "5", breed: "499", fluffyRating: "1", earType: "1", sex: "M", natureRating: "2", price: "20", photo: keys.s3FileUrl + "Edwyd.jpg", s3_key: "Edwyd.jpg"  }
+const p4 = { owner: "", name: "Endehar", age: "3", breed: "260", fluffyRating: "2", earType: "7", sex: "M", natureRating: "4", price: "40", photo: keys.s3FileUrl + "Endehar.jpg", s3_key: "Endehar.jpg"  }
+const p5 = { owner: "", name: "Rickard", age: "5", breed: "454", fluffyRating: "3", earType: "3", sex: "M", natureRating: "3", price: "40", photo: keys.s3FileUrl + "Rickard.jpg", s3_key: "Rickard.jpg"  }
+const p6 = { owner: "", name: "Sylas", age: "1", breed: "7", fluffyRating: "3", earType: "11", sex: "M", natureRating: "5", price: "50", photo: keys.s3FileUrl + "Sylas.jpg", s3_key: "Sylas.jpg"  }
+const p7 = { owner: "", name: "Rolly", age: "1", breed: "130", fluffyRating: "2", earType: "7", sex: "M", natureRating: "3", price: "50", photo: keys.s3FileUrl + "Rolly.jpg", s3_key: "Rolly.jpg"  }
+const p8 = { owner: "", name: "Joss", age: "1", breed: "142", fluffyRating: "1", earType: "10", sex: "M", natureRating: "1", price: "30", photo: keys.s3FileUrl + "Joss.jpg", s3_key: "Joss.jpg"  }
+const p9 = { owner: "", name: "Arrec", age: "2", breed: "146", fluffyRating: "5", earType: "11", sex: "M", natureRating: "3", price: "50", photo: keys.s3FileUrl + "Arrec.jpg", s3_key: "Arrec.jpg"  }
+const p10 = { owner: "", name: "Orbelo", age: "4", breed: "425", fluffyRating: "5", earType: "7", sex: "M", natureRating: "3", price: "50", photo: keys.s3FileUrl + "Orbelo.jpg", s3_key: "Orbelo.jpg"  }
+const p11 = { owner: "", name: "Dyah", age: "3", breed: "397", fluffyRating: "1", earType: "7", sex: "F", natureRating: "2", price: "30", photo: keys.s3FileUrl + "Dyah.jpg", s3_key: "Dyah.jpg"  }
+const p12 = { owner: "", name: "Mag", age: "4", breed: "473", fluffyRating: "1", earType: "3", sex: "F", natureRating: "5", price: "30", photo: keys.s3FileUrl + "Mag.jpg", s3_key: "Mag.jpg"  }
+const p13 = { owner: "", name: "Joyeuse", age: "1", breed: "162", fluffyRating: "1", earType: "7", sex: "F", natureRating: "3", price: "30", photo: keys.s3FileUrl + "Joyeuse.jpg", s3_key: "Joyeuse.jpg"  }
+const p14 = { owner: "", name: "Oswyn", age: "2", breed: "431", fluffyRating: "4", earType: "11", sex: "M", natureRating: "4", price: "50", photo: keys.s3FileUrl + "Oswyn.jpg", s3_key: "Oswyn.jpg"  }
+const p15 = { owner: "", name: "Sedgekins", age: "1", breed: "521", fluffyRating: "2", earType: "11", sex: "M", natureRating: "3", price: "40", photo: keys.s3FileUrl + "Sedgekins.jpg", s3_key: "Sedgekins.jpg"  }
+const p16 = { owner: "", name: "Hake", age: "2", breed: "203", fluffyRating: "1", earType: "11", sex: "M", natureRating: "6", price: "50", photo: keys.s3FileUrl + "Hake.jpg", s3_key: "Hake.jpg"  }
+const p17 = { owner: "", name: "Jonothor", age: "3", breed: "221", fluffyRating: "2", earType: "11", sex: "M", natureRating: "5", price: "50", photo: keys.s3FileUrl + "Jonothor.jpg", s3_key: "Jonothor.jpg"  }
+const p18 = { owner: "", name: "Belis", age: "4", breed: "448", fluffyRating: "2", earType: "3", sex: "F", natureRating: "3", price: "50", photo: keys.s3FileUrl + "Belis.jpg", s3_key: "Belis.jpg"  }
+const p19 = { owner: "", name: "Ramsay", age: "1", breed: "171", fluffyRating: "2", earType: "11", sex: "M", natureRating: "3", price: "50", photo: keys.s3FileUrl + "Ramsay.jpg", s3_key: "Ramsay.jpg"  }
+const p20 = { owner: "", name: "Brynden", age: "2", breed: "363", fluffyRating: "2", earType: "3", sex: "M", natureRating: "3", price: "40", photo: keys.s3FileUrl + "Brynden.jpg", s3_key: "Brynden.jpg"  }
