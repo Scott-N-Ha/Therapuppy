@@ -11,19 +11,6 @@ export default class Booking extends React.Component{
     this.editBooking = this.editBooking.bind(this);
   }
 
-  componentDidMount(){
-    // if (Date.parse(this.props.booking.date) < Date.now()){
-    //   let bookingDiv = document.querySelector('.booking');
-
-
-    //   bookingDiv.classList.add('old');
-    // }
-  }
-
-  // componentWillUpdate(prevProps){
-  //   debugger
-  // }
-
   editBooking(value){
     return (e) => {
       this.state.status = (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb");

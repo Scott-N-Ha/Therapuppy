@@ -27,7 +27,10 @@ const fetchBookings = user => {
   const userId = new ObjectId(user._id);
   return Booking.find({
     $or: [{ owner: userId }, { renter: userId }]
-	}).then(res => {
+	})
+	.populate('renter', 'username')
+	.populate('owner', 'username')
+	.then(res => { 
     const bookings = {};
     res.forEach(el => (bookings[el.id] = el));
     return bookings;
