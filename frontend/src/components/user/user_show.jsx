@@ -52,7 +52,7 @@ export default class UserShow extends React.Component {
           { firstName } { lastName }
         </label>
         <br/>
-        { isOwner && samePerson ? this.ownerRender() : null }
+        {/* { isOwner && samePerson ? this.ownerRender() : null } */}
         <PuppyIndexContainer ownerId={user._id} />
       </div>
     )

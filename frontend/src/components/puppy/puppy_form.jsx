@@ -181,8 +181,10 @@ export default class PuppyForm extends React.Component {
 
     return (
       <div className="puppy-form-div">
-        <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
+        <div className="puppy-preview-image">
           { this.state.imageUrl ? <img className="input-form dogter-image" src={this.state.imageUrl} alt={this.state.name} /> : <div className="input-form dogter-image">No Image</div> }
+        </div>
+        <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
           <input
             type="file"
             className="input-form file-input"
