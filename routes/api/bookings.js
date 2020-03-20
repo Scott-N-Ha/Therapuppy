@@ -51,7 +51,7 @@ router.post("/",
                       renter.bookings.push(booking.id)
                       renter.save()
                       return res.json({
-                        status: "success",
+                        status: "Success",
                         booking,
                         users: {
                           [owner.id]: owner,
@@ -61,10 +61,10 @@ router.post("/",
                     })
                 });
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(404).json({bookingFail: err}))
         } else {
           return res.status(404).json({
-            puppynotfound: "cannot find puppy",
+            puppyNotFound: "Cannot find puppy",
           });
         }
       })
@@ -93,15 +93,13 @@ router.get("/", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-    // const { isValid, errors } = validateBookingInput(req.body.booking);
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-  // console.log(req.body.booking)
+    const { isValid, errors } = validateBookingInput(req.body.booking);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
   Booking.findByIdAndUpdate(req.params.id, req.body.booking, {new: true})
     .then( booking  => res.json({ booking }))
-    .catch( err => res.status(422).json({updatefailed: "cannot update la"}))
-  //   .catch(err => res.json(err))
+    .catch( err => res.status(422).json({updateFail: err}))
 }); // Replaced with actual Booking
 
 router.delete("/:id",
@@ -114,10 +112,4 @@ router.delete("/:id",
     }, err => res.status(404).json(err))
   });
 
-// router.get("/puppy/:puppy_id", (req, res) => {
-//     Booking.find({puppy: req.params.puppy_id})
-//         .then(booking => res.json(booking))
-//         .catch( err => 
-//             res.status(404).json({ noBookingFound: "No bookings found from that peeee"}))
-// })
 module.exports = router;

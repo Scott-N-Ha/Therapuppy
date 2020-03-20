@@ -34,7 +34,7 @@ export default class BookingPending extends React.Component {
 
       return (
         <li className="booking-pending-li">
-          <label className="booking-pending-puppy">Bookings for <Link to={`/puppies/${puppy._id}`}>{ puppy.name }</Link></label>
+          <label className="booking-pending-puppy">Pending Bookings for <Link to={`/puppies/${puppy._id}`}>{ puppy.name }</Link></label>
             { datedBookings }
         </li>
       )

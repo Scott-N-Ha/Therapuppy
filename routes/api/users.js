@@ -37,6 +37,22 @@ const fetchBookings = user => {
   });
 };
 
+const selectFields = (user) => {
+	return {
+		_id: user.id,
+		username: user.username, 
+		email: user.email,
+		firstName: user.firstName, 
+		lastName: user.lastName, 
+		address1: user.address1,
+		address2: user.address2, 
+		city: user.city,
+		state: user.state,
+		zip: user.zip,
+		isOwner: user.isOwner
+	};
+}
+
 router.post("/register", (req, res) => {
 	const {
 		errors,
@@ -87,20 +103,8 @@ router.post("/register", (req, res) => {
 						if (err) throw err;
 						newUser.password = hash;
 						newUser.save()
-							.then(user => {
-								const payload = {
-									_id: user.id,
-									username: user.username, 
-									email: user.email,
-									firstName: user.firstName, 
-									lastName: user.lastName, 
-									address1: user.address1,
-									address2: user.address2, 
-									city: user.city,
-									state: user.state,
-									zip: user.zip,
-									isOwner: user.isOwner
-								};
+						.then(user => {
+								const payload = selectFields(user);;
 
 								jwt.sign(payload, keys.secretOrKey, {
 									expiresIn: 3600
@@ -113,7 +117,7 @@ router.post("/register", (req, res) => {
 									});
 								});
 							})
-							.catch(err => console.log(err));
+							.catch(err => res.status(404).json({registerFail: err}));
 					});
 				});
 
@@ -138,7 +142,8 @@ router.post("/login", (req, res) => {
 
 	User.findOne({
 		email
-	}).then(user => {
+	})
+	.then(user => {
 		if (!user) {
 			errors.email = "This email does not exist";
 			return res.status(404).json(errors);
@@ -147,24 +152,12 @@ router.post("/login", (req, res) => {
 
 		bcrypt.compare(password, user.password).then(isMatch => {
 			if (isMatch) {
-				const payload = {
-					_id: user.id,
-					username: user.username,
-					email: user.email,
-					firstName: user.firstName,
-					lastName: user.lastName,
-					address1: user.address1,
-					address2: user.address2,
-					city: user.city,
-					state: user.state,
-					zip: user.zip,
-					isOwner: user.isOwner
-				};
+				const payload = selectFields(user);;
 
 				jwt.sign(payload, keys.secretOrKey, {
 					expiresIn: 3600
 				}, (err, token) => {
-					// console.log("sucess");
+					console.log("sucess");
 					return res.json({
 						sucess: true,
 						token: "Bearer " + token,
@@ -194,7 +187,7 @@ router.get('/', (req, res) => {
 		.then(users => res.json(users))
 		.catch(err => 
 			res.status(404).json({
-					nousersfound: "No users found"
+					noUsersFound: "No users found"
 			}) 
 		) 
 }) 
@@ -211,40 +204,7 @@ router.get("/:username", (req,res) => {
 					})
 		})
 	})
-	.catch(err => res.status(404).json({usernotfound: "user not found"}))
+	.catch(err => res.status(404).json({userNotFound: "user not found"}))
 })
 
 module.exports = router;
-
-
-// router.get('/:user_id/puppies', (req, res) => {
-// 	Puppy.find({
-// 			owner: req.params.user_id
-// 		})
-// 		.then(puppies => res.json(puppies))
-// 		.catch(err =>
-// 			res.status(404).json({
-// 				nopuppiesfound: 'No puppies found from user'
-// 			})
-// 		)
-// 	Booking.find({
-// 			owner: req.params.user_id
-// 		})
-// 		.then(bookings => res.json(bookings))
-// 		.catch(err =>
-// 			res.status(404).json({
-// 				nobookingsfound: 'No bookings found from user'
-// 			})
-// 		);
-// });
-
-// router.get('/puppies/:puppy_id', (req, res) => {
-//   Puppy.findById({
-//       id: req.params.puppy_id
-//     })
-//     .then(puppy => res.json(puppy))
-//     .catch(err =>
-//       res.status(404).json({
-//         nopuppyfound: 'No puppy found with that Id'
-//       }))
-// })

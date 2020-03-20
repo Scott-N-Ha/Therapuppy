@@ -14,7 +14,6 @@ module.exports = function validateRegisterInput(data) {
     data.address2 = validText(data.address2) ? data.address2 : ""
     data.city = validText(data.city) ? data.city : ""
     data.state = validText(data.state) ? data.state : ""
-
     
     if (Validator.isEmpty(data.username)) {
         errors.username = 'Username field is required'
@@ -51,10 +50,6 @@ module.exports = function validateRegisterInput(data) {
     if (Validator.isEmpty(data.address1)) {
         errors.address1 = "Address 1 field is required"
     };
-
-    // if (Validator.isBoolean(data.isOwner)){
-    //     errors.isOwner = "isOwner must be a boolean"
-    // };
 
     if (Validator.isEmpty(data.city)) {
         errors.city = "City field is required"
