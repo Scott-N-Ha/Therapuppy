@@ -61,8 +61,8 @@
 .nav-bar-links {
   display: flex;
   /* padding: 10px; */
-  width: 400px;
-  justify-content: space-between;
+  width: 500px;
+  justify-content: space-around;
   color: white;
   align-items: center;
   cursor: pointer;
@@ -163,7 +163,7 @@
   /* padding: 10px; */
 }
 
-.dropdown-user-info span {
+.user-info span {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
@@ -172,6 +172,7 @@
   display: flex;
   justify-items: center;
   padding: 10px 0 10px 12px;
+  cursor: default;
 }
 
 .paw-image {
@@ -183,6 +184,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  cursor: default;
+
 }
 
 .dropdown-user-info {

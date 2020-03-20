@@ -20,28 +20,25 @@ export default class Puppy extends React.Component {
           <label className="puppy-label">Owner:</label> <Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Puppy:</label> <Link to={`/puppies/${puppy._id}`}>{name}</Link>
+          <label className="puppy-label">Age:</label> <p>{age}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Age:</label> {age}
+          <label className="puppy-label">Breed:</label> <p>{breed}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Breed:</label> {breed}
+          <label className="puppy-label">Fluffy Rating:</label> <p>{fluffyRating}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Fluffy Rating:</label> {fluffyRating}
+          <label className="puppy-label">Ear Type:</label> <p>{earType}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Ear Type:</label> {earType}
+          <label className="puppy-label">Sex:</label> <p>{sex}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Sex:</label> {sex}
+          <label className="puppy-label">Nature Rating:</label> <p>{natureRating}</p>
         </div>
         <div className="puppy-label-div">
-          <label className="puppy-label">Nature Rating:</label> {natureRating}
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Price:</label> ${price}
+          <label className="puppy-label">Price:</label> <p>${price}</p>
         </div>
       </div>
     )
@@ -53,7 +50,6 @@ export default class Puppy extends React.Component {
 
     return (<>
       <div className="puppy-hover">
-          
       </div>
       <Link to={`/puppies/${puppy._id}`}>
         <div className="puppy-info-container">
@@ -66,16 +62,18 @@ export default class Puppy extends React.Component {
   }
 
   render(){
-    const { puppy, showMore } = this.props;
+    const { puppy, showMore, openModal, isCurrentUserPuppy } = this.props;
 
     if (puppy === undefined) return null;
 
     const { photo } = puppy;
 
-    return (
+    return (<div className="puppy-show-container">
       <div className={`puppy ${ showMore ? "more" : "less"}`} style={{backgroundImage:`url(${photo})`}}>
-        { showMore ? (this.renderMore()) : (this.renderLess()) }
+      { showMore ? isCurrentUserPuppy ? (<div className="puppy-more-label owner">Dogter {puppy.name}</div>) : (<div onClick={() => openModal("requestDogter")} className="puppy-more-label">Request Dogter {puppy.name}</div>) : (this.renderLess()) }
       </div>
+        { showMore ? (this.renderMore()) : "" }
+        </div>
     )
   }
 }

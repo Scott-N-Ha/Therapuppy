@@ -38,7 +38,7 @@ class NavBar extends React.Component {
         </div>
         <div className="nav-bar-links">
           <Link to='/puppies'><p>Certified Dogters</p></Link>
-          {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : (null)}
+          {currentUser.isOwner ? (<p onClick={() => openModal("createPuppy")}>Add a Dogter</p>) : <Link to={`/users/${currentUser.username}`}><p>Your Bookings</p></Link>}
           <div id="dropdown-list" className="dropdown-container" onClick={() => this.handleDropdown()}>
           <text className="dropdown">hi, {currentUser.username}</text>
             <div className="dropdown-content">

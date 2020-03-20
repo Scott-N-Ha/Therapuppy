@@ -48,10 +48,11 @@ export default class BookingForm extends React.Component {
       frontErrors: [],
     });
 
-    let submitButton = document.querySelector('.submit-input');
+    // let submitButton = document.querySelector('.submit-input');
 
-    submitButton.disabled = false;
-    submitButton.textContent = "Request a Session with this Dogter!";
+    // submitButton.disabled = false;
+    // submitButton.textContent = "Request a Session with this Dogter!";
+    // oli commented out cause it bwoke my code
   }
 
   validateForm(){
@@ -75,7 +76,7 @@ export default class BookingForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-
+ 
     this.setState({ frontErrors: [] });
 
     if (this.validateForm()) {
@@ -94,6 +95,7 @@ export default class BookingForm extends React.Component {
 
       this.props.createBooking({ booking: newBooking })
         .then(res => {
+          this.props.closeModal()
           this.cancel();
         });
     }

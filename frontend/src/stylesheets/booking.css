@@ -30,3 +30,12 @@
   color: gray;
   background-color: lightgray;
 }
+
+.booking-index {
+  padding: 20px;
+  background-image: url('../images/puppies_bg.png');
+  background-size: 50%;
+  background-position: center;
+  height: 100vh;
+  overflow: auto;
+}

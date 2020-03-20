@@ -47,7 +47,7 @@ export default class PuppyShow extends React.Component {
         <label className="puppy-natureRating">{natureRating}</label>
         <br/>
         <label className="puppy-price">${price}</label> */}
-        { !isCurrentUserPuppy ? <BookingFormContainer puppy={puppy} /> : null}
+        {/* { !isCurrentUserPuppy ? <BookingFormContainer puppy={puppy} /> : null} */}
         <BookingIndexContainer puppyId={puppy._id} />
       </div>
     );
