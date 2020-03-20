@@ -201,13 +201,11 @@ export default class PuppyForm extends React.Component {
     const fluffyOptions = fluffyRatings.map(rating => {
       return <option key={rating.id} value={rating.id}>{rating.name}</option>
     });
-
+    
     return (
       <div className="puppy-form-div">
-        <div className="puppy-preview-image">
-          { this.state.imageUrl ? <img className="input-form dogter-image" src={this.state.imageUrl} alt={this.state.name} /> : <div className="input-form dogter-image">No Image</div> }
-        </div>
-        <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
+        <div className="puppy-photo-upload">
+        { this.state.imageUrl ? <img className="puppy-preview-image" src={this.state.imageUrl} alt={this.state.name} /> : <div className="dogter-image-text">Upload a photo of your Certified Dogter to get started !</div>}
           <input
             type="file"
             className="input-form file-input"
@@ -216,6 +214,10 @@ export default class PuppyForm extends React.Component {
             placeholder="Upload a picture of your Dogter!"
             accept="image/*"
           />
+          </div>
+        <form className="puppy-creation-form" onSubmit={this.handleSubmit} >
+          <div className="puppy-creation-form-input">
+
           <label className="puppy-form-label">Name: 
           <input
             type="text"
@@ -277,8 +279,8 @@ export default class PuppyForm extends React.Component {
             { earTypeOptions }
           </select>
           </label>
-          <label className="puppy-form-label">Sex: 
-            <label className="puppy-form-label">M: 
+          <label className="puppy-form-label sex">Sex: 
+            <label className="puppy-form-sex">M
               <input
                 type="radio"
                 name="sex"
@@ -287,7 +289,7 @@ export default class PuppyForm extends React.Component {
                 value="M"
                 />
             </label>
-            <label className="puppy-form-label">F: 
+            <label className="puppy-form-sex">F
               <input
                 type="radio"
                 name="sex"
@@ -322,7 +324,8 @@ export default class PuppyForm extends React.Component {
               placeholder="Price"
             />
           </label>
-          <button className="input-form submit-input register-dogter">Register a new Dogter</button>
+          <button className="register-dogter">Register a new Dogter</button>
+          </div>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : undefined }
       </div>
