@@ -19,11 +19,6 @@ export default class BookingPendingDate extends React.Component {
           updateBooking(Object.assign(book, {status: "5e717c7132e5a38f0aaf16bb"}));
         }
       });
-
-      // let newBooking = Object.assign({}, booking);
-      // newBooking.status = (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb");
-
-      // this.props.updateBooking(newBooking);
     }
   }
 
@@ -32,8 +27,8 @@ export default class BookingPendingDate extends React.Component {
 
     const renderBookings = bookings.map(booking => {
       return (
-        <div>
-          <label>Renter: <Link to={`/users/${booking.renter.username}`}>{booking.renter.username}</Link></label>
+        <div className="booking-pending-info">
+          <label className="booking-pending-renter">Renter: <Link to={`/users/${booking.renter.username}`}>{booking.renter.username}</Link></label>
           <div className="booking-buttons">
             <button
               className="booking-button booking-approve"
@@ -46,7 +41,7 @@ export default class BookingPendingDate extends React.Component {
 
     return (
       <div className="booking-date-div">
-        <label>Bookings for the Date of {date.slice(0,10)}</label>
+        <label>Date of {date.slice(0,10)}</label>
         { renderBookings }
       </div>
     )

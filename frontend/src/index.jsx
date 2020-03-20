@@ -15,6 +15,7 @@ import "./stylesheets/puppy.css";
 import "./stylesheets/booking.css";
 import "./stylesheets/puppy_form.css";
 import "./stylesheets/booking_form.css";
+import "./stylesheets/booking_pending.css";
 import './stylesheets/splash.scss'
 import './stylesheets/main_content.css'
 import "./stylesheets/modal.scss";
