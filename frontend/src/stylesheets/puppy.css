@@ -37,7 +37,8 @@
   background-repeat: repeat;
   min-height: 100vh;
   min-width: 100vw;
-  position: relative;
+  position: sticky;
+  overflow: auto;
 }
 
 .puppy-info-container {
