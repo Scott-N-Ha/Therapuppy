@@ -1,7 +1,8 @@
 import React from 'react';
 
-import PuppyFormContainer from '../puppy/puppy_form_container';
-import PuppyIndexContainer from '../puppy/puppy_index_container';
+import PuppyFormContainer from '../puppy/puppy_form_container.js';
+import PuppyIndexContainer from '../puppy/puppy_index_container.js';
+import BookingPendingContainer from '../booking/booking_pending_container.js';
 
 export default class UserShow extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ export default class UserShow extends React.Component {
   }
 
   componentDidMount(){
-    // Need to fetch user
+    this.props.fetchSingleUser(this.props.match.params.username);
   }
 
   missingUser(){
@@ -44,6 +45,7 @@ export default class UserShow extends React.Component {
         <h1>Your good boys and girls are bringing us all to your yard.</h1>
       </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
+        { isOwner ? <BookingPendingContainer ownerId={user._id} /> : null }
         <PuppyIndexContainer ownerId={user._id} />
       </div>
     )
