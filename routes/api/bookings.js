@@ -100,10 +100,7 @@ router.patch("/:id", (req, res) => {
   // console.log(req.body.booking)
   Booking.findByIdAndUpdate(req.params.id, req.body.booking, {new: true})
     .then( booking  => {
-      Puppy.findById(booking.puppy)
-        .then(puppy => {
-          console.log(puppy);
-          if (puppy) res.json({ booking, puppy })
+         res.json({ booking, puppy })
         })
     })
     .catch( err => res.status(422).json({updatefailed: "cannot update la"}))
