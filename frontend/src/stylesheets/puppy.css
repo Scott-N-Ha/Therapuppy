@@ -30,6 +30,10 @@
   background-repeat: no-repeat;
 }
 
+.puppy.less {
+  flex-direction: column-reverse;
+}
+
 .puppies-bg {
   /* background-color: #deeeec; */
   background-image: url('../images/puppies_bg.png');
