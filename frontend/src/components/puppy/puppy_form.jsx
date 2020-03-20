@@ -164,10 +164,6 @@ export default class PuppyForm extends React.Component {
           this.props.closeModal();
           this.props.history.push(`/puppies/${res.payload.puppy._id}`);
         })
-        .catch(err => {
-          // debugger // tell me how you would get here, between our frontend validations and our backend validations. Maybe the internet cut out while the user was uploading?
-          // this.cancel();
-        });
     }
   }
 

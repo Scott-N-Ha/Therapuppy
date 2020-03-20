@@ -19,11 +19,6 @@ export default class BookingPendingDate extends React.Component {
           updateBooking(Object.assign(book, {status: "5e717c7132e5a38f0aaf16bb"}));
         }
       });
-
-      // let newBooking = Object.assign({}, booking);
-      // newBooking.status = (value ? "5e717c615a67b08eeeb91719" : "5e717c7132e5a38f0aaf16bb");
-
-      // this.props.updateBooking(newBooking);
     }
   }
 
