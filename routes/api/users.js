@@ -1,16 +1,16 @@
 const express = require("express");
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 
-const validateRegisterInput = require('../../validations/register');
-const validateLoginInput = require('../../validations/login');
-const User = require('../../models/User');
-const jwt = require('jsonwebtoken');
-const keys = require('../../config/keys');
-const Puppy = require('../../models/Puppy')
-const Booking = require('../../models/Booking')
+const validateRegisterInput = require('../../validations/register.js');
+const validateLoginInput = require('../../validations/login.js');
+const User = require('../../models/User.js');
+const keys = require('../../config/keys.js');
+const Puppy = require('../../models/Puppy.js');
+const Booking = require('../../models/Booking.js');
 
 
 const fetchPuppies = user => {
@@ -25,7 +25,9 @@ const fetchPuppies = user => {
 
 const fetchBookings = user => {
   const userId = new ObjectId(user._id);
-  return Booking.find({
+  // return Booking.find({
+  //   $or: [{ owner: userId }, { renter: userId }]
+  return Booking.populate('renter').populate('owner').find({
     $or: [{ owner: userId }, { renter: userId }]
   }).then(res => {
     const bookings = {};
