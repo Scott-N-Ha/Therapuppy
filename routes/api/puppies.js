@@ -54,8 +54,8 @@ router.post("/upload", upload.single("file"), function (req, res) {
     Bucket: keys.bucketName,
     Key: file.originalname,
     Body: file.buffer,
-    ContentType: file.mimetype,
-    ACL: "public-read"
+    ContentType: file.mimetype
+    // ACL: "public-read"
   };
   s3bucket.upload(params, function (error, data) {
     if (error) {
@@ -125,8 +125,8 @@ router.post('/',
       Bucket: keys.bucketName,
       Key: file.originalname,
       Body: file.buffer,
-      ContentType: file.mimetype,
-      ACL: "public-read"
+      ContentType: file.mimetype
+      // ACL: "public-read"
     };
 
     s3bucket.upload(params, (err, data) => {
