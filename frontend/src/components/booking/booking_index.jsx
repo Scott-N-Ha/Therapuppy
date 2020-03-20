@@ -11,7 +11,7 @@ export default class BookingIndex extends React.Component{
     this.props.fetchAllBookings();
 
     this.props.bookings.forEach(booking => {
-      if (Date.parse(booking.date) < Date.now()) {
+      if (booking.status === "5e717ae318716c8dc9bd5bf5" && Date.parse(booking.date) < Date.now()) {
         booking.status = "5e73eb531c9d4400008a4313";
         this.props.updateBooking(booking);
       }

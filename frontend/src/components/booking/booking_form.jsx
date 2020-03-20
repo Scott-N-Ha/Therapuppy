@@ -23,12 +23,35 @@ export default class BookingForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value,
     });
+  }
+
+  cancel(){
+    const { renterId, puppy } = this.props;
+    const { price, owner, _id } = puppy;
+
+    const bookingDate = new Date();
+    bookingDate.setDate(bookingDate.getDate() + 7);
+
+    this.setState({
+      owner: owner,
+      renter: renterId,
+      puppy: _id,
+      date: bookingDate.toISOString().slice(0,10),
+      totalCost: price,
+      frontErrors: [],
+    });
+
+    let submitButton = document.querySelector('.submit-input');
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Request a Session with this Dogter!";
   }
 
   validateForm(){
@@ -57,6 +80,11 @@ export default class BookingForm extends React.Component {
     this.setState({ frontErrors: [] });
 
     if (this.validateForm()) {
+      let submitButton = document.querySelector('.submit-input');
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Requesting...";
+
       let newBooking = {
         owner: this.state.owner,
         renter: this.state.renter,
@@ -67,7 +95,7 @@ export default class BookingForm extends React.Component {
 
       this.props.createBooking({ booking: newBooking })
         .then(res => {
-
+          this.cancel();
         });
     }
   }
