@@ -103,9 +103,8 @@ router.post('/',
           err
         });
       } else {
-        let photo = file.originalname
+        let photo = file.originalname;
         let s3Key = params.Key;
-        console.log(s3FileURL)
 
         const {
           owner,
