@@ -12,7 +12,6 @@ const keys = require('../../config/keys.js');
 const Puppy = require('../../models/Puppy.js');
 const Booking = require('../../models/Booking.js');
 
-
 const fetchPuppies = user => {
   return Puppy.where("_id")
     .in(user.puppies)
