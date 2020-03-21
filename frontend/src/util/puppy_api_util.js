@@ -9,7 +9,6 @@ export const fetchPuppy = puppyId => (
 )
 
 export const createPuppy = puppyData => {
-    
     return(
     axios.post('api/puppies', puppyData)
 )}

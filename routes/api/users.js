@@ -152,12 +152,12 @@ router.post("/login", (req, res) => {
 
 		bcrypt.compare(password, user.password).then(isMatch => {
 			if (isMatch) {
-				const payload = selectFields(user);;
+				const payload = selectFields(user);
 
 				jwt.sign(payload, keys.secretOrKey, {
 					expiresIn: 3600
 				}, (err, token) => {
-					console.log("sucess");
+					console.log("Login success");
 					return res.json({
 						sucess: true,
 						token: "Bearer " + token,

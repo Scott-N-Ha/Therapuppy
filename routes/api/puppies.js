@@ -49,14 +49,17 @@ const fetchBookings = puppy => {
 
 router.get('/', (req, res) => {
   Puppy.find()
+    .sort([['date', -1]])
     .populate('owner', '-password')
     .then(puppies => {
       const puppiesResult = {};
       const users = {};
-      puppies.forEach(puppy => {
+      puppies.forEach((puppy,idx) => {
         const owner = puppy.owner;
-        users[owner.id] = owner;
-        puppy.owner = puppy.owner.id;
+        if (owner){
+          users[owner.id] = owner;
+          puppy.owner = puppy.owner.id;
+        }
 
         puppiesResult[puppy.id] = puppy;
         puppy.photo = fetchUrl(puppy);
@@ -67,11 +70,9 @@ router.get('/', (req, res) => {
         });
     })
     .catch(err => res.status(404).json({
-      puppiesnotfound: "no puppies were found",
+      puppiesnotfound: err,
     }));
 });
-
-
 
 router.post('/',
   passport.authenticate('jwt', { session: false}),
@@ -94,7 +95,6 @@ router.post('/',
       Key: file.originalname,
       Body: file.buffer,
       ContentType: file.mimetype
-      // ACL: "public-read"
     };
 
     s3bucket.upload(params, (err, data) => {
@@ -103,10 +103,7 @@ router.post('/',
           err
         });
       } else {
-        let photo = s3FileURL + file.originalname
-        let newFileUploaded = {
-          description: req.body.description,
-        };
+        let photo = file.originalname
         let s3Key = params.Key;
         console.log(s3FileURL)
 
@@ -138,7 +135,7 @@ router.post('/',
 
         newPuppy.save()
           .then(puppy => {
-            let user = User.findById(newPuppy.owner).then(
+            User.findById(newPuppy.owner).then(
               user => {
                 user.puppies.push(newPuppy.id);
                 user.save();

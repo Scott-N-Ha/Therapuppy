@@ -8,7 +8,7 @@ const User = require("../../models/User");
 const validateBookingInput = require("../../validations/booking");
 
 router.post("/",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { isValid, errors } = validateBookingInput(req.body.booking);
 
@@ -92,18 +92,19 @@ router.get("/", (req, res) => {
     .catch(err => res.status(404).json({bookingsnotfound: err}));
 });
 
-router.patch("/:id", (req, res) => {
-    const { isValid, errors } = validateBookingInput(req.body.booking);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-  Booking.findByIdAndUpdate(req.params.id, req.body.booking, {new: true})
-    .then( booking  => res.json({ booking }))
-    .catch( err => res.status(422).json({updateFail: err}))
-}); // Replaced with actual Booking
+router.patch(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Booking.findByIdAndUpdate(req.params.id, req.body.booking, { new: true })
+      .then(booking => res.json({ booking }))
+      .catch(err => res.status(422).json({ updateFail: err }));
+  }
+); 
 
 router.delete("/:id",
-  passport.authenticate('jwt', {
+  passport.authenticate('jwt', 
+  {
     session: false
   }),
   (req, res) => {
