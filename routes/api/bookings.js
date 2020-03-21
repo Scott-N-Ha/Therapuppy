@@ -20,43 +20,43 @@ router.post("/",
       renter,
       date,
     } = req.body.booking;
-    
-    puppy = await Puppy.findById(puppy);
-        if (puppy) {
-          let {
-            owner,
-            price
-          } = puppy
-          
-          const newBooking = new Booking({
-            owner,
-            renter,
-            puppy: puppy.id,
-            date,
-            status: "5e717ae318716c8dc9bd5bf5",
-            totalCost: price
-          });
+    try {
+          puppy = await Puppy.findById(puppy);
+          if (puppy) {
+            let { owner, price } = puppy;
 
-          const booking = await newBooking.save()
-          owner = await User.findById(owner);
-          owner.bookings.push(booking.id);
-          owner.save();
-          renter = await User.findById(renter)
-          renter.bookings.push(booking.id)
-          renter.save()
-          return res.json({
-            status: "Success",
-            booking,
-            users: {
-              [owner.id]: owner,
-              [renter.id]: renter
-            }
-          })
-        } else {
-          return res.status(404).json({
-            puppyNotFound: "Cannot find puppy",
-          });
+            const newBooking = new Booking({
+              owner,
+              renter,
+              puppy: puppy.id,
+              date,
+              status: "5e717ae318716c8dc9bd5bf5",
+              totalCost: price
+            });
+
+            owner = await User.findById(owner);
+            renter = await User.findById(renter);
+              const booking = await newBooking.save();
+              
+              owner.bookings.push(booking.id);
+              owner.save();
+              renter.bookings.push(booking.id);
+              renter.save();
+              return res.json({
+                status: "Success",
+                booking,
+                users: {
+                  [owner.id]: owner,
+                  [renter.id]: renter
+                }
+              });
+          } else {
+            return res.status(404).json({
+              puppyNotFound: "Cannot find puppy"
+            });
+          }
         }
+    catch (err) { res.status(404).json({ bookngFail: err })};
   }
 )
 
