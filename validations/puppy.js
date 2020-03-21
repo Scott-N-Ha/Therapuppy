@@ -7,15 +7,6 @@ module.exports = function validatePuppyInput(data) {
     data.name = validText(data.name) ? data.name : "";
     data.sex = validText(data.sex) ? data.sex : "";
     
-    
-    // if (Validator.isEmpty(data.owner)) {
-    //     errors.owner = "Owner field is required"
-    // };
-    
-    // if (Validator.isEmpty(data.renter)) {
-    //     errors.renter = "Renter field is required"
-    // };
-    
     if (Validator.isEmpty(data.name)){
         errors.name = "Name field is required"
     };
@@ -71,20 +62,6 @@ module.exports = function validatePuppyInput(data) {
     if (Validator.isEmpty(data.price)) {
         errors.price = "Price field is required"
     };
-
-    // if (Validator.isEmpty(data.photo)){
-    //   errors.photo = "Photo field is required"
-    // };
-
-    // if (!Validator.isMimeType(data.photo)) {
-    //     errors.photo = "Photo field must be a media type"
-    // };
-
-    // if (Validator.isEmpty(data.s3Key)) {
-    //       errors.s3Key = "S3Key field is required"
-    // };
-
-
 
     return {
         errors,
