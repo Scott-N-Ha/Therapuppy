@@ -9,7 +9,7 @@ const validateBookingInput = require("../../validations/booking");
 
 router.post("/",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+  async (req, res) => {
     const { isValid, errors } = validateBookingInput(req.body.booking);
 
     if (!isValid) {
@@ -20,9 +20,8 @@ router.post("/",
       renter,
       date,
     } = req.body.booking;
-
-    Puppy.findById(puppy)
-      .then(puppy => {
+    
+    puppy = await Puppy.findById(puppy);
         if (puppy) {
           let {
             owner,
@@ -38,36 +37,26 @@ router.post("/",
             totalCost: price
           });
 
-          newBooking
-            .save()
-            .then(booking => {
-
-              User.findById(owner)
-                .then(owner => {
-                  owner.bookings.push(booking.id);
-                  owner.save();
-                  User.findById(renter)
-                    .then(renter => {
-                      renter.bookings.push(booking.id)
-                      renter.save()
-                      return res.json({
-                        status: "Success",
-                        booking,
-                        users: {
-                          [owner.id]: owner,
-                          [renter.id]: renter
-                        }
-                      })
-                    })
-                });
-            })
-            .catch(err => res.status(404).json({bookingFail: err}))
+          const booking = await newBooking.save()
+          owner = await User.findById(owner);
+          owner.bookings.push(booking.id);
+          owner.save();
+          renter = await User.findById(renter)
+          renter.bookings.push(booking.id)
+          renter.save()
+          return res.json({
+            status: "Success",
+            booking,
+            users: {
+              [owner.id]: owner,
+              [renter.id]: renter
+            }
+          })
         } else {
           return res.status(404).json({
             puppyNotFound: "Cannot find puppy",
           });
         }
-      })
   }
 )
 
