@@ -88,7 +88,6 @@ router.post('/',
     };
 
     const file = req.file;
-    const s3FileURL = keys.s3FileURL;
 
     let params = {
       Bucket: keys.bucketName,
