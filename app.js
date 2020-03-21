@@ -3,18 +3,13 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path'); 
-let AWS = require("aws-sdk");
 
 const db = require("./config/keys.js").mongoURI;
-const validateRegisterInput = require("./validations/register.js");
-const validatePuppyInput = require("./validations/puppy.js");
-const User = require('./models/User.js');
 const users = require("./routes/api/users.js")
 const puppies = require("./routes/api/puppies.js")
 const bookings = require("./routes/api/bookings.js")
 
 const app = express();
-const keys = require("./config/keys.js");
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
