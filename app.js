@@ -34,24 +34,6 @@ app.use(bodyParser.urlencoded({
   extended: true, 
 }));
 app.use(bodyParser.json());
- 
-app.get("/test", (req, res) => {
-  const urlParams = {
-    Bucket: "therapuppy-test",
-    Key: "159ccedd-7ea9-420e-a741-61f228d7575a.jpeg"
-  };
-  let s3bucket = new AWS.S3({
-    accessKeyId: keys.accessKeyId,
-    secretAccessKey: keys.secretAccessKey,
-    region: "us-west-3"
-  });
-
-  s3bucket.getSignedUrl("getObject", urlParams, (err, url) => {
-    console.log(url);
-  });
-  
-  res.send("its running");
-});
 
 app.use("/api/users", users); 
 app.use("/api/puppies", puppies); 
