@@ -13,7 +13,6 @@ const Puppy = require('../../models/Puppy.js');
 const Booking = require('../../models/Booking.js');
 const { fetchUrl } = require("./util");
 
-
 const fetchPuppies = user => {
   return Puppy.find({ _id: user.puppies })
     .then(res => {
