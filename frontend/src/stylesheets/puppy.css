@@ -201,6 +201,7 @@
   border: 3px solid white;
   align-content: center;
   align-self: center;
+  transition: all 250ms ease-in-out;
 }
 .request-button-container {
   display: flex;
@@ -209,17 +210,19 @@
   padding: 30px 20px;
 }
 
-.request-dogter-button.owner, .request-dogter-button:hover {
+a.request-dogter-button.owner, .request-dogter-button:hover {
   /* border-color: white; */
   border: 3px solid white;
   background-color: #58cfbf;
   color: white;
+  text-align: center;
 }
 
-.request-dogter-button.owner:hover {
-  color: #2b3d79;
+.request-dogter-button:hover {
+  /* color: #2b3d79;
   background-color: white;
-  border: 3px solid #2b3d79;
+  border: 3px solid #2b3d79; */
+  transform: scale(1.1);
 }
 
 .puppy-more-seperator {
