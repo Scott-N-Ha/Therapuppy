@@ -1,5 +1,5 @@
-const  AWS = require("aws-sdk");
-const  keys = require("../../config/keys");
+const AWS = require("aws-sdk");
+const keys = require("../../config/keys");
 
 const s3bucket =  new AWS.S3({
     accessKeyId: keys.accessKeyId,
@@ -12,7 +12,6 @@ const fetchUrl = function(puppy) {
     Bucket: keys.bucketName,
     Key: puppy.s3Key
   };
-  
   return s3bucket.getSignedUrl("getObject", urlParams);
 }
   

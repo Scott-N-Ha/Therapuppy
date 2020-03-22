@@ -1,6 +1,5 @@
 import { RECEIVE_BOOKING_ERRORS, RECEIVE_ALL_BOOKINGS, RECEIVE_BOOKING } from "../actions/booking_actions";
 
-
 const _nullErrors = [];
 
 const BookingErrorsReducer = (state = _nullErrors, action) => {
