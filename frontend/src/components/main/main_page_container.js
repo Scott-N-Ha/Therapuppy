@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import MainPage from './main_page.jsx';
 import { openModal } from '../../actions/modal_actions.js';
+import { login } from '../../actions/session_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,7 +13,13 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapStateToDispatch = dispatch =>({
-  openModal: modal => dispatch(openModal(modal))
+  openModal: modal => dispatch(openModal(modal)),
+  demoLogin: () => dispatch(login({ 
+    user: {
+      email: "demo@aa.io",
+      password: "password"
+    }
+  }))
 })
 
 export default withRouter(connect(mapStateToProps, mapStateToDispatch)(MainPage));

@@ -18,7 +18,7 @@ class MainPage extends React.Component {
   // }
 
   render(){
-    const { user, loggedIn, openModal } = this.props;
+    const { user, loggedIn, openModal, demoLogin } = this.props;
 
     const content = loggedIn ? (<div className="main-content-container">
       <div className="welcome-text-container">
@@ -37,7 +37,10 @@ class MainPage extends React.Component {
         <div className="splash-text">
           <h1>Therapy reimagined.</h1> 
           <p>We have all wanted to know the joy of having a dog. We know that people are busy and may not be able to take care of their own pup. </p>
+          <div className="splash-button-container">
           <button className="start-button" onClick={() => openModal("login")}>GET STARTED</button>
+          <button className="start-button" onClick={() => demoLogin()}>DEMO USER</button>
+          </div>
         </div>
       </div>
       <div className="info-container">
