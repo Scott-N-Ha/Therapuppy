@@ -5,6 +5,7 @@ import LoginFormContainer from '../components/session/login_form_container';
 import SignUpFormContainer from '../components/session/signup_form_container';
 import PuppyFormContainer from '../components/puppy/puppy_form_container';
 import BookingFormContainer from '../components/booking/booking_form_container'
+import BookingIndexContainer from './booking/booking_index_container';
 
 function Modal({modal, closeModal}) {
     if (!modal) {
@@ -26,6 +27,9 @@ function Modal({modal, closeModal}) {
             break;
         case 'requestDogter':
             component = <BookingFormContainer />
+            break;
+        case 'yourBookings':
+            component = <BookingIndexContainer />
             break;
         default:
             return null;

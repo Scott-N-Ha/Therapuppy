@@ -51,18 +51,15 @@ export default class Booking extends React.Component{
     return (
       <div className={`booking ${ old ? 'old' : '' }`}>
         <div className="booking-label-div">
-          <label className="booking-label">Renter:</label> <Link to={`/users/${renter.username}`} className="underline-magic" >{renter.username}</Link>
-        </div>
-        <div className="booking-label-div">
           <label className="booking-label">Date:</label> {date.slice(0,10)}
         </div>
         <div className="booking-label-div">
           <label className="booking-label">Total Cost:</label> ${totalCost}
         </div>
         <div className="booking-label-div">
-          <label className="booking-label">Status:</label> {status.name}
+          <label className={`booking-label ${status.name}`}>Status:</label> {status.name}
         </div>
-        { isOwner ? this.isOwnerRender(status, old) : <button className="pending">Waiting..</button> }
+        { isOwner ? this.isOwnerRender(status, old) : "" }
       </div>
     )
   }

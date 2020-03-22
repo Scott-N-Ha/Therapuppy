@@ -69,11 +69,16 @@ export default class Puppy extends React.Component {
       : (<div className="puppy-more-label">
         <div className="request-button-container">
           <button className="request-dogter-button" onClick={() => openModal("requestDogter")}> 
-          Request Dogter {puppy.name}
+          Request Dogter
           </button>
           <Link to={`/users/${owner.username}`} className="request-dogter-button owner" > 
           Owner Information
           </Link>
+        </div>
+        <div className="puppy-more-seperator">
+          <a onClick={() => openModal("yourBookings") }className="back-button">
+            Your Sessions 
+          </a>
         </div>
         <div className="puppy-more-seperator">
           <Link to="/puppies" className="back-button">
@@ -82,7 +87,7 @@ export default class Puppy extends React.Component {
         </div>
         </div>)}
       </div>
-      <BookingIndexContainer puppyId={puppy._id} />
+      {/* <BookingIndexContainer puppyId={puppy._id} /> */}
       </>
     )
   }
