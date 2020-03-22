@@ -75,6 +75,7 @@
 .puppy-photo-upload img{
   height: 30%;
   object-fit: contain;
+  /* box-shadow: ; */
 }
 
 .dogter-image-text {
@@ -111,4 +112,12 @@
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: .15rem;
+}
+
+.file-input{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute
 }
