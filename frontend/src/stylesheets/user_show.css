@@ -1,10 +1,23 @@
+.user-profile-container{
+  font-family: 'Roboto', sans-serif;
+  background-image: url('../images/puppies_bg.png');
+  background-size: 50%;
+  background-repeat: repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .user-info-container{
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
+  box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527);
   overflow: hidden;
-  padding-top: 20px;
-  width: 800px;
+  padding: 25px 40px;
+  width: 400px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -12,10 +25,28 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.user-label-div.username{
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-picture{
+  background-image: url(/static/media/white-paw.2fbd0023.png);
+  background-color: #ffc38d;
+  background-position: center;
+  background-size: 69%;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  cursor: default;
+  align-self: center;
+}
+
 .user-label-div{
   display: flex;
 }
-
 
 .checkmark {
   height: 15px;

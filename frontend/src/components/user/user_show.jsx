@@ -44,7 +44,7 @@ export default class UserShow extends React.Component {
 
     if (user === undefined) return this.missingUser();
 
-    const { username, email, firstName, lastName, isOwner } = user;
+    const { username, email, firstName, lastName, isOwner, city, state } = user;
 
     return (
       <div className="user">
@@ -53,19 +53,29 @@ export default class UserShow extends React.Component {
         <h1>Your good boys and girls are bringing us all to your yard.</h1>
       </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
-        <div className="user-info-container">
-          <div className="user-label-div">
-            <p>{username} <img className="checkmark" src="blue_check_mark.png" alt="" /></p>
+        <div className="user-profile-container">
+          <div className="user-info-container">
+            <div className="user-label-div username">
+              <p>{username} <img className="checkmark" src="blue_check_mark.png" alt="" /></p>
+            </div>
+            {/* <div className="user-label-div">
+              <p>{firstName} {lastName} </p>
+            </div> */}
+            <div className="user-label-div">
+              <p> Email: {email} </p>
+            </div>
+            <div className="user-label-div">
+              <p> Address: {city}, {state} </p>
+            </div>
+            <div className="user-label-div">
+              <p> About {username}: {"Pathetic paw lover <3"}</p>
+            </div>
           </div>
-          <div className="user-label-div">
-            <p>{firstName} {lastName} </p>
+          <div className="user-profile-picture">
           </div>
-          <div className="user-label-div">
-            <p> {email} </p>
-          </div>
-        </div>
         { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
         <PuppyIndexContainer ownerId={user._id} />
+        </div>
       </div>
     )
   }
