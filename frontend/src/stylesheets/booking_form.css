@@ -23,7 +23,7 @@
   border-style: none;
   overflow: hidden;
   height: 300px;
-  width: 300px;
+  width: 500px;
   background-image: url('../images/puppies_bg.png');
   background-size: cover;
   background-position: center;
@@ -58,3 +58,4 @@
     letter-spacing: .15rem;
     cursor: pointer;
 }
+

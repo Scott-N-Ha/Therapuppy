@@ -95,6 +95,7 @@
   justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
+  /* width: 325px; */
 }
 
 .puppy-label {
@@ -121,22 +122,9 @@
   background-size: 100%;
   background-position: center;
   width: 800px;
-  height: 300px;
-  display: flex;
-  flex-direction: column-reverse;
+  height: 400px;
   cursor: none;
-}
-
-.puppy-more-label {
-  background-color: #2b3d79;
-    height: 50px;
-    padding: 17px 10px;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    color: white;
-    cursor: pointer;
+  margin: 20px;
 }
 
 .puppy-more-label.owner {
@@ -146,10 +134,119 @@
 .puppy-show-container {
   display: flex;
   padding: 20px;
+  /* height: 500px; */
   align-items: center;
+  justify-content: center;
+}
+
+.puppy-show-container.more {
+  flex-direction: column;
+  background-image: url('../images/puppies_bg.png');
+  background-position: center;
+  background-size: 45%;
+  padding: 0;
 }
 
 .puppy-info-more {
-  width: 500px;
+  background-color: #f4f6fa80;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.puppy-info-container.more {
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
+  overflow: hidden;
+  padding-top: 20px;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-family: 'Roboto', sans-serif;
+}
+
+.puppy-more-label {
+  width: 350px;
+  height: 235px;
+  border-radius: 5px;
+  /* padding: 20px 10px; */
+  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
+  background-color: #58cfbf;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* justify-content: center; */
+  /* align-content: center; */
+}
+
+.request-dogter-button {
+  margin-top: 10px;
+  height: 45px;
+  width: 295px;
+  padding: 11px 25px;
+  border-radius: 23px;
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  border-style: none;
+  font-size: 17px;
+  color: #58cfbf;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 3px solid white;
+  align-content: center;
+  align-self: center;
+  transition: all 250ms ease-in-out;
+}
+.request-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+a.request-dogter-button.owner, .request-dogter-button:hover {
+  /* border-color: white; */
+  border: 3px solid white;
+  background-color: #58cfbf;
+  color: white;
+  text-align: center;
+}
+
+.request-dogter-button:hover {
+  /* color: #2b3d79;
+  background-color: white;
+  border: 3px solid #2b3d79; */
+  transform: scale(1.1);
+}
+
+.puppy-more-seperator {
+  border-top: 2px solid white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0 30px;
+  text-align: center;
+  overflow: hidden;
+  justify-content: center;
+  background-color:#2b3d79 ;
+}
+
+/* .next-puppy {
+  border-left: 2px solid #219283;
+} */
+
+a.back-button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: white;
+  font-size: 20px;
+  align-self: center;
+  /* padding: 15px; */
+  width: 50%;
 }
