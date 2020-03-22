@@ -9,8 +9,9 @@ const mapStateToProps = (state, ownProps) => {
   let bookings = Object.values(state.entities.bookings);
 
   if ( bookings.length > 0 ) bookings = bookings.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-
-  const bookingsForPuppy = bookings.filter(booking => ownProps.puppyId === booking.puppy);
+  
+  // const bookingsForPuppy = bookings.filter(booking => ownProps.puppyId === booking.puppy);
+  const bookingsForPuppy = bookings.filter(booking => ownProps.location.pathname.split("/")[2] === booking.puppy);
 
   bookingsForPuppy.forEach(booking => {
     if (Date.parse(booking.date) < Date.now()) {
@@ -20,6 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     bookings: bookingsForPuppy,
+    currentUser: state.session.user,
+    currentPuppy: state.entities.puppies[ownProps.location.pathname.split("/")[2]]
   };
 };
 

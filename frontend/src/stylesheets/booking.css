@@ -3,7 +3,7 @@
   border-radius: 10px;
   margin: 6px;
   padding: 15px 20px;
-  min-width: 350px;
+  min-width: 150px;
   /* height: 100%; */
   min-height: 150px;
   max-height: 200px;
@@ -30,6 +30,18 @@
   color: white;
 }
 
+.booking-label.DENIED {
+  background-color: red;
+}
+
+.booking-label.PENDING {
+  background-color: #ffc38d
+}
+
+.booking-label.APPROVED {
+  background-color: #2B3D79;
+}
+
 .booking a {
   color: black;
   font-family: 'Roboto',sans-serif;
@@ -48,25 +60,43 @@
   /* background-image: url('../images/puppies_bg.png');
   background-size: 50%;
   background-position: center; */
-  height: 250px;
+  min-height: 250px;
   overflow: auto;
+  background-color: white;
+  justify-content: center;
+  border-radius: 2em;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
 }
 
 .booking-index-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+} 
+
+
+
+.bookings-container {
+  display: flex;
   flex-wrap: wrap;
   height: 25%;
+  justify-content: center;
 }
+
+.booking-index-container h1 {
+  text-align: center;
+  font-family: 'Abel', sans-serif
+}
+
 
 .booking-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .booking-button, .pending {
   margin-top: 13px;
-  width: 45%;
+  /* width: 45%; */
   text-align: center;
   align-self: center;
   display: inline-block;
@@ -83,6 +113,7 @@
 
 .booking-button.booking-deny {
   background-color: #ff8d8d;
+  margin-left: 5px;
 }
 
 .booking-approve:hover {
@@ -103,4 +134,13 @@
   border: 2px solid #2b3d79;
   padding: 10px 18px 10px 18px;
   color: #2b3d79;
+}
+
+.booking-session-text {
+  font-family: 'Roboto',sans-serif;
+  font-size: 25px;
+  font-weight:300;
+  align-self: center;
+  text-align: center;
+  margin-top:30px;
 }

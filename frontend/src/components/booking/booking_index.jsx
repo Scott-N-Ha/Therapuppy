@@ -19,17 +19,27 @@ export default class BookingIndex extends React.Component{
   }
 
   render(){
-    const { bookings } = this.props;
+    const { bookings, currentUser, currentPuppy } = this.props;
 
-    let bookingContainers = bookings.map(booking => {
-      return <BookingContainer booking={booking} />
-    });
+    // let bookingContainers = bookings.map(booking => {
+    //   return <BookingContainer booking={booking} />
+    // });
 
+    let bookingContainers = bookings
+      .filter(booking => booking.renter._id === currentUser._id)
+      .map(booking => { return <BookingContainer key={booking._id} booking={booking} />});
+    
+ 
     return (
       <div className="booking-index">
         <div className="booking-index-container">
-        { bookingContainers }
+        <h1 className="puppy-info-header">Your Sessions with Dogter {currentPuppy.name} !</h1>
+        <div className="bookings-container">
+        { bookingContainers.length === 0 ? 
+          (<div className="booking-session-text">Awww, it looks like you haven't booked any sessions with Dogter {currentPuppy.name}. Why don't you give {currentPuppy.sex === "M" ? ("him"):("her")} a chance and request a session today?</div>) 
+          : (bookingContainers) }
         </div>
+        </div> 
       </div>
     )
   }

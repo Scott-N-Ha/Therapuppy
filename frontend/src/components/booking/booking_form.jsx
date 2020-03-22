@@ -95,8 +95,8 @@ export default class BookingForm extends React.Component {
 
       this.props.createBooking({ booking: newBooking })
         .then(res => {
-          this.props.closeModal()
           this.cancel();
+          this.props.openModal("yourBookings")
         });
     }
   }
@@ -114,6 +114,7 @@ export default class BookingForm extends React.Component {
   }
 
   render(){
+    const {puppy} = this.props
     return (
       <div className="booking-form-div">
         <form className="booking-form" onSubmit={this.handleSubmit}>
@@ -123,7 +124,7 @@ export default class BookingForm extends React.Component {
           <label>Therapuppy Price: 
             <input  className="input-form cost-input" type="number" name="totalCost" value={this.state.totalCost} disabled />
           </label>
-          <button className="input-form submit-input" >Request a Session with this Dogter!</button>
+          <button className="input-form submit-input" >Request Dogter {puppy.name}!</button>
         </form>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : undefined }
       </div>
