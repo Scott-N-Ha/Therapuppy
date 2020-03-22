@@ -28,9 +28,9 @@ export default class PuppyIndex extends React.Component {
         <h1>Local Dogters that'll eat out of the palm of your hand.</h1>
         </div> */}
         <div className="puppies-bg">
-      <div className="puppy-index">
-        { puppiesContainers }
-      </div>
+          <div className="puppy-index">
+            { puppiesContainers }
+          </div>
         </div>
       </>
     )
