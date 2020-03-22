@@ -8,6 +8,11 @@
   flex-wrap: wrap;
   position: absolute;
   /* margin-top: 100px; */
+  background-image: url('../images/puppies_bg.png');
+  background-size: 50%;
+  background-repeat: repeat;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .puppy {
@@ -36,13 +41,13 @@
 
 .puppies-bg {
   /* background-color: #deeeec; */
-  background-image: url('../images/puppies_bg.png');
+  /* background-image: url('../images/puppies_bg.png');
   background-size: 50%;
   background-repeat: repeat;
   min-height: 100vh;
-  min-width: 100vw;
-  position: sticky;
-  overflow: auto;
+  min-width: 100vw; */
+  /* position: sticky;
+  overflow: auto; */
 }
 
 .puppy-info-container {
