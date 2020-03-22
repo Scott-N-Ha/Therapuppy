@@ -61,7 +61,9 @@
   background-size: 50%;
   background-position: center; */
   min-height: 250px;
-  overflow: auto;
+  max-height: 450px;
+  width: 650px;
+  /* overflow: auto; */
   background-color: white;
   justify-content: center;
   border-radius: 2em;
@@ -71,6 +73,7 @@
 .booking-index-container {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 
 } 
 

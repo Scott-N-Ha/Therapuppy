@@ -35,7 +35,7 @@ export default class Puppy extends React.Component {
             <div className="puppy-info-flex age-sex">
               <div>
                 <p>{age} {age > 1 ? ("years") : "year"} old</p>
-                <p>{sex === "M" ? ("Good Boy") : ("Sweet Gal")}</p>
+                <p>{sex === "M" ? ("Good boy") : ("Sweet gal")}</p>
               </div>
             </div>
           </div>
@@ -64,8 +64,18 @@ export default class Puppy extends React.Component {
         </div>
       </div>
       {isCurrentUserPuppy ? 
-      // (<div className="puppy-more-label owner">Dogter {puppy.name}</div>)
-      null 
+      (<div className="puppy-more-label owner">
+      <div className="puppy-more-seperator">
+        <a onClick={() => openModal("yourBookings") }className="back-button">
+          All Requests 
+        </a>
+      </div>
+      <div className="puppy-more-seperator">
+        <Link to="/puppies" className="back-button">
+          Back to All Dogters 
+        </Link>
+      </div>
+      </div>)
       : (<div className="puppy-more-label">
         <div className="request-button-container">
           <button className="request-dogter-button" onClick={() => openModal("requestDogter")}> 
@@ -87,7 +97,7 @@ export default class Puppy extends React.Component {
         </div>
         </div>)}
       </div>
-      <BookingIndexContainer puppyId={puppy._id} />
+      {/* <BookingIndexContainer puppyId={puppy._id} /> */}
       </>
     )
   }

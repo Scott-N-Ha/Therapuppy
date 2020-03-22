@@ -22,18 +22,22 @@ export default class BookingIndex extends React.Component{
     const { bookings, currentUser, currentPuppy } = this.props;
 
     let bookingContainers = bookings
-      .filter(booking => booking.renter._id === currentUser._id)
+      .filter(booking => currentUser._id === booking.owner._id ? booking === booking : booking.renter._id === currentUser._id)
       .map(booking => { return <BookingContainer key={booking._id} booking={booking} /> });
     // let bookingContainers = bookings.map(booking => {
     //   return <BookingContainer booking={booking} />
     // });
+    // debugger
+    const header = currentUser._id === currentPuppy.owner ? (<>{currentPuppy.name}'s Requests</>) 
+    : (<>Your Sessions with Dogter {currentPuppy.name} !</>)
     return (
       <div className="booking-index">
         <div className="booking-index-container">
-        <h1 className="puppy-info-header">Your Sessions with Dogter {currentPuppy.name} !</h1>
+    <h1 className="puppy-info-header">{header}</h1>
         <div className="bookings-container">
         { bookingContainers.length === 0 ? 
-          (<div className="booking-session-text">Awww, it looks like you haven't booked any sessions with Dogter {currentPuppy.name}. Why don't you give {currentPuppy.sex === "M" ? ("him"):("her")} a chance and request a session today?</div>) 
+  (currentUser._id === currentPuppy.owner ? <div className="booking-session-text">Aww, it looks like Dogter {currentPuppy.name.charAt(0).toUpperCase() + currentPuppy.name.slice(1)} doesn't have any requests yet ! Why don't you check back later. :)</div>
+            : <div className="booking-session-text">Awww, it looks like you haven't booked any sessions with Dogter {currentPuppy.name.charAt(0).toUpperCase() + currentPuppy.name.slice(1)}. Why don't you give {currentPuppy.sex === "M" ? ("him"):("her")} a chance and request a session today?</div>) 
           : (bookingContainers) }
         </div>
         </div> 

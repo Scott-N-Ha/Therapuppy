@@ -47,6 +47,7 @@ export default class Booking extends React.Component{
     const { totalCost, date } = booking;
 
     const old = Date.parse(this.props.booking.date) < Date.now()
+    // debugger
 
     return (
       <div className={`booking ${ old ? 'old' : '' }`}>

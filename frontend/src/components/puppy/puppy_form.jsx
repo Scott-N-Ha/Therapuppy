@@ -202,7 +202,7 @@ export default class PuppyForm extends React.Component {
       <div className="puppy-form-div">
         <div className="puppy-photo-upload">
         { this.state.imageUrl ? <img className="puppy-preview-image" src={this.state.imageUrl} alt={this.state.name} /> : <div className="dogter-image-text">Upload a photo of your Certified Dogter to get started !</div>}
-          <label className="start-button">
+          <label className="start-button upload">
             Choose a file
             <input
               type="file"

@@ -149,7 +149,7 @@
 
 .puppy-info-more {
   background-color: #f4f6fa80;
-  width: 100%;
+  min-width: 100%;
   padding: 40px;
   display: flex;
   justify-content: space-around;
@@ -321,4 +321,8 @@ a.back-button {
 .puppy-desc-text p {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+}
+
+.puppy-more-label.owner {
+  justify-content: center;
 }

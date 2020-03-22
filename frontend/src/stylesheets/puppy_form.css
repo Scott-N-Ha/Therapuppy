@@ -73,8 +73,11 @@
 }
 
 .puppy-photo-upload img{
-  height: 30%;
-  object-fit: contain;
+  height: 50%;
+  width: 90%;
+  border-radius: 5px;
+
+  /* object-fit: contain; */
   /* box-shadow: ; */
 }
 
