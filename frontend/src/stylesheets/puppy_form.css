@@ -72,6 +72,11 @@
   width: 300px
 }
 
+.puppy-photo-upload img{
+  height: 30%;
+  object-fit: contain;
+}
+
 .dogter-image-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
