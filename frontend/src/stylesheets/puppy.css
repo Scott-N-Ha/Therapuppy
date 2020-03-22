@@ -323,6 +323,10 @@ a.back-button {
   border-bottom: 1px solid #ffc8bd
 }
 
+.hr.user {
+  border-bottom: 2px solid #ffc8bd
+}
+
 .puppy-desc-text p {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;

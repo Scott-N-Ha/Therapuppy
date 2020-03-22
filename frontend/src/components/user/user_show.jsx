@@ -45,6 +45,7 @@ export default class UserShow extends React.Component {
     if (user === undefined) return this.missingUser();
 
     const { username, email, firstName, lastName, isOwner, city, state } = user;
+    debugger
 
     return (
       <div className="user">
@@ -56,12 +57,16 @@ export default class UserShow extends React.Component {
         <div className="user-profile-container">
             <div className="user-info-flex">
           <div className="user-info-container">
+            <div className="user-profile-picture"></div>
+            <div className="user-info-labels">
             <div className="user-label-div username">
-              <p>{username} <img className="checkmark" src="blue_check_mark.png" alt="" /></p>
+              <p className="username-header">{username} <img className="checkmark" src="blue_check_mark.png" alt="" /></p>
             </div>
+              <div className="hr user"></div>
             {/* <div className="user-label-div">
               <p>{firstName} {lastName} </p>
             </div> */}
+            <div>
             <div className="user-label-div">
               <p> Email: {email} </p>
             </div>
@@ -71,9 +76,10 @@ export default class UserShow extends React.Component {
             <div className="user-label-div">
               <p> About {username}: {"Pathetic paw lover <3"}</p>
             </div>
+            </div>
+            </div>
           </div>
-          <div className="user-profile-picture">
-          </div>
+        
           { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
             </div>
         <PuppyIndexContainer ownerId={user._id} />

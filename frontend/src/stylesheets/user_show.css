@@ -15,25 +15,37 @@
 
 .user-info-flex {
   display: flex;
+  height: 200px;
+  padding: 0 40px;
+}
+
+.user-info-labels {
+  width: 500px;
+  height: 200px;
 }
 
 .user-info-container{
   border-radius: 5px;
-  background-color: white;
-  box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527);
-  overflow: hidden;
-  padding: 25px 40px;
-  width: 400px;
+  /* background-color: white; */
+  /* box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527); */
+  /* overflow: hidden; */
+  /* padding: 25px 40px; */
+  display: flex;
+  /* width: 400px; */
   height: 400px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
 }
 
-.user-label-div.username{
-  border: 1px solid red;
-  display: flex;
+.username-header {
+  font-family: 'Abel', sans-serif;
+  color: #2b3d79;
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  display:flex;
   align-items: center;
 }
 
@@ -43,11 +55,12 @@
   background-position: center;
   background-size: 69%;
   background-repeat: no-repeat;
-  width: 300px;
-  height: 300px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   cursor: default;
-  align-self: center;
+  align-self: top;
+  margin-right: 15px;
 }
 
 .user-label-div{
@@ -55,6 +68,7 @@
 }
 
 .checkmark {
-  height: 15px;
-  width: 15px;
+  margin-left: 5px;
+  height: 25px;
+  width: 25px;
 }
