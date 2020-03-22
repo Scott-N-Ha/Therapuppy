@@ -161,7 +161,7 @@
   background-color: white;
   box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
   overflow: hidden;
-  padding-top: 20px;
+  padding: 25px 40px;
   width: 800px;
   height: 400px;
   display: flex;
@@ -249,4 +249,32 @@ a.back-button {
   align-self: center;
   /* padding: 15px; */
   width: 50%;
+}
+
+.main-puppy-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-puppy-info-container div {
+  /* display: flex; */
+}
+
+.puppy-info-header {
+  font-family: 'Abel', sans-serif;
+  color: #2b3d79;
+  font-size: 40px;
+}
+
+.puppy-info-flex {
+  display: flex;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+
+hr {
+  margin-bottom: 20px;
+  display: block;
+  border: 0;
+  border-bottom: 1px solid #d2d1d3
 }

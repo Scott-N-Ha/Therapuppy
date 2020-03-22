@@ -15,33 +15,45 @@ export default class Puppy extends React.Component {
     const { name, age, sex, price } = puppy;
 
     return (
-      <>
+      <> 
       <div className="puppy-info-more">
       {/* { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> } */}
       <div className="puppy-info-container more">
-        <div className="puppy-label-div">
-          <label className="puppy-label">Owner:</label> <Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link>
+          <h1 className="puppy-info-header">{puppy.name}</h1>
+        <div className="main-puppy-info-container">
+          <div>
+            <div className="puppy-info-flex">
+             <p>{breed}</p>
+             <p>${price}</p>
+            </div>
+             <hr/>
+          </div>
+          <div>
+            <div className="puppy-info-flex">
+            Age: <p>{age}</p>
+            Sex: <p>{sex}</p>
+            </div>
+              <hr/>
+          </div>
         </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Age:</label> <p>{age}</p>
+        <h1 className="puppy-info-header">About</h1>
+        <div>
+          <div className="puppy-info-flex">
+          Fluffy Rating: <p>{fluffyRating}</p>
+          Ear Type: <p>{earType}</p>
+          Nature Rating: <p>{natureRating}</p>
+          </div>
+          <hr/>
         </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Breed:</label> <p>{breed}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Fluffy Rating:</label> <p>{fluffyRating}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Ear Type:</label> <p>{earType}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Sex:</label> <p>{sex}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Nature Rating:</label> <p>{natureRating}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Price:</label> <p>${price}</p>
+          <h1 className="puppy-info-header">Meet {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)}</h1>
+        <div className="puppy-desc-text">
+          <p>I'm gonna make you an offer you can't refuse! This good {puppy.sex === "M" ? "boy" : "girl"} will make your day.
+            was found as a stray in Hayward, whattaya gonna do, ya know? 
+            {puppy.sex === "M" ? "He" : "She" } likes calling shots and mobbing around Muttville with {puppy.sex === "M" ? "his" : "her" } goombahs. 
+            {puppy.sex === "M" ? "He" : "She" } enjoys the finest (dog) foods, and is also a heavy drinker (of water). 
+            {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)} is already a member of a family, 
+            but {puppy.sex === "M" ? "he" : "she" }'d still be happy to take you in. Come meet this adorable mutt today!
+          </p>
         </div>
       </div>
       {isCurrentUserPuppy ? 
