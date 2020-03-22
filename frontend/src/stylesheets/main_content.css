@@ -79,14 +79,14 @@
   text-transform: uppercase;
 }
 
-.section-2 {
+.section-3 {
   /* background-color: #ffc38d; */
   background-image: url(https://wallpapersite.com/images/wallpapers/labrador-retriever-4000x2667-puppy-dog-hd-4k-3006.jpg);
   background-position: center;
   background-repeat: none;
 }
 
-.section-3 {
+.section-2 {
   text-align: right;
   /* background-color: #58cfbf; */
   background-image: url(https://wallpaperaccess.com/full/769133.jpg);
@@ -95,7 +95,7 @@
   clear: both;
 }
 
-.section-3 .sub-section {
+.section-2 .sub-section {
   margin-left: auto;
   margin-right: 0rem;
 }
