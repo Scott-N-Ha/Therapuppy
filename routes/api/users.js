@@ -11,13 +11,18 @@ const User = require('../../models/User.js');
 const keys = require('../../config/keys.js');
 const Puppy = require('../../models/Puppy.js');
 const Booking = require('../../models/Booking.js');
+const { fetchUrl } = require("./util");
+
 
 const fetchPuppies = user => {
-  return Puppy.where("_id")
-    .in(user.puppies)
+  return Puppy.find({ _id: user.puppies })
     .then(res => {
       const puppies = {};
-      res.forEach(el => (puppies[el.id] = el));
+			res.forEach(puppy => {
+				puppy.photo = fetchUrl(puppy);
+				(puppies[puppy.id] = puppy)
+			}
+			);
       return puppies;
     });
 };

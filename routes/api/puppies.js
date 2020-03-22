@@ -1,35 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const mongoose = require("mongoose");
-const multer = require("multer");
 const validatePuppyInput = require("../../validations/puppy");
 const keys = require('../../config/keys');
+const multer = require("multer");
 
 const User = require("../../models/User");
 const Puppy = require("../../models/Puppy");
 const Booking = require("../../models/Booking");
+const { s3bucket, fetchUrl } = require("./util");
 
-let AWS = require("aws-sdk");
 let storage = multer.memoryStorage();
 let upload = multer({
   storage: storage
 });
-
-let s3bucket = new AWS.S3({
-  accessKeyId: keys.accessKeyId,
-  secretAccessKey: keys.secretAccessKey,
-  region: "us-west-2"
-});
-
-const fetchUrl = function(puppy) {
-  const urlParams = {
-    Bucket: "therapuppy-test",
-    Key: puppy.s3Key
-  };
-
-  return s3bucket.getSignedUrl("getObject", urlParams);
-};
 
 const fetchBookings = puppy => {
   return Booking.where("puppy")
