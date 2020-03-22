@@ -103,3 +103,16 @@
 .section-3 .sub-section {
   margin-left: 5%;
 }
+
+.section-4 {
+  display: flex;
+  justify-content: center;
+}
+
+.meet-team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
