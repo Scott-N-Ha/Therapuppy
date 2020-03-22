@@ -6,7 +6,6 @@ class NavBar extends React.Component {
     super(props);
 
     this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
     this.handleModal = this.handleModal.bind(this)
     this.handleDropdown = this.handleDropdown.bind(this)
   }
@@ -24,17 +23,13 @@ class NavBar extends React.Component {
     const drop = document.getElementsByClassName("dropdown-container")[0]
     if (typeof drop === "undefined") return null;
     drop.className.includes("active") ? (drop.className="dropdown-container") : (drop.className = "dropdown-container active") 
-  
   }
 
-  getLinks(){
-    const {openModal, currentUser} = this.props
-    
-    if (this.props.loggedIn){
-      return (
-        <div className="nav-bar logged">
-          <div className="nav-bar-logo-container">
-        <Link to="/"><h1 className="therapuppy-header">THERAP(UPP)Y</h1></Link>
+  loggedIn(openModal, currentUser){
+    return (
+      <div className="nav-bar logged">
+        <div className="nav-bar-logo-container">
+          <Link to="/"><h1 className="therapuppy-header">THERAP(UPP)Y</h1></Link>
         </div>
         <div className="nav-bar-links">
           <Link to='/puppies'><p>Certified Dogters</p></Link>
@@ -63,21 +58,26 @@ class NavBar extends React.Component {
             </div>
           </div>
         </div>
-        </div>
-      )
-    } else {
-      return (<div className="nav-bar">
+      </div>
+    )
+  }
+
+  loggedOut(){
+    return (
+      <div className="nav-bar">
         <div className="nav-bar-logo-container">
         <Link to="/"><h1 className="therapuppy-header">THERAP(UPP)Y</h1></Link>
         </div>
-      </div>)
-    } 
+      </div>
+    )
   }
-
+  
   render(){
+    const { loggedIn, openModal, currentUser } = this.props;
+
     return (
       <>
-        {this.getLinks()} 
+        { loggedIn ? this.loggedIn(openModal, currentUser) : this.loggedOut() } 
       </>
     )
   }

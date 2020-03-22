@@ -52,7 +52,7 @@ export default class Puppy extends React.Component {
       
         <div className="puppy-info-container">
           <label className="puppy-name">{name}</label>
-          <label className="puppy-price">${price}</label>
+          <label className="puppy-price">${price}/session</label>
         </div>
       </>
     )
