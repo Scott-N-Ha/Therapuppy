@@ -16,8 +16,9 @@ const bookingsReducer = (state = initialState, action) => {
       return Object.assign(nextState, action.payload.bookings);
 
     case RECEIVE_BOOKING:
-      nextState[action.payload.booking._id] = action.payload.booking;
-      return nextState;
+      // debugger
+      // nextState[action.payload.booking._id] = action.payload.booking;
+      return Object.assign(nextState, {[action.payload.booking._id]: action.payload.booking});
 
     case RECEIVE_PUPPY:
       return Object.assign(nextState, action.payload.bookings);
