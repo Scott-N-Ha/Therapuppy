@@ -62,15 +62,13 @@ router.post("/",
 
 router.get("/", (req, res) => {
   Booking.find()
+    .populate("owner", "-password")
+    .populate("renter", "-password")
     .then(bookings => {
       const bookingsResult = {};
       const renters = {};
-
       bookings.forEach(booking => {
         bookingsResult[booking.id] = booking;
-
-        let renter = User.findById(booking.renter);
-        if (renter) renters[renter.id] = renter;
       });
 
       res.json({

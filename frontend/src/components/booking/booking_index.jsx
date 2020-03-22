@@ -21,15 +21,12 @@ export default class BookingIndex extends React.Component{
   render(){
     const { bookings, currentUser, currentPuppy } = this.props;
 
+    let bookingContainers = bookings
+      .filter(booking => booking.renter._id === currentUser._id)
+      .map(booking => { return <BookingContainer key={booking._id} booking={booking} /> });
     // let bookingContainers = bookings.map(booking => {
     //   return <BookingContainer booking={booking} />
     // });
-
-    let bookingContainers = bookings
-      .filter(booking => booking.renter._id === currentUser._id)
-      .map(booking => { return <BookingContainer key={booking._id} booking={booking} />});
-    
- 
     return (
       <div className="booking-index">
         <div className="booking-index-container">
