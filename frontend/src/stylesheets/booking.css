@@ -45,10 +45,10 @@
   
   /* justify-items: center; */
   padding: 20px;
-  background-image: url('../images/puppies_bg.png');
+  /* background-image: url('../images/puppies_bg.png');
   background-size: 50%;
-  background-position: center;
-  height: 100vh;
+  background-position: center; */
+  height: 250px;
   overflow: auto;
 }
 
