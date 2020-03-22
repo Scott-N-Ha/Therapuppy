@@ -87,7 +87,7 @@ export default class Puppy extends React.Component {
         </div>
         </div>)}
       </div>
-      {/* <BookingIndexContainer puppyId={puppy._id} /> */}
+      <BookingIndexContainer puppyId={puppy._id} />
       </>
     )
   }

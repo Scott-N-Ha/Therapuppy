@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchBookings = () => {
-  debugger
+  // debugger
   return(
   axios.get('api/bookings')
 );}
