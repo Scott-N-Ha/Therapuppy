@@ -80,23 +80,46 @@
   text-transform: uppercase;
 }
 
-.section-3 {
-  /* background-color: #ffc38d; */
-  background-image: url(https://wallpapersite.com/images/wallpapers/labrador-retriever-4000x2667-puppy-dog-hd-4k-3006.jpg);
-  background-position: center;
-  background-repeat: none;
-}
-
 .section-2 {
   text-align: right;
   /* background-color: #58cfbf; */
   background-image: url(https://wallpaperaccess.com/full/769133.jpg);
+<<<<<<< HEAD
   background-position: -240px -324px;
   background-repeat: none;
   clear: both;
+=======
+  /* background-image: url(https://wallpaperaccess.com/full/769133.jpg); */
+  background-position: center;
+  background-size: 100% auto;
+>>>>>>> b5f6f333765a3bec267d7db8eccfa8375640f999
 }
 
 .section-2 .sub-section {
   margin-left: auto;
-  margin-right: 0rem;
+  margin-right: 5%;
+}
+
+.section-3 {
+  /* background-color: #ffc38d; */
+  background-image: url(http://hddesktopwallpapers.in/wp-content/uploads/2015/09/funny-dog-wallpapers.jpg);
+  background-position: center;
+  background-size: 100% auto;
+}
+
+.section-3 .sub-section {
+  margin-left: 5%;
+}
+
+.section-4 {
+  display: flex;
+  justify-content: center;
+}
+
+.meet-team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }

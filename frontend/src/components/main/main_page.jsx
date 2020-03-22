@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PuppyIndexContainer from '../puppy/puppy_index_container.js';
-import PuppyFormContainer from '../puppy/puppy_form_container.js';
+import TeamMember from '../team/team_member.jsx';
 
 class MainPage extends React.Component {
   constructor(props){
@@ -61,7 +61,36 @@ class MainPage extends React.Component {
 
 
         <div className="section-4">
-          
+          <div className="meet-team">
+            Meet the team that brought you Therapuppy!
+            <div className="team-members">
+              <TeamMember
+                name="Scott Ha"
+                imageUrl="https://media-exp1.licdn.com/dms/image/C5603AQG8SV4IvwOUVw/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=pZUYfjN44tOR2KwGNg2qEj2kQU2FVNANr3n8AZwDxKI"
+                linkedIn="https://www.linkedin.com/in/hascottn/"
+                gitHub="https://github.com/Scott-N-Ha"
+              />
+              <TeamMember
+                name="Olivia Yoon"
+                imageUrl="https://media-exp1.licdn.com/dms/image/C5603AQHjbgcgDeYvEQ/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=GDKXSVQKMslRhHcJUIQ-94sUV7qJa2JRr2qyXdut2Mg"
+                linkedIn="https://www.linkedin.com/in/yooneunsil/"
+                gitHub="https://github.com/jigglycode"
+              />
+              <TeamMember
+                name="Anson Chong"
+                imageUrl="https://media-exp1.licdn.com/dms/image/C5103AQETzecBPvfv8g/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=Vw6Tzfg3Gwn5WJOJ154JSyVyTb7L7Zakib0xl-o7bnA"
+                linkedIn="https://www.linkedin.com/in/ansonchongch/"
+                gitHub="https://github.com/Chong-anson"
+              />
+              <TeamMember
+                name="Ryan Leung"
+                imageUrl="https://media-exp1.licdn.com/dms/image/C4D03AQGeOSmR8WMFQw/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=XM8CY_HvobeTbMfRq1_Sp0dgw2RWjrIDv9piwLVQPjw"
+                linkedIn="https://www.linkedin.com/in/ryan-leung-324a45188/"
+                gitHub="https://github.com/mckgegis"
+              />
+
+            </div>
+          </div>
         </div>
       </div>
     )

@@ -1,0 +1,44 @@
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 20px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, .7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  /* font-size: 28px; */
+  margin: 10px;
+  width: 100px;
+}
+
+.tm-image {
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+}
+
+.tm-name {
+  margin: 5px;
+  width: 75%;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.tm-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 7px;
+  font-size: xx-large;
+}
+
+.tm-links a, .tm-links a:visited {
+  color: white;
+}
