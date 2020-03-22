@@ -5,7 +5,8 @@ import UserShow from './user_show.jsx';
 import { fetchSingleUser } from '../../actions/user_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  let user = Object.values(state.session.user)
+  let user = state.session.user
+  // debugger
 
   if (user === undefined) return { user };
 

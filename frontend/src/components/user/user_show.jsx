@@ -45,7 +45,7 @@ export default class UserShow extends React.Component {
     if (user === undefined) return this.missingUser();
 
     const { username, email, firstName, lastName, isOwner, city, state } = user;
-    debugger
+    // debugger
 
     return (
       <div className="user">
