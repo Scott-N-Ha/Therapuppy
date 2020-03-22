@@ -1,50 +1,101 @@
 .main-content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .welcome-text-container {
-    position: relative;
-    padding: 20px
+  position: relative;
+  padding: 20px
 }
 
 
-.welcome-text-container > h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 23px;
-    text-align: center;
-    /* width: 260px; */
-    color: #ffc38d;
-    /* align-self: center; */
+.welcome-text-container>h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  text-align: center;
+  /* width: 260px; */
+  color: #ffc38d;
+  /* align-self: center; */
 }
 
-.welcome-text-container > p {
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    /* color: #ffc38d; */
-    color: #d6d7d8;
-    margin-bottom: 10px;
+.welcome-text-container>p {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  /* color: #ffc38d; */
+  color: #d6d7d8;
+  margin-bottom: 10px;
 }
+
 /* 
 .welcome-text-container > p:last-of-type {
     color: black;
     font-size: 14px;
 } */
 
-.welcome-text-container > hr {
-    width: 50px;
-    height: 2px;
-    background-color: #d6d7d8;
-    display: block;
-    border: 0;
-    /* border-bottom: 1px solid #ffc38d; */
-    padding: 0;
+.welcome-text-container>hr {
+  width: 50px;
+  height: 2px;
+  background-color: #d6d7d8;
+  display: block;
+  border: 0;
+  /* border-bottom: 1px solid #ffc38d; */
+  padding: 0;
 
 }
+
 .main {
-    background-color: white;
+  background-color: white;
+}
+
+.section-2, .section-3 {
+  display: flex;
+  padding: 20px 40px 20px 40px;
+  flex-wrap: wrap;
+  height: 469px;
+}
+
+.sub-section {
+  padding: 20px;
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 20px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+  border-radius: 20px;
+  width: 300px;
+  height: 200px;
+
+  margin-top: 100px;
+
+  background-color: rgba(0,0,0,0.7);
+}
+
+.sub-section span {
+  color: white;
+}
+
+.sub-section-header {
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.section-3 {
+  /* background-color: #ffc38d; */
+  background-image: url(https://wallpapersite.com/images/wallpapers/labrador-retriever-4000x2667-puppy-dog-hd-4k-3006.jpg);
+  background-position: center;
+  background-repeat: none;
+}
+
+.section-2 {
+  text-align: right;
+  /* background-color: #58cfbf; */
+  background-image: url(https://wallpaperaccess.com/full/769133.jpg);
+  background-position: center;
+  background-repeat: none;
+  clear: both;
+}
+
+.section-2 .sub-section {
+  margin-left: auto;
+  margin-right: 0rem;
 }
