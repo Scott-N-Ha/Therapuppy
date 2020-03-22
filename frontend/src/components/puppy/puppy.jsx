@@ -23,34 +23,41 @@ export default class Puppy extends React.Component {
         <div className="main-puppy-info-container">
           <div>
             <div className="puppy-info-flex">
-             <p>{breed}</p>
-             <p>${price}</p>
+              <div>
+                <p>{breed}</p>
+                <p>${price}/per session</p>
+                <p>{owner.city}, {owner.state}</p>
+              </div>
             </div>
-             <hr/>
+             <div className="hr"/>
           </div>
           <div>
-            <div className="puppy-info-flex">
-            Age: <p>{age}</p>
-            Sex: <p>{sex}</p>
+            <div className="puppy-info-flex age-sex">
+              <div>
+                <p>{age} {age > 1 ? ("years") : "year"} old</p>
+                <p>{sex === "M" ? ("Good Boy") : ("Sweet Gal")}</p>
+              </div>
             </div>
-              <hr/>
           </div>
         </div>
+            <div className="hr"/>
         <h1 className="puppy-info-header">About</h1>
         <div>
-          <div className="puppy-info-flex">
-          Fluffy Rating: <p>{fluffyRating}</p>
-          Ear Type: <p>{earType}</p>
-          Nature Rating: <p>{natureRating}</p>
+          <div className="puppy-info-flex about">
+            <div>
+          <p>Fluffy level ☁️<span>{fluffyRating}</span></p>
+          <p>Ear type 💕<span>{earType}</span></p>
+          <p>Excitability level 🚀<span>{natureRating}</span></p>
+            </div>
           </div>
-          <hr/>
+          <div className="hr"/>
         </div>
           <h1 className="puppy-info-header">Meet {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)}</h1>
         <div className="puppy-desc-text">
-          <p>I'm gonna make you an offer you can't refuse! This good {puppy.sex === "M" ? "boy" : "girl"} will make your day.
-            was found as a stray in Hayward, whattaya gonna do, ya know? 
-            {puppy.sex === "M" ? "He" : "She" } likes calling shots and mobbing around Muttville with {puppy.sex === "M" ? "his" : "her" } goombahs. 
-            {puppy.sex === "M" ? "He" : "She" } enjoys the finest (dog) foods, and is also a heavy drinker (of water). 
+          <p>I'm gonna make you an offer you can't refuse! This good {puppy.sex === "M" ? "boy" : "girl"} will make your day. 
+           {puppy.sex === "M" ? " He" : " She" } was found as a stray in Hayward, whattaya gonna do, ya know?
+            {puppy.sex === "M" ? " He" : " She" } likes calling shots and mobbing around Muttville with {puppy.sex === "M" ? "his" : "her" } goombahs. 
+            {puppy.sex === "M" ? " He" : " She" } enjoys the finest (dog) foods, and is also a heavy drinker (of water). 
             {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)} is already a member of a family, 
             but {puppy.sex === "M" ? "he" : "she" }'d still be happy to take you in. Come meet this adorable mutt today!
           </p>
@@ -65,12 +72,12 @@ export default class Puppy extends React.Component {
           Request Dogter {puppy.name}
           </button>
           <Link to={`/users/${owner.username}`} className="request-dogter-button owner" > 
-          More About the Owner
+          Owner Information
           </Link>
         </div>
         <div className="puppy-more-seperator">
           <Link to="/puppies" className="back-button">
-            Back to Dogters 
+            Back to All Dogters 
           </Link>
         </div>
         </div>)}
