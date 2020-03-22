@@ -18,6 +18,7 @@ import "./stylesheets/booking_form.css";
 import "./stylesheets/booking_pending.css";
 import './stylesheets/splash.scss'
 import './stylesheets/main_content.css'
+import './stylesheets/team_members.css'
 import "./stylesheets/modal.scss";
 import "./stylesheets/user_show.css";
 

@@ -143,7 +143,7 @@
   flex-direction: column;
   background-image: url('../images/puppies_bg.png');
   background-position: center;
-  background-size: 45%;
+  background-size: contain;
   padding: 0;
 }
 
@@ -159,11 +159,11 @@
 .puppy-info-container.more {
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
+  box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527);
   overflow: hidden;
-  padding-top: 20px;
-  width: 800px;
-  height: 400px;
+  padding: 25px 40px;
+  width: 700px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -175,11 +175,11 @@
   height: 235px;
   border-radius: 5px;
   /* padding: 20px 10px; */
-  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
-  background-color: #58cfbf;
+  
+  /* background-color: #58cfbf; */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* justify-content: center; */
   /* align-content: center; */
 }
@@ -193,12 +193,13 @@
   background-color: white;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
+  box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527);
   border-style: none;
   font-size: 17px;
   color: #58cfbf;
   text-transform: uppercase;
   cursor: pointer;
-  border: 3px solid white;
+  border: 3px solid #58cfbf;
   align-content: center;
   align-self: center;
   transition: all 250ms ease-in-out;
@@ -226,15 +227,17 @@ a.request-dogter-button.owner, .request-dogter-button:hover {
 }
 
 .puppy-more-seperator {
-  border-top: 2px solid white;
+  /* border-top: 2px solid white; */
+  border-radius: 2em;
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 0 30px;
+  /* padding: 0 30px; */
   text-align: center;
   overflow: hidden;
   justify-content: center;
   background-color:#2b3d79 ;
+  box-shadow: 0 5px 10px -1px rgba(35, 36, 81, 0.527);
 }
 
 /* .next-puppy {
@@ -249,4 +252,72 @@ a.back-button {
   align-self: center;
   /* padding: 15px; */
   width: 50%;
+}
+
+.main-puppy-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.puppy-info-header {
+  font-family: 'Abel', sans-serif;
+  color: #2b3d79;
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+.puppy-info-flex {
+  display: flex;
+  /* text-transform: capitalize; */
+  margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.puppy-info-flex div {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.puppy-info-flex div p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.puppy-info-flex.about div p > span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.puppy-info-flex.age-sex {
+  font-weight: 300;
+}
+
+.puppy-info-flex.about div {
+  width: 100%;
+}
+
+.puppy-info-flex.age-sex div {
+  display: flex;
+  justify-content: space-between;
+  width: 175px;
+}
+
+.puppy-info-flex.age-sex div p {
+  font-weight: 300;
+}
+
+.hr {
+  margin-bottom: 20px;
+  display: block;
+  border: 0;
+  border-bottom: 1px solid #ffc8bd
+}
+
+.puppy-desc-text p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }

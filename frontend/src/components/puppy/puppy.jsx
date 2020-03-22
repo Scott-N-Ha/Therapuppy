@@ -15,33 +15,52 @@ export default class Puppy extends React.Component {
     const { name, age, sex, price } = puppy;
 
     return (
-      <>
+      <> 
       <div className="puppy-info-more">
       {/* { photo.length < 1 ? <div className="puppy-image">No Image URL</div> : <img src={photo} alt={name} className="puppy-image" /> } */}
       <div className="puppy-info-container more">
-        <div className="puppy-label-div">
-          <label className="puppy-label">Owner:</label> <Link to={`/users/${owner.username}`}>{owner.firstName} {owner.lastName}</Link>
+          <h1 className="puppy-info-header">{puppy.name}</h1>
+        <div className="main-puppy-info-container">
+          <div>
+            <div className="puppy-info-flex">
+              <div>
+                <p>{breed}</p>
+                <p>${price}/per session</p>
+                <p>{owner.city}, {owner.state}</p>
+              </div>
+            </div>
+             <div className="hr"/>
+          </div>
+          <div>
+            <div className="puppy-info-flex age-sex">
+              <div>
+                <p>{age} {age > 1 ? ("years") : "year"} old</p>
+                <p>{sex === "M" ? ("Good Boy") : ("Sweet Gal")}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Age:</label> <p>{age}</p>
+            <div className="hr"/>
+        <h1 className="puppy-info-header">About</h1>
+        <div>
+          <div className="puppy-info-flex about">
+            <div>
+          <p>Fluffy level ☁️<span>{fluffyRating}</span></p>
+          <p>Ear type 💕<span>{earType}</span></p>
+          <p>Excitability level 🚀<span>{natureRating}</span></p>
+            </div>
+          </div>
+          <div className="hr"/>
         </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Breed:</label> <p>{breed}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Fluffy Rating:</label> <p>{fluffyRating}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Ear Type:</label> <p>{earType}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Sex:</label> <p>{sex}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Nature Rating:</label> <p>{natureRating}</p>
-        </div>
-        <div className="puppy-label-div">
-          <label className="puppy-label">Price:</label> <p>${price}</p>
+          <h1 className="puppy-info-header">Meet {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)}</h1>
+        <div className="puppy-desc-text">
+          <p>I'm gonna make you an offer you can't refuse! This good {puppy.sex === "M" ? "boy" : "girl"} will make your day. 
+           {puppy.sex === "M" ? " He" : " She" } was found as a stray in Hayward, whattaya gonna do, ya know?
+            {puppy.sex === "M" ? " He" : " She" } likes calling shots and mobbing around Muttville with {puppy.sex === "M" ? "his" : "her" } goombahs. 
+            {puppy.sex === "M" ? " He" : " She" } enjoys the finest (dog) foods, and is also a heavy drinker (of water). 
+            {puppy.name.charAt(0).toUpperCase() + puppy.name.slice(1)} is already a member of a family, 
+            but {puppy.sex === "M" ? "he" : "she" }'d still be happy to take you in. Come meet this adorable mutt today!
+          </p>
         </div>
       </div>
       {isCurrentUserPuppy ? 
@@ -52,17 +71,14 @@ export default class Puppy extends React.Component {
           <button className="request-dogter-button" onClick={() => openModal("requestDogter")}> 
           Request Dogter {puppy.name}
           </button>
-          <Link to={`/users/${owner.username}`} className="request-dogter-button owner" onClick={() => openModal("requestDogter")}> 
-          More About the Owner
+          <Link to={`/users/${owner.username}`} className="request-dogter-button owner" > 
+          Owner Information
           </Link>
         </div>
         <div className="puppy-more-seperator">
           <Link to="/puppies" className="back-button">
-            Back to Dogters 
+            Back to All Dogters 
           </Link>
-          {/* <div className="next-puppy">
-            Next Dogter
-          </div> */}
         </div>
         </div>)}
       </div>

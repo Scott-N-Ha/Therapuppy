@@ -40,6 +40,7 @@
 
 .splash-text p {
     margin: 15px 0px;
+    text-align: center;
 }
 
 .splash-text > h1 {
@@ -52,12 +53,17 @@
 }
 
 .start-button {
-    width: 250px;
+    width: 45%;
     height: 42px;
     font-weight: bold;
     border-style: none;
     margin-top: 15px;
     cursor: pointer;
+}
+
+.splash-button-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 $color: #ffebd9;
