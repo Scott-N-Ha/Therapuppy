@@ -27,7 +27,7 @@ export default class BookingIndex extends React.Component{
 
     let bookingContainers = bookings
       .filter(booking => booking.renter._id === currentUser._id)
-      .map(booking => { return <BookingContainer booking={booking} />});
+      .map(booking => { return <BookingContainer key={booking._id} booking={booking} />});
     
  
     return (

@@ -95,8 +95,8 @@ export default class BookingForm extends React.Component {
 
       this.props.createBooking({ booking: newBooking })
         .then(res => {
-          this.props.closeModal()
           this.cancel();
+          this.props.openModal("yourBookings")
         });
     }
   }
