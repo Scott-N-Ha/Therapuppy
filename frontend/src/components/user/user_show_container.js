@@ -5,9 +5,8 @@ import UserShow from './user_show.jsx';
 import { fetchSingleUser } from '../../actions/user_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  let user = state.session.user
+  let user = Object.values(state.entities.users).find(user => user.username === ownProps.match.params.username);
   // debugger
-
   if (user === undefined) return { user };
 
   return {

@@ -66,16 +66,17 @@ export default class UserShow extends React.Component {
             {/* <div className="user-label-div">
               <p>{firstName} {lastName} </p>
             </div> */}
-            <div>
+            <div className="user-info-container contact">
             <div className="user-label-div">
               <p> Email: {email} </p>
             </div>
             <div className="user-label-div">
               <p> Address: {city}, {state} </p>
             </div>
+            </div>
+            <div className="hr user two"></div>
             <div className="user-label-div">
               <p> About {username}: {"Pathetic paw lover <3"}</p>
-            </div>
             </div>
             </div>
           </div>
