@@ -52,7 +52,7 @@ export default class Puppy extends React.Component {
           <button className="request-dogter-button" onClick={() => openModal("requestDogter")}> 
           Request Dogter {puppy.name}
           </button>
-          <Link to={`/users/${owner.username}`} className="request-dogter-button owner" onClick={() => openModal("requestDogter")}> 
+          <Link to={`/users/${owner.username}`} className="request-dogter-button owner" > 
           More About the Owner
           </Link>
         </div>
@@ -60,9 +60,6 @@ export default class Puppy extends React.Component {
           <Link to="/puppies" className="back-button">
             Back to Dogters 
           </Link>
-          {/* <div className="next-puppy">
-            Next Dogter
-          </div> */}
         </div>
         </div>)}
       </div>
