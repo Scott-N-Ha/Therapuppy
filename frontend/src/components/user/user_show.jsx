@@ -53,9 +53,16 @@ export default class UserShow extends React.Component {
         <h1>Your good boys and girls are bringing us all to your yard.</h1>
       </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
-        <div>
-          {firstName} {lastName}
-          {email}
+        <div className="user-info-container">
+          <div className="user-label-div">
+            <p>{username} <img className="checkmark" src="blue_check_mark.png" alt="" /></p>
+          </div>
+          <div className="user-label-div">
+            <p>{firstName} {lastName} </p>
+          </div>
+          <div className="user-label-div">
+            <p> {email} </p>
+          </div>
         </div>
         { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
         <PuppyIndexContainer ownerId={user._id} />

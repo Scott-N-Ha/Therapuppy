@@ -1,0 +1,23 @@
+.user-info-container{
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 5px 10px -1px rgba(35,36,81,.1);
+  overflow: hidden;
+  padding-top: 20px;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+}
+
+.user-label-div{
+  display: flex;
+}
+
+
+.checkmark {
+  height: 15px;
+  width: 15px;
+}
