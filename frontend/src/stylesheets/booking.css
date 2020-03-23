@@ -114,6 +114,11 @@
   cursor: pointer;
 }
 
+.booking-button.booking-approve {
+  margin-top: 0;
+  padding: 9px 10px;
+}
+
 .booking-button.booking-deny {
   background-color: #ff8d8d;
   margin-left: 5px;
