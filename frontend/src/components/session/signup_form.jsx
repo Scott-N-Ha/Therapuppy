@@ -69,6 +69,7 @@ export default class SignupForm extends React.Component {
       this.setState({ frontErrors: [] });
       inputs.forEach(input => input.classList.remove('session-error'));
     } else {
+      // alert('FUck')();
       this.setState({ frontErrors: ['Please fill in all required fields.'] });
     }
 
