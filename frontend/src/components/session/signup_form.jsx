@@ -40,6 +40,7 @@ export default class SignupForm extends React.Component {
   }
 
   handleChange(e){
+    e.target.classList.remove('session-error');
     if (e.target.name === 'isOwner') {
       this.setState({ isOwner: e.target.checked });
     } else {
@@ -59,7 +60,7 @@ export default class SignupForm extends React.Component {
       
       if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
         allow = false;
-        newErrors.push(`${titlize(input.name)} cannot be blank.`);
+        // newErrors.push(`${titlize(input.name)} cannot be blank.`);
         input.classList.add('session-error');
       }
     });
@@ -68,7 +69,8 @@ export default class SignupForm extends React.Component {
       this.setState({ frontErrors: [] });
       inputs.forEach(input => input.classList.remove('session-error'));
     } else {
-      this.setState({ frontErrors: newErrors });
+      // alert('FUck')();
+      this.setState({ frontErrors: ['Please fill in all required fields.'] });
     }
 
     return allow;
@@ -252,8 +254,7 @@ export default class SignupForm extends React.Component {
             </button>
             </div>
         { this.state.frontErrors.length > 0 ? this.renderErrors() : null }
-        <div className="options-container">
-         
+          <div className="options-container">
             <span onClick={() => this.props.openModal("login")}>Already have an account?</span>
           </div>
         </form>

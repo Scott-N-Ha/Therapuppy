@@ -60,9 +60,9 @@ class MainPage extends React.Component {
         </div>
 
 
-        <div className="section-4">
+        <div className="section-5">
           <div className="meet-team">
-            Meet the team that brought you Therapuppy!
+            <label className="meet-header">Meet the team that brought you Therapuppy!</label>
             <div className="team-members">
               <TeamMember
                 name="Scott Ha"

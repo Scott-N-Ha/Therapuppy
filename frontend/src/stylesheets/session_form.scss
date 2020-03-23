@@ -119,8 +119,13 @@
   width: 120px;
 }
 
-.session-error {
-  border: 2px solid red;
+.session-error::placeholder {
+  // border: 2px solid red;
+  color: red;
+}
+
+.session-error-select {
+  color: red;
 }
 
 .auth-errors {
