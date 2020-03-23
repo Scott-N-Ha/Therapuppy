@@ -11,8 +11,8 @@
   background-image: url('../images/puppies_bg.png');
   background-size: 50%;
   background-repeat: repeat;
-  min-height: 100vh;
-  min-width: 100vw;
+  /* min-height: 100vh; */
+  /* min-width: 100vw; */
 }
 
 .puppy {

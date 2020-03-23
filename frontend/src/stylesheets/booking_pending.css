@@ -1,9 +1,10 @@
 .booking-pending-ul {
   /* border: 3px solid lightsalmon; */
   border-radius: 3px;
-  padding: 3px;
+  /* padding: 3px; */
   margin-left: 20px;
   max-height: 170px;
+  width: 300px;
   overflow: auto;
 } 
 
@@ -12,39 +13,66 @@
   /* background-color: aquamarine; */
 }
 
+label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin: 3px;
+}
+
 .booking-pending-puppy {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   text-transform: uppercase;
-  color: white;
-  background-color: salmon;
+  color: black;
+  /* background-color: salmon; */
   padding: 3px;
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 3px;
 }
 
+.booking-pending-puppy a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: black;
+  font-size: 20px;
+}
+
 .booking-date-div {
-  border: 2px solid lightpink;
+  /* border: 1px solid #ffc8bd; */
   border-radius: 3px;
   padding: 3px;
   margin: 5px;
 }
 
 .booking-pending-info {
-  background-color: #becaf1;
+  /* background-color: #becaf1; */
   border-radius: 10px;
   padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3px;
+  border: 1px solid #2b3d79;
 }
 
 .booking-pending-renter {
   text-transform: uppercase;
-  color: white;
-  background-color: lightcoral;
-  padding: 3px;
-  font-weight: bold;
+  /* color: white; */
+  /* background-color: #ffc8bd; */
+  /* padding: 3px; */
+  /* border-radius: 50%; */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.booking-pending-renter a {
+  color: #2b3d79;
 }
 
 .bookings-li-container > p {
   font-family: 'Abel', sans-serif;
   font-size: 40px;
   color: #2b3d79;
+  margin-bottom: 15px;
 }
