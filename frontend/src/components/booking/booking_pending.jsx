@@ -46,7 +46,7 @@ export default class BookingPending extends React.Component {
       <ul className="booking-pending-ul"> 
         { bookings.length >= 1 ? 
         <div className="bookings-li-container">
-          <p>We need your Therapups!</p>
+          <p>Paw of Approval</p>
           {this.processBookings()}
         </div>
         
