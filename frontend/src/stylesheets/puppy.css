@@ -128,7 +128,7 @@
   background-position: center;
   width: 800px;
   height: 400px;
-  cursor: none;
+  /* cursor: none; */
   margin: 20px;
 }
 
