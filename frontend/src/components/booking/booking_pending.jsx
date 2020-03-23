@@ -43,16 +43,20 @@ export default class BookingPending extends React.Component {
   render(){
     const {bookings} = this.props
     return (
-      <ul className="booking-pending-ul"> 
+      <div>
         { bookings.length >= 1 ? 
-        <div className="bookings-li-container">
-          <p>Paw of Approval</p>
-          <div className="hr user"></div>
-          {this.processBookings()}
-        </div>
-        
+        <ul className="booking-pending-ul"> 
+          { bookings.length >= 1 ? 
+          <div className="bookings-li-container">
+            <p>Paw of Approval</p>
+            <div className="hr user"></div>
+            {this.processBookings()}
+          </div>
+          
+          : null }
+        </ul>
         : null }
-      </ul>
+      </div>
     )
   }
 }
