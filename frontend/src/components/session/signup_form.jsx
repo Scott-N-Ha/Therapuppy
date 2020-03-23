@@ -60,16 +60,18 @@ export default class SignupForm extends React.Component {
     inputs.forEach(input => {
       input.classList.remove('session-error');
       
-      if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit")){
-        if (input.value.length < 1) {
-          allow = false;
-          empty = true;
-          input.classList.add('session-error');
-        } else if (input.value.length < 6) {
-          allow = false;
-          notLongEnough = true;
-          input.classList.add('session-error');
-        }
+      if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit" && input.value.length < 1)){
+        // if (input.value.length < 1) {
+        //   allow = false;
+        //   empty = true;
+        //   input.classList.add('session-error');
+        // } else if (input.value.length < 6) {
+          //   allow = false;
+          //   notLongEnough = true;
+          //   input.classList.add('session-error');
+          // }
+        allow = false;
+        input.classList.add('session-error');
       }
     });
 
