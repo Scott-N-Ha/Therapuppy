@@ -28,6 +28,11 @@ export default class PuppyForm extends React.Component {
   }
 
   handleChange(e){
+    if (e.target.type === "select-one"){
+      e.target.classList.remove('session-error-select')
+    } else { 
+      e.target.classList.remove('session-error');
+    }
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -52,15 +57,15 @@ export default class PuppyForm extends React.Component {
 
       if (input.type === "text" && input.value.length < 1){
         allow = false;
-        newErrors.push(this.formError(input.name,"blank."));
+        // newErrors.push(this.formError(input.name,"blank."));
         input.classList.add('session-error');
       } else if (input.type === "number" && input.value <= 0) {
         allow = false;
-        newErrors.push(this.formError(input.name,"less than zero."));
+        // newErrors.push(this.formError(input.name,"less than zero."));
         input.classList.add('session-error');
       } else if (input.type === "file" && input.files.length < 1) {
         allow = false;
-        newErrors.push(this.formError(input.name,"blank."));
+        // newErrors.push(this.formError(input.name,"blank."));
         input.classList.add('session-error');
       }
     });
@@ -69,7 +74,7 @@ export default class PuppyForm extends React.Component {
 
     if (!radios[0].checked && !radios[1].checked){
       allow = false;
-      newErrors.push(this.selectError('sex'));
+      // newErrors.push(this.selectError('sex'));
       radios[0].classList.add('session-error');
       radios[1].classList.add('session-error');
     }
@@ -77,12 +82,12 @@ export default class PuppyForm extends React.Component {
     const selects = document.querySelectorAll('select');
 
     selects.forEach(select => {
-      select.classList.remove('session-error');
+      select.classList.remove('session-error-select');
 
       if(select.value.slice(0,6) === "Select"){
         allow = false;
-        newErrors.push(this.selectError(select.name));
-        select.classList.add('session-error');
+        // newErrors.push(this.selectError(select.name));
+        select.classList.add('session-error-select');
       }
     });
 
@@ -92,7 +97,7 @@ export default class PuppyForm extends React.Component {
       inputs.forEach(input => input.classList.remove('session-error'));
       selects.forEach(select => select.classList.remove('session-error'));
     } else {
-      this.setState({ frontErrors: newErrors });
+      this.setState({ frontErrors: ['Please fill in all required fields.'] });
     }
 
     return allow;
@@ -298,7 +303,7 @@ export default class PuppyForm extends React.Component {
                 />
             </label>
           </label>
-          <label className="puppy-form-label">
+          <label className="puppy-form-label">Nature Rating:
             <select
               name="natureRating"
               className="input-form natureRating-input"
