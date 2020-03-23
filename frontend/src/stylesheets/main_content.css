@@ -110,10 +110,31 @@
   justify-content: center;
 }
 
+.section-5 {
+  display: flex;
+  justify-content: center;
+  /* background-color: rgba(0,0,0,0.2); */
+}
+
 .meet-team {
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
+  margin: 40px;
+  padding: 40px;
+  
   border-radius: 10px;
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 20px, inset rgba(0,0,0,0.2) 0px -1px 2px;
+  width: 60%;
+}
+
+.meet-header {
+  /* font-weight: bolder; */
+  /* font-size: 36px;
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black; */
 }
