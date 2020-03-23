@@ -49,10 +49,6 @@ export default class UserShow extends React.Component {
 
     return (
       <div className="user">
-       <div className="welcome-text-container">
-        <p>who's a good dogter? all of you!</p>
-        <h1>Your good boys and girls are bringing us all to your yard.</h1>
-      </div>
         {/* { isOwner && samePerson ? this.ownerRender() : null } */}
         <div className="user-profile-container">
             <div className="user-info-flex">
@@ -68,20 +64,22 @@ export default class UserShow extends React.Component {
             </div> */}
             <div className="user-info-container contact">
             <div className="user-label-div">
-              <p> Email: {email} </p>
+              <p>{email} </p>
             </div>
             <div className="user-label-div">
-              <p> Address: {city}, {state} </p>
+              <p> Located in {city}, {state} </p>
             </div>
             </div>
             <div className="hr user two"></div>
             <div className="user-label-div">
-              <p> About {username}: {"Pathetic paw lover <3"}</p>
+              <p>Hey everybody ! I hope my good boys and girls will bring you lots of joy.</p>
             </div>
             </div>
           </div>
-        
           { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
+            </div>
+            <div className="welcome-text-container user-show">
+              {isOwner && samePerson ? <h1>Your good boys and girls are bringing us all to your yard.</h1> : <h1>Here are {username}'s good boys and gals !</h1>}
             </div>
         <PuppyIndexContainer ownerId={user._id} />
         </div>
