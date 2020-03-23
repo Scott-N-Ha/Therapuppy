@@ -81,6 +81,7 @@ export default class Puppy extends React.Component {
           <button className="request-dogter-button" onClick={() => openModal("requestDogter")}> 
           Request Dogter
           </button>
+          
           <Link to={`/users/${owner.username}`} className="request-dogter-button owner" > 
           Owner Information
           </Link>
