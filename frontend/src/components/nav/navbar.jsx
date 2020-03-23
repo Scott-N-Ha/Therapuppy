@@ -43,7 +43,6 @@ class NavBar extends React.Component {
                 </div>
                 <div className="dropdown-user-info">
                   <span >{currentUser.firstName} {currentUser.lastName}</span>
-                  <span className="user-small">{currentUser.email}</span>
                   <span className="user-small">{currentUser.city}, {currentUser.state}</span>
                 </div>
               </div>

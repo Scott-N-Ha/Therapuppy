@@ -79,7 +79,7 @@ export default class UserShow extends React.Component {
           { isOwner && samePerson ? <BookingPendingContainer ownerId={user._id} /> : null }
             </div>
             <div className="welcome-text-container user-show">
-              {isOwner && samePerson ? <h1>Your good boys and girls are bringing us all to your yard.</h1> : <h1>Here are {username}'s good boys and gals !</h1>}
+              {isOwner && samePerson ? <h1>Your good boys and girls are bringing us all to your yard.</h1> : ( user.isOwner ? <h1>Here are {username}'s good boys and gals !</h1> : null ) }
             </div>
         <PuppyIndexContainer ownerId={user._id} />
         </div>
