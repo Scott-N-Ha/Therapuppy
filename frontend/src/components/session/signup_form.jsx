@@ -54,14 +54,22 @@ export default class SignupForm extends React.Component {
     let allow = true;
     const inputs = document.querySelectorAll('input');
     const newErrors = [];
+    let empty = false;
+    let notLongEnough = false;
     
     inputs.forEach(input => {
       input.classList.remove('session-error');
       
-      if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit") && input.value.length < 1){
-        allow = false;
-        // newErrors.push(`${titlize(input.name)} cannot be blank.`);
-        input.classList.add('session-error');
+      if((input.name !== "isOwner" && input.name !== "address2" && input.name !== "submit")){
+        if (input.value.length < 1) {
+          allow = false;
+          empty = true;
+          input.classList.add('session-error');
+        } else if (input.value.length < 6) {
+          allow = false;
+          notLongEnough = true;
+          input.classList.add('session-error');
+        }
       }
     });
 
@@ -69,8 +77,11 @@ export default class SignupForm extends React.Component {
       this.setState({ frontErrors: [] });
       inputs.forEach(input => input.classList.remove('session-error'));
     } else {
-      // alert('FUck')();
-      this.setState({ frontErrors: ['Please fill in all required fields.'] });
+      if (notLongEnough) {
+        this.setState({ frontErrors: ['Fields must be at least 6 characters.'] });
+      } else {
+        this.setState({ frontErrors: ['Please fill in all required fields.'] });
+      } 
     }
 
     return allow;
