@@ -16,7 +16,7 @@ const mapStateToDispatch = dispatch =>({
   openModal: modal => dispatch(openModal(modal)),
   demoLogin: () => dispatch(login({ 
     user: {
-      email: "demo@aa.io",
+      email: "demo@aa.com",
       password: "password"
     }
   }))
