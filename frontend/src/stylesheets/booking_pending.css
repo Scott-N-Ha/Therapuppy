@@ -1,11 +1,11 @@
 .booking-pending-ul {
-  border: 3px solid lightsalmon;
+  /* border: 3px solid lightsalmon; */
   border-radius: 3px;
   padding: 3px;
-  margin: 5px;
-  max-height: 300px;
+  margin-left: 20px;
+  max-height: 170px;
   overflow: auto;
-}
+} 
 
 .booking-pending-li {
   align-self: center;
@@ -13,7 +13,6 @@
 }
 
 .booking-pending-puppy {
-  
   text-transform: uppercase;
   color: white;
   background-color: salmon;
@@ -42,4 +41,9 @@
   background-color: lightcoral;
   padding: 3px;
   font-weight: bold;
+}
+
+.bookings-li-container > p {
+  font-family: 'Abel', sans-serif;
+  font-size: 40px;
 }

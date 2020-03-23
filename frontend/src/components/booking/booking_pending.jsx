@@ -12,7 +12,6 @@ export default class BookingPending extends React.Component {
 
   processBookings(){
     const { bookings } = this.props;
-
     return bookings.map(({puppy, pendingBookings}) => {
       const sorted = pendingBookings.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 
@@ -37,14 +36,21 @@ export default class BookingPending extends React.Component {
           <label className="booking-pending-puppy">Pending Bookings for <Link to={`/puppies/${puppy._id}`}>{ puppy.name }</Link></label>
             { datedBookings }
         </li>
-      )
+      ) 
     });
   }
 
   render(){
+    const {bookings} = this.props
     return (
-      <ul className="booking-pending-ul">
-        { this.processBookings() }
+      <ul className="booking-pending-ul"> 
+        { bookings.length >= 1 ? 
+        <div className="bookings-li-container">
+          <p>We need your Therapups!</p>
+          {this.processBookings()}
+        </div>
+        
+        : null }
       </ul>
     )
   }
