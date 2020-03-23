@@ -72,7 +72,7 @@ export default class UserShow extends React.Component {
             </div>
             <div className="hr user two"></div>
             <div className="user-label-div">
-              <p>Hey everybody ! I hope my good boys and girls will bring you lots of joy.</p>
+              { isOwner ? <p>Hey everybody ! I hope my good boys and girls will bring you lots of joy.</p> : <p>I can't wait to pet all the dogs !</p>}
             </div>
             </div>
           </div>
