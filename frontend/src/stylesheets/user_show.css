@@ -18,7 +18,7 @@
 }
 
 .user-info-labels {
-  /* width: 430px; */
+  min-width: 500px;
   height: 200px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .user-info-container.contact {
-  width: 80%;
+  width: 90%;
   margin-bottom: 15px;
 }
 
