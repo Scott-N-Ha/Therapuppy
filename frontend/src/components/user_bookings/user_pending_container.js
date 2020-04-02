@@ -6,7 +6,7 @@ const msp = (state, ownProps) => {
     debugger
     return({
     type: "pending",
-    bookings: currentUser.bookings.filter(booking => booking.status === "5e717ae318716c8dc9bd5bf5"),
+    bookings: Object.values(state.entities.bookings).filter(booking => booking.renter._id === currentUser._id && booking.status === "5e717ae318716c8dc9bd5bf5"),
     currentUser: currentUser
 
 })}
