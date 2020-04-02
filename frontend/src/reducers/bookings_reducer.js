@@ -1,6 +1,7 @@
 import { RECEIVE_BOOKING, RECEIVE_ALL_BOOKINGS } from '../actions/booking_actions.js';
 import { RECEIVE_PUPPY } from '../actions/puppy_actions.js';
 import { RECEIVE_USER } from '../actions/user_actions.js';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions.js';
 
 const initialState = {
 
@@ -25,6 +26,8 @@ const bookingsReducer = (state = initialState, action) => {
 
     case RECEIVE_USER:
       return Object.assign(nextState, action.payload.bookings);
+    case RECEIVE_CURRENT_USER: 
+      return Object.assign(nextState, action.bookings)
 
     default:
       return state;

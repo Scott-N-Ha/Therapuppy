@@ -8,9 +8,10 @@ export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
 // Regular Actions
-const receiveCurrentUserAction = currentUser => ({
+const receiveCurrentUserAction = (currentUser, bookings) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
+  bookings
 });
 
 // const receiveUserSignInAction = () => ({
@@ -38,11 +39,12 @@ export const signup = user => dispatch => (
 export const login = user => dispatch => (
   APIUtil.login(user)
     .then(res => {
+      console.log(res);
       const { token } = res.data;
       localStorage.setItem('jwtToken', token);
       APIUtil.setAuthToken(token);
       const decoded = jwt_decode(token);
-      dispatch(receiveCurrentUserAction(decoded));
+      dispatch(receiveCurrentUserAction(decoded, res.data.bookings));
     })
     .catch(err => dispatch(receiveErrorsAction(err.response.data)))
 );

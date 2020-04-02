@@ -52,7 +52,9 @@ const selectFields = (user) => {
 		city: user.city,
 		state: user.state,
 		zip: user.zip,
-		isOwner: user.isOwner
+    isOwner: user.isOwner,
+    bookings: user.bookings, 
+    puppies: user.puppies
 	};
 }
 
@@ -163,12 +165,12 @@ router.post("/login", (req, res) => {
           console.log("Login success");
           fetchBookings(user).then(bookings => {
             return res.json({
-              sucess: true,
+              success: true,
               token: "Bearer " + token,
               user: payload,
               bookings
-            }));
-          }
+            });
+          })
 				});
 			} else {
 				errors.password = "Incorrect password";
@@ -202,11 +204,12 @@ router.get("/:username", (req,res) => {
 	User
 	.findOne({username: req.params.username})
 	.then( (user) => {
+    const payload = selectFields(user);
 		fetchPuppies(user).then(
 				puppies => { 
 					fetchBookings(user).then(
 						bookings => {
-							return res.json({ user, puppies, bookings }) 
+							return res.json({ user: payload, puppies, bookings }) 
 					})
 		})
 	})
