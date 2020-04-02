@@ -160,12 +160,15 @@ router.post("/login", (req, res) => {
 				jwt.sign(payload, keys.secretOrKey, {
 					expiresIn: 3600
 				}, (err, token) => {
-					console.log("Login success");
-					return res.json({
-						sucess: true,
-						token: "Bearer " + token,
-						user: payload
-					});
+          console.log("Login success");
+          fetchBookings(user).then(bookings => {
+            return res.json({
+              sucess: true,
+              token: "Bearer " + token,
+              user: payload,
+              bookings
+            }));
+          }
 				});
 			} else {
 				errors.password = "Incorrect password";
