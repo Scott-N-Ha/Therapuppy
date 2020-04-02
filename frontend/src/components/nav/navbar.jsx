@@ -49,9 +49,9 @@ class NavBar extends React.Component {
               <div className="separator"></div>
               <Link to={`/users/${currentUser.username}`}>Profile</Link>
               <div className="separator"></div>
-                <a>(0) Pending Bookings</a>
-                <a>(0) Approved Bookings</a>
-                <a>(0) Denied Bookings</a>
+                <a onClick={() => openModal("yourPendingBookings")}>(0) Pending Bookings</a>
+                <a onClick={() => openModal("yourApprovedBookings")}>(0) Approved Bookings</a>
+                <a onClick={() => openModal("yourDeniedBookings")}>(0) Denied Bookings</a>
               <div className="separator"></div>
               <a className="logout" onClick={this.logoutUser}>Logout</a>
             </div>
