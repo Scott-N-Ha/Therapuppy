@@ -6,6 +6,9 @@ import SignUpFormContainer from '../components/session/signup_form_container';
 import PuppyFormContainer from '../components/puppy/puppy_form_container';
 import BookingFormContainer from '../components/booking/booking_form_container'
 import BookingIndexContainer from './booking/booking_index_container';
+import UserApprovedBookings from './user_bookings/user_approved_container';
+import UserDeniedBookings from './user_bookings/user_denied_booking_container';
+import UserPendingBookings from './user_bookings/user_pending_container';
 
 function Modal({modal, closeModal}) {
     if (!modal) {
@@ -30,6 +33,15 @@ function Modal({modal, closeModal}) {
             break;
         case 'yourBookings':
             component = <BookingIndexContainer />
+            break;
+        case 'yourPendingBookings':
+            component = <UserPendingBookings />
+            break;
+        case 'yourApprovedBookings':
+            component = <UserApprovedBookings />
+            break;
+        case 'yourDeniedBookings':
+            component = <UserDeniedBookings />
             break;
         default:
             return null;
