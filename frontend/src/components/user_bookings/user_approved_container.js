@@ -7,7 +7,7 @@ const msp = (state, ownProps) => {
     return({
     type: "approved",
     bookings: Object.values(state.entities.bookings).filter(booking => booking.renter._id === currentUser._id && booking.status === "5e717c615a67b08eeeb91719"),
-    currentUser: currentUser
+    puppies: Object.values(state.entities.puppies)
 })}
 
 const mdp = dispatch => ({

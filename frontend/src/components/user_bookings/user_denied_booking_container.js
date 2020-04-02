@@ -7,8 +7,7 @@ const msp = (state, ownProps) => {
     type: "denied",
     
     bookings: Object.values(state.entities.bookings).filter(booking => booking.renter._id === currentUser._id && booking.status === "5e717c7132e5a38f0aaf16bb"),
-
-    currentUser: currentUser
+    puppies: Object.values(state.entities.puppies)
 
 
 })}
