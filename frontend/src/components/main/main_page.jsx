@@ -40,7 +40,7 @@ class MainPage extends React.Component {
           <div className="sub-section">
             <span className="sub-section-header dog-owners">Dog Owners</span>
             <br/>
-            <span>Do you have a certified Dogter that is just begging to help others? Join the thousands of other Dogters on TheraPuppy and let your Dogter help those in need. You can supervise the scheduling of your furry medical staff by approving and denying any scheduling conflicts you have.</span>
+            <p>Do you have a certified Dogter that is just begging to help others? Join the thousands of other Dogters on TheraPuppy and let your Dogter help those in need. You can supervise the scheduling of your furry medical staff by approving and denying any scheduling conflicts you have.</p>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ class MainPage extends React.Component {
           <div className="sub-section">
             <span className="sub-section-header patients">Patients In Need </span>
             <br/>
-            <span>Are you need in need of a little love and furry guidance from one of our certified Dogters? You can join today and begin immediately requesting therapy sessions with any one of our hundreds of certified medical personnel.</span>
+            <p>Are you need in need of a little love and furry guidance from one of our certified Dogters? You can join today and begin immediately requesting therapy sessions with any one of our hundreds of certified medical personnel.</p>
           </div>
         </div>
 
