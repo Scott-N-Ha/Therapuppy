@@ -66,8 +66,17 @@
   width: 300px;
   height: 200px;
   margin-top: 100px;
-  line-height: 1.2px;
   background-color: rgba(88,207,191,0.7);
+}
+
+.sub-section p {
+  margin-top: 10px;
+  line-height: 1.2;
+  color: white;
+}
+
+.sub-section span {
+  line-height: 1.2em;
 }
 
 .sub-section span {

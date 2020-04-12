@@ -84,7 +84,7 @@ class MainPage extends React.Component {
               />
               <TeamMember
                 name="Ryan Leung"
-                imageUrl="https://media-exp1.licdn.com/dms/image/C4D03AQGeOSmR8WMFQw/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=XM8CY_HvobeTbMfRq1_Sp0dgw2RWjrIDv9piwLVQPjw"
+                imageUrl="https://media-exp1.licdn.com/dms/image/C4D03AQF89XcqJ3kbow/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=IoNMRP2UASba-ukXnC3Arw5kZHS0i_JS3jwohx9k8gk"
                 linkedIn="https://www.linkedin.com/in/ryan-leung-324a45188/"
                 gitHub="https://github.com/mckgegis"
               />
