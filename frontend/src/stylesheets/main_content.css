@@ -65,10 +65,9 @@
   border-radius: 20px;
   width: 300px;
   height: 200px;
-
   margin-top: 100px;
-
-  background-color: rgba(0,0,0,0.7);
+  line-height: 1.2px;
+  background-color: rgba(88,207,191,0.7);
 }
 
 .sub-section span {
@@ -81,7 +80,7 @@
 }
 
 .section-2 {
-  text-align: right;
+  text-align: left;
   /* background-color: #58cfbf; */
   background-image: url(https://wallpaperaccess.com/full/769133.jpg);
   /* background-image: url(https://wallpaperaccess.com/full/769133.jpg); */
@@ -92,6 +91,7 @@
 .section-2 .sub-section {
   margin-left: auto;
   margin-right: 5%;
+  height: 240px;
 }
 
 .section-3 {
