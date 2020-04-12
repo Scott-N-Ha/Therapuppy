@@ -25,7 +25,7 @@ class NavBar extends React.Component {
     drop.className.includes("active") ? (drop.className="dropdown-container") : (drop.className = "dropdown-container active") 
   }
 
-  loggedIn(openModal, currentUser){
+  loggedIn(openModal, currentUser, pendingBookingsCount, approvedBookingsCount, deniedBookingsCount){
     return (
       <div className="nav-bar logged">
         <div className="nav-bar-logo-container">
@@ -49,9 +49,9 @@ class NavBar extends React.Component {
               <div className="separator"></div>
               <Link to={`/users/${currentUser.username}`}>Profile</Link>
               <div className="separator"></div>
-                <a onClick={() => openModal("yourPendingBookings")}>(0) Pending Bookings</a>
-                <a onClick={() => openModal("yourApprovedBookings")}>(0) Approved Bookings</a>
-                <a onClick={() => openModal("yourDeniedBookings")}>(0) Denied Bookings</a>
+                <a onClick={() => openModal("yourPendingBookings")}>({pendingBookingsCount}) Pending Bookings</a>
+                <a onClick={() => openModal("yourApprovedBookings")}>({approvedBookingsCount}) Approved Bookings</a>
+                <a onClick={() => openModal("yourDeniedBookings")}>({deniedBookingsCount}) Denied Bookings</a>
               <div className="separator"></div>
               <a className="logout" onClick={this.logoutUser}>Logout</a>
             </div>
@@ -72,11 +72,11 @@ class NavBar extends React.Component {
   }
   
   render(){
-    const { loggedIn, openModal, currentUser } = this.props;
+    const { loggedIn, openModal, currentUser, pendingBookingsCount, approvedBookingsCount, deniedBookingsCount } = this.props;
 
     return (
       <>
-        { loggedIn ? this.loggedIn(openModal, currentUser) : this.loggedOut() } 
+        { loggedIn ? this.loggedIn(openModal, currentUser, pendingBookingsCount, approvedBookingsCount, deniedBookingsCount) : this.loggedOut() } 
       </>
     )
   }

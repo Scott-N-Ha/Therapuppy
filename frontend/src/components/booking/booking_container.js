@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import Booking from './booking.jsx';
 import { updateBooking } from '../../actions/booking_actions.js';
+import { closeModal } from '../../actions/modal_actions.js';
 
 const mapStateToProps = (state, { booking: { owner, renter, puppy, status } }) => {
   // debugger
@@ -17,6 +18,7 @@ const mapStateToProps = (state, { booking: { owner, renter, puppy, status } }) =
 
 const mapDispatchToProps = dispatch => ({
   updateBooking: booking => dispatch(updateBooking(booking)),
+  closeModal: () => dispatch(closeModal())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));

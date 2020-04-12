@@ -9,6 +9,7 @@ export default class Booking extends React.Component{
 
     this.isOwnerRender = this.isOwnerRender.bind(this);
     this.editBooking = this.editBooking.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   editBooking(value){
@@ -17,6 +18,12 @@ export default class Booking extends React.Component{
       
       this.props.updateBooking(this.state);
     }
+  }
+
+  handleClick(){
+    const {bookingPuppy} = this.props
+    this.props.closeModal()
+    this.props.history.push(`/puppies/${bookingPuppy[0]._id}`)
   }
 
   isOwnerRender(status, old){
@@ -42,7 +49,7 @@ export default class Booking extends React.Component{
   }
 
   render(){
-    const { booking, isOwner, owner, renter, puppy, status } = this.props;
+    const { booking, isOwner, owner, renter, puppy, bookingPuppy, status } = this.props;
 
     const { totalCost, date } = booking;
 
@@ -51,15 +58,21 @@ export default class Booking extends React.Component{
 
     return (
       <div className={`booking ${ old ? 'old' : '' }`}>
+        {bookingPuppy ?  
+        <div onClick={this.handleClick} className="booking-label-div">
+          <label className="booking-label dogter-name">Dogter:</label> {bookingPuppy[0].name}
+        </div>
+        : ""}
         <div className="booking-label-div">
           <label className="booking-label">Date:</label> {date.slice(0,10)}
         </div>
         <div className="booking-label-div">
           <label className="booking-label">Total Cost:</label> ${totalCost}
         </div>
-        <div className="booking-label-div">
-          <label className={`booking-label ${status.name}`}>Status:</label> {status.name}
-        </div>
+        {bookingPuppy ?  ""
+        : <div className="booking-label-div">
+        <label className={`booking-label ${status.name}`}>Status:</label> {status.name}
+      </div>}
         { isOwner ? this.isOwnerRender(status, old) : "" }
       </div>
     )

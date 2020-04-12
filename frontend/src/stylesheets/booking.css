@@ -30,6 +30,10 @@
   color: white;
 }
 
+.booking-label.dogter-name {
+  cursor: pointer;
+}
+
 .booking-label.DENIED {
   background-color: red;
 }
