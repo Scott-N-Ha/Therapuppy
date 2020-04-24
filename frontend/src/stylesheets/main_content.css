@@ -91,7 +91,7 @@
 .section-2 {
   text-align: left;
   /* background-color: #58cfbf; */
-  background-image: url(https://wallpaperaccess.com/full/769133.jpg);
+  background-image: url("../images/section2.jpg");
   /* background-image: url(https://wallpaperaccess.com/full/769133.jpg); */
   background-position: center;
   background-size: 100% auto;
@@ -105,7 +105,8 @@
 
 .section-3 {
   /* background-color: #ffc38d; */
-  background-image: url(http://hddesktopwallpapers.in/wp-content/uploads/2015/09/funny-dog-wallpapers.jpg);
+  background-image: url("../images/section3.jpg");
+  /* background-image: url(http://hddesktopwallpapers.in/wp-content/uploads/2015/09/funny-dog-wallpapers.jpg); */
   background-position: center;
   background-size: 100% auto;
 }
