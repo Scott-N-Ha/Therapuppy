@@ -66,25 +66,21 @@ class MainPage extends React.Component {
             <div className="team-members">
               <TeamMember
                 name="Scott Ha"
-                imageUrl="https://media-exp1.licdn.com/dms/image/C5603AQG8SV4IvwOUVw/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=pZUYfjN44tOR2KwGNg2qEj2kQU2FVNANr3n8AZwDxKI"
                 linkedIn="https://www.linkedin.com/in/hascottn/"
                 gitHub="https://github.com/Scott-N-Ha"
               />
               <TeamMember
                 name="Olivia Yoon"
-                imageUrl="https://media-exp1.licdn.com/dms/image/C5603AQHjbgcgDeYvEQ/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=GDKXSVQKMslRhHcJUIQ-94sUV7qJa2JRr2qyXdut2Mg"
                 linkedIn="https://www.linkedin.com/in/yooneunsil/"
                 gitHub="https://github.com/jigglycode"
               />
               <TeamMember
                 name="Anson Chong"
-                imageUrl="https://media-exp1.licdn.com/dms/image/C5103AQHM6Mie-l7aVA/profile-displayphoto-shrink_200_200/0?e=1591228800&v=beta&t=s-EOTklaQyj7R9jx_sDoUFFT2JEcsvi--gNLL3plW9I"
                 linkedIn="https://www.linkedin.com/in/ansonchongch/"
                 gitHub="https://github.com/Chong-anson"
               />
               <TeamMember
                 name="Ryan Leung"
-                imageUrl="https://media-exp1.licdn.com/dms/image/C4D03AQF89XcqJ3kbow/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=IoNMRP2UASba-ukXnC3Arw5kZHS0i_JS3jwohx9k8gk"
                 linkedIn="https://www.linkedin.com/in/ryan-leung-324a45188/"
                 gitHub="https://github.com/mckgegis"
               />
